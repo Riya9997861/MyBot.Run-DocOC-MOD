@@ -22,11 +22,29 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetData($g_hTxtAutohideDelay, $ichkAutoHideDelay)
 			chkAutoHide()
 
+			; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+			GUICtrlSetState($g_hChkDBMeetCollOutside, $ichkDBMeetCollOutside = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetData($g_hTxtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
+			chkDBMeetCollOutside()
+
+			; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+			_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$DB], $g_iCmbCSVSpeed[$DB])
+			_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$LB], $g_iCmbCSVSpeed[$LB])
+
 
 		Case "Save"
 			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
 			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
 			$ichkAutoHideDelay = GUICtrlRead($g_hTxtAutohideDelay)
+
+			; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+			$ichkDBMeetCollOutside = GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED ? 1 : 0
+			$iDBMinCollOutsidePercent = GUICtrlRead($g_hTxtDBMinCollOutsidePercent)
+
+			; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+			$g_iCmbCSVSpeed[$DB] = _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$DB])
+			$g_iCmbCSVSpeed[$LB] = _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$LB])
+
 
 
 	EndSwitch

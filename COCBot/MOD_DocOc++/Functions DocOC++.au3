@@ -21,4 +21,7 @@
 #include "functions\Config\applyConfig.au3"
 
 ; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
-#include "functions\Other\AutoHide.au3"
+#include "functions\Mod's\AutoHide.au3"
+
+; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+#include "functions\Mod's\AreCollectorsOutside.au3"

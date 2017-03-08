@@ -16,3 +16,19 @@
 ; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
 Global $ichkAutoHide, $ichkAutoHideDelay = 10
 
+; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+#region Check Collectors Outside
+; Collectors outside filter
+Global $ichkDBMeetCollOutside, $iDBMinCollOutsidePercent, $iCollOutsidePercent ; check later if $iCollOutsidePercent obsolete
+
+; constants
+Global Const $THEllipseWidth = 200, $THEllipseHeigth = 150, $CollectorsEllipseWidth = 130, $CollectorsEllipseHeigth = 97.5
+Global Const $centerX = 430, $centerY = 335 ; check later if $THEllipseWidth, $THEllipseHeigth obsolete
+Global $hBitmapFirst
+#endregion
+
+; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+Global $g_hCmbCSVSpeed[2] = [$LB, $DB]
+Global $g_iCmbCSVSpeed[2] = [$LB, $DB]
+Global $g_hDivider
+
