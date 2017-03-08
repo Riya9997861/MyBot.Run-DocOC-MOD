@@ -99,7 +99,8 @@ Global $g_bFrmBotMinimized = False ; prevents bot flickering
 #include "GUI\MBR GUI Design Bot.au3"
 ; MOD DOC OC
 #include "MOD_DocOc\GUI\MOD TAB Design.au3"
-
+; DocOC++ Team MOD
+#include "MOD_DocOc++\GUI\MOD TAB Design.au3"
 #include "GUI\MBR GUI Design About.au3"
 
 Func CreateMainGUI()
