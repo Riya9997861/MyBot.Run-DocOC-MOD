@@ -13,7 +13,12 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
+; <><><><><><><><><><><><><><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><><><><><><><><><><><><><>
+
+; Config (NguyenAnhHD, Demen)
 #include "functions\Config\saveConfig.au3"
 #include "functions\Config\readConfig.au3"
 #include "functions\Config\applyConfig.au3"
 
+; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+#include "functions\Other\AutoHide.au3"

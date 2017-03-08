@@ -12,3 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
+
+; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+Global $ichkAutoHide, $ichkAutoHideDelay = 10
+

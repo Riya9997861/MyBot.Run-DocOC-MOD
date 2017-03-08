@@ -124,6 +124,9 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
     ; <><><> DocOc <><><>
     ApplyConfig_DocOc($TypeReadSave)
 
+	; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
+    ApplyConfig_MOD($TypeReadSave)
+
     ; <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 

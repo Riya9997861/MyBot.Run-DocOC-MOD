@@ -235,7 +235,10 @@ Func ReadRegularConfig()
 
    ; <><><> Attack Plan / Train Army / Options <><><>
    ReadConfig_DocOc()
-   
+
+   ; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
+   ReadConfig_MOD()
+
 EndFunc
 
 Func ReadConfig_Debug()

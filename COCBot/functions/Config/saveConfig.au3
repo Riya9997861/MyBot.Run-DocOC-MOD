@@ -172,6 +172,9 @@ Func SaveRegularConfig()
    ; <><><><> DocOc MOD <><><><>
    SaveConfig_DocOc()
 
+   ; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
+   SaveConfig_MOD()
+
 	If $hFile <> -1 Then FileClose($hFile)
 
 EndFunc

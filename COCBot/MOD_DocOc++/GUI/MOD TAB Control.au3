@@ -13,3 +13,8 @@
 ; Example .......: No
 ; ===============================================================================================================================
 #include-once
+
+; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+Func chkAutoHide()
+	GUICtrlSetState($g_hTxtAutohideDelay, GUICtrlRead($g_hChkAutoHide) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
+EndFunc   ;==>chkAutoHide

@@ -12,3 +12,11 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
+
+Func ReadConfig_MOD()
+	; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
+	; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+	IniReadS($ichkAutoHide, $g_sProfileConfigPath, "general", "AutoHide", 0, "int")
+	IniReadS($ichkAutoHideDelay, $g_sProfileConfigPath, "general", "AutoHideDelay", 10, "int")
+
+EndFunc

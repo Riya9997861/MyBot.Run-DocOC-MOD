@@ -12,3 +12,23 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
+
+Func ApplyConfig_MOD($TypeReadSave)
+	; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
+	Switch $TypeReadSave
+		Case "Read"
+			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+			GUICtrlSetState($g_hChkAutohide, $ichkAutoHide = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetData($g_hTxtAutohideDelay, $ichkAutoHideDelay)
+			chkAutoHide()
+
+
+		Case "Save"
+			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
+			$ichkAutoHideDelay = GUICtrlRead($g_hTxtAutohideDelay)
+
+
+	EndSwitch
+EndFunc
+

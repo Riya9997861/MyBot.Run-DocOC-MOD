@@ -12,3 +12,12 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
+
+Func SaveConfig_MOD()
+	; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
+	ApplyConfig_MOD("Save")
+	; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+	IniWriteS($g_sProfileConfigPath, "general", "AutoHide", $ichkAutoHide)
+	IniWriteS($g_sProfileConfigPath, "general", "AutoHideDelay", $ichkAutoHideDelay)
+
+EndFunc
