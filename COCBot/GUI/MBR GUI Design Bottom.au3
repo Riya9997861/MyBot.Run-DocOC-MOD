@@ -84,7 +84,7 @@ Func CreateBottomPanel()
 	   $g_hModSupportConfig = GUICtrlCreateButton(GetTranslated(602,34, "Support"), $x + 135, $y + 70, 45, -1)
 		   $sTxtTip = GetTranslated(602,35, "Support Mod Mybot All Versions.")
 		   _GUICtrlSetTip(-1, $sTxtTip)
-		   If $g_bBtnColor Then GUICtrlSetBkColor(-1, 0x22C4F5)
+		   GUICtrlSetBkColor(-1, 0x00FF2F)
 
 	   $g_hLblDonate = GUICtrlCreateLabel(GetTranslated(601,19,"Support the development"), $x + 224, $y + 80, 220, 24, $SS_RIGHT)
 		   GUICtrlSetCursor(-1, 0) ; https://www.autoitscript.com/autoit3/docs/functions/MouseGetCursor.htm

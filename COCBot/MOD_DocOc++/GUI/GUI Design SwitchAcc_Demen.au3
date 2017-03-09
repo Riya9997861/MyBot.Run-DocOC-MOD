@@ -23,12 +23,12 @@ Func CreateSwitchAcc_Demen()
 
 	; Adding option for SwitchAcc_Demen_Style
 	Local $x = 20, $y = 45
-	GUICtrlCreateLabel(GetTranslated(109,1, "Switch Account Style:"), $x + 250, $y,-1, -1)
-	$g_hRdoSwitchAcc_DocOc = GUICtrlCreateRadio("DocOc", $x + 270, $y + 16,-1, -1)
+	GUICtrlCreateLabel(GetTranslated(109,1, "Switch Account Style:"), $x + 285, $y, -1, -1)
+	$g_hRdoSwitchAcc_DocOc = GUICtrlCreateRadio("DocOc", $x + 270, $y + 16, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(109,2, "Use SwitchAcc moded by DocOc Team"))
 		GUICtrlSetState(-1, $GUI_CHECKED)
 		GUICtrlSetOnEvent(-1, "RdoSwitchAcc_Style")
-	$g_hRdoSwitchAcc_Demen = GUICtrlCreateRadio("Demen", $x + 350, $y + 16,-1, -1)
+	$g_hRdoSwitchAcc_Demen = GUICtrlCreateRadio("Demen", $x + 350, $y + 16, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(109,3, "Use SwitchAcc moded by Demen"))
 		GUICtrlSetOnEvent(-1, "RdoSwitchAcc_Style")
 
@@ -122,7 +122,7 @@ Func CreateSwitchAcc_Demen()
 				GUICtrlSetOnEvent(-1, "cmbMatchProfileAcc"&$i+1)
 			$cmbProfileType[$i] = GUICtrlCreateCombo("", $x + 140, $y + ($i) * 25, 60, 18, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 				$sTxtTip = GetTranslated(109,35, "Define the botting type of this profile")
-				GUICtrlSetData(-1, GetTranslated(109,36, "Active") & "|" & GetTranslated(109,86, "Donate") & "|" & GetTranslated(109,87, "Idle"))
+				GUICtrlSetData(-1, GetTranslated(109,36, "Active") & "|" & GetTranslated(109,37, "Donate") & "|" & GetTranslated(109,38, "Idle"))
 				GUICtrlSetTip(-1, $sTxtTip)
 			If $i = $nTotalProfile - 1 Then $g_EndHideSwitchAcc_Demen = GUICtrlCreateDummy()
 			If $i > $nTotalProfile - 1 Then

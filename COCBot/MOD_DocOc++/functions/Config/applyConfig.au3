@@ -90,10 +90,6 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$ichkIgnoreDColl = GUICtrlRead($g_hChkIgnoreDColl) = $GUI_CHECKED ? 1 : 0
 
 	EndSwitch
-
-	; SwitchAcc_Demen_Style
-	ApplyConfig_SwitchAcc($TypeReadSave, True)
-
 EndFunc
 
 Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)

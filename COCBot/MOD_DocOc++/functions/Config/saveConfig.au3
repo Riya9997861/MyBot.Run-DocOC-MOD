@@ -47,8 +47,6 @@ Func SaveConfig_MOD()
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", $iSmartMinElixir)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", $iSmartMinDark)
 
-	; SwitchAcc_Demen_Style
-	SaveConfig_SwitchAcc(False, True)
 EndFunc
 
 Func SaveConfig_SwitchAcc($Save = True, $SwitchAcc_Style = False)

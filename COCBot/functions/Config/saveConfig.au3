@@ -160,20 +160,22 @@ Func SaveRegularConfig()
 	; <><><><> Bot / Debug <><><><>
 	SaveConfig_Debug()
 
-   ; <><><><> Attack Plan / Strategies <><><><>
-   ; <<< nothing here >>>
+	; <><><><> Attack Plan / Strategies <><><><>
+	; <<< nothing here >>>
 
-   ; <><><><> Bot / Profiles <><><><>
-   ; <<< nothing here >>>
+	; <><><><> Bot / Profiles <><><><>
+	; <<< nothing here >>>
 
-   ; <><><><> Bot / Stats <><><><>
-   ; <<< nothing here >>>
+	; <><><><> Bot / Stats <><><><>
+	; <<< nothing here >>>
 
-   ; <><><><> DocOc MOD <><><><>
-   SaveConfig_DocOc()
+	; <><><><> DocOc MOD <><><><>
+	SaveConfig_DocOc()
 
-   ; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
-   SaveConfig_MOD()
+	; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
+	SaveConfig_MOD()
+	; SwitchAcc_Demen_Style
+	SaveConfig_SwitchAcc(False, True)
 
 	If $hFile <> -1 Then FileClose($hFile)
 

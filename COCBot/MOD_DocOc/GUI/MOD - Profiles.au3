@@ -21,7 +21,12 @@ Global $chkEnableSwitchAccount, $lblNB, $cmbAccountsQuantity
 Global $chkCanUse[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 Global $chkDonateAccount[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 Global $cmbAccount[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-Global $g_hRdoSwitchAcc_DocOc = 0, $g_hRdoSwitchAcc_Demen = 0, $g_StartHideSwitchAcc_DocOc = 0, $g_EndHideSwitchAcc_DocOc = 0 ; SwitchAcc_Demen_Style
+
+; SwitchAcc_Demen_Style
+Global $g_hRdoSwitchAcc_DocOc = 0, $g_hRdoSwitchAcc_Demen = 0, $g_StartHideSwitchAcc_DocOc = 0, $g_EndHideSwitchAcc_DocOc = 0
+
+#include "..\..\MOD_DocOc++\GUI\GUI Design SwitchAcc_Demen.au3"
+#include "..\..\MOD_DocOc++\GUI\GUI Design ProfileStats_Demen.au3"
 
 Func CreateModProfiles()
 

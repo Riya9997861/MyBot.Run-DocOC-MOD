@@ -106,7 +106,7 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
 	ApplyConfig_641_1($TypeReadSave)
 
     ; <><><><> Attack Plan / Strategies <><><><>
-; <<< nothing here >>>
+    ; <<< nothing here >>>
 
     ; <><><><> Bot / Profiles <><><><>
 	PopulatePresetComboBox()
@@ -126,6 +126,8 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
 
 	; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
     ApplyConfig_MOD($TypeReadSave)
+	; SwitchAcc_Demen_Style
+	ApplyConfig_SwitchAcc($TypeReadSave, True)
 
     ; <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 

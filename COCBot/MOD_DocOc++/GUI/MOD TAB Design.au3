@@ -15,5 +15,3 @@
 #include-once
 
 ; SwitchAcc_Demen_Style
-#include "GUI Design SwitchAcc_Demen.au3"
-#include "GUI Design ProfileStats_Demen.au3"

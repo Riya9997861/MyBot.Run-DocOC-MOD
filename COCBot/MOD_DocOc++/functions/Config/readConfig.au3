@@ -46,8 +46,6 @@ Func ReadConfig_MOD()
 	IniReadS($iSmartMinElixir, $g_sProfileConfigPath, "upgrade", "SmartMinElixir", 200000, "int")
 	IniReadS($iSmartMinDark, $g_sProfileConfigPath, "upgrade", "SmartMinDark", 1500, "int")
 
-	; SwitchAcc_Demen_Style
-	ReadConfig_SwitchAcc(True)
 EndFunc
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)
