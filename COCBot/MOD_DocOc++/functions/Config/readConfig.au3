@@ -46,5 +46,21 @@ Func ReadConfig_MOD()
 	IniReadS($iSmartMinElixir, $g_sProfileConfigPath, "upgrade", "SmartMinElixir", 200000, "int")
 	IniReadS($iSmartMinDark, $g_sProfileConfigPath, "upgrade", "SmartMinDark", 1500, "int")
 
+	; SwitchAcc_Demen_Style
+	ReadConfig_SwitchAcc(True)
+EndFunc
 
+Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)
+	; <><><> SwitchAcc_Demen_Style <><><>
+	If $SwitchAcc_Style = True Then IniReadS($iSwitchAccStyle, $Profile, "Switch Account", "SwitchType", "1", "int")
+
+	IniReadS($ichkSwitchAcc, $Profile, "Switch Account", "Enable", "0", "int")
+	IniReadS($icmbTotalCoCAcc, $Profile, "Switch Account", "Total Coc Account", "-1", "int")
+	IniReadS($ichkSmartSwitch, $Profile, "Switch Account", "Smart Switch", "0", "int")
+	IniReads($ichkCloseTraining, $Profile, "Switch Account", "Sleep Combo", "0", "int")	; Sleep Combo, 1 = Close CoC, 2 = Close Android, 0 = No sleep
+	For $i = 0 to 7
+		IniReadS($aMatchProfileAcc[$i],$Profile, "Switch Account", "MatchProfileAcc." & $i+1, "-1")
+		IniReadS($aProfileType[$i], $Profile, "Switch Account", "ProfileType." & $i+1, "-1")
+		IniReadS($aAccPosY[$i], $Profile, "Switch Account", "AccLocation." & $i+1, "-1")
+	Next
 EndFunc

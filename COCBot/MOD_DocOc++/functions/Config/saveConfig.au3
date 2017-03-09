@@ -47,5 +47,22 @@ Func SaveConfig_MOD()
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", $iSmartMinElixir)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", $iSmartMinDark)
 
-
+	; SwitchAcc_Demen_Style
+	SaveConfig_SwitchAcc(False, True)
 EndFunc
+
+Func SaveConfig_SwitchAcc($Save = True, $SwitchAcc_Style = False)
+	; <><><> SwitchAcc_Demen_Style <><><>
+	If $Save = True Then ApplyConfig_SwitchAcc("Save", $SwitchAcc_Style)
+	If $SwitchAcc_Style = True Then IniWriteS($profile, "Switch Account", "SwitchType", $iSwitchAccStyle)	; 1 = DocOc Style, 2 = Demen Style
+
+	IniWriteS($profile, "Switch Account", "Enable", $ichkSwitchAcc)
+	IniWriteS($profile, "Switch Account", "Total Coc Account", $icmbTotalCoCAcc)		; 1 = 1 Acc, 2 = 2 Acc, etc.
+	IniWriteS($profile, "Switch Account", "Smart Switch", $ichkSmartSwitch)
+	IniWriteS($profile, "Switch Account", "Sleep Combo", $ichkCloseTraining)			; 0 = No Sleep, 1 = Close CoC, 2 = Close Android
+	For $i = 1 to 8
+		IniWriteS($profile, "Switch Account", "MatchProfileAcc." & $i, _GUICtrlCombobox_GetCurSel($cmbAccountNo[$i-1])+1)		; 1 = Acc 1, 2 = Acc 2, etc.
+		IniWriteS($profile, "Switch Account", "ProfileType." & $i, _GUICtrlCombobox_GetCurSel($cmbProfileType[$i-1])+1)			; 1 = Active, 2 = Donate, 3 = Idle
+	Next
+EndFunc
+

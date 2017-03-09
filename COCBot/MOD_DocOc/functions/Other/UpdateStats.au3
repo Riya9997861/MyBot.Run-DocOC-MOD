@@ -34,7 +34,7 @@ Func UpdateStats($bForceUpdateAll = False)
 	Local Static $iOldNbrOfTHSnipeFails[9], $iOldNbrOfTHSnipeSuccess[9] ; number of fails and success while TH Sniping
 	Local static $s_iOldSmartZapGain[9], $s_iOldNumLSpellsUsed[9], $s_iOldNumEQSpellsUsed[9]
 
-	
+
 	Local Static $iOldGoldTotal = 0, $iOldElixirTotal = 0, $iOldDarkTotal = 0, $iOldTrophyTotal = 0 ; total stats
 	Local Static $iOldGoldLast = 0, $iOldElixirLast = 0, $iOldDarkLast = 0, $iOldTrophyLast = 0 ; loot and trophy gain from last raid
 	Local Static $iOldGoldLastBonus = 0, $iOldElixirLastBonus = 0, $iOldDarkLastBonus = 0 ; bonus loot from last raid
@@ -226,7 +226,7 @@ Func UpdateStats($bForceUpdateAll = False)
 		;Skipped Per Account
 		If $bForceUpdateAll = True Or $iOldSkippedVillageCount[$CurrentAccount] <> $g_iSkippedVillageCount[$CurrentAccount] Then
 			GUICtrlSetData($g_hLblResultVillagesSkipped, _NumberFormat($g_iSkippedVillageCount[$CurrentAccount], True))
-			GUICtrlSetData($g_hLblResultSkippedHourNow, _NumberFormat($g_iSkippedVillageCount[$CurrentAccount], True))
+			If $iSwitchAccStyle <> 2 And $ichkSwitchAcc <> 1 Then GUICtrlSetData($g_hLblResultSkippedHourNow, _NumberFormat($g_iSkippedVillageCount[$CurrentAccount], True))	;	SwitchAcc_Demen_Style
 			$iOldSkippedVillageCount[$CurrentAccount] = $g_iSkippedVillageCount[$CurrentAccount]
 		EndIf
 
@@ -305,7 +305,7 @@ Func UpdateStats($bForceUpdateAll = False)
 			GUICtrlSetData($g_hLblNbrOfHeroUpg, $g_iNbrOfHeroesUpped[$CurrentAccount])
 			$iOldNbrOfHeroesUpped[$CurrentAccount] = $g_iNbrOfHeroesUpped[$CurrentAccount]
 		EndIf
-		
+
 	;Section Upgrade Costs
 		;wall cost gold
 		If $bForceUpdateAll = True Or $iOldCostGoldWall[$CurrentAccount] <> $g_iCostGoldWall[$CurrentAccount] Then
@@ -371,11 +371,11 @@ Func UpdateStats($bForceUpdateAll = False)
 	;UPDATED TO MISC STAT TAB
 	If $bForceUpdateAll = True Or $iOldAttackedCount <> $iAttackedCount Then
 		GUICtrlSetData($g_hLblResultVillagesAttacked, _NumberFormat($iAttackedCount, True))
-		GUICtrlSetData($g_hLblResultAttackedHourNow, _NumberFormat($iAttackedCount, True))
+		If $iSwitchAccStyle <> 2 And $ichkSwitchAcc <> 1 Then GUICtrlSetData($g_hLblResultAttackedHourNow, _NumberFormat($iAttackedCount, True));	SwitchAcc_Demen_Style
 		$iOldAttackedCount = $iAttackedCount
 	EndIf
 	;END UPDATED TO MISC STAT TAB
-		
+
 
 	For $i = 0 To $g_iModeCount
 		If $i = $TS Then ContinueLoop
@@ -423,7 +423,7 @@ Func UpdateStats($bForceUpdateAll = False)
 			GUICtrlSetData($g_hLblSmartEarthQuakeUsed, _NumberFormat($g_iNumEQSpellsUsed[$CurrentAccount], True))
 			$s_iOldNumEQSpellsUsed[$CurrentAccount] = $g_iNumEQSpellsUsed[$CurrentAccount]
 		EndIf
-	
+
 ;STATS TAB DONATIONS
 	For $i = 0 To $eTroopCount - 1
 		If $g_aiDonateStatsTroops[$i][0] <> $g_aiDonateStatsTroops[$i][1] Then
@@ -488,7 +488,7 @@ Func UpdateStats($bForceUpdateAll = False)
 		$iOldTrophyCurrent[$CurrentAccount] = $g_iStatsCurrent[$CurrentAccount][$eLootTrophy]
 	EndIf
 
-	
+
 ;MISC CODE
 	If $ResetStats = 1 Then
 		GUICtrlSetData($g_ahLblStatsStartedWith[$eLootGold], _NumberFormat($iGoldCurrent, True))
@@ -507,6 +507,10 @@ Func UpdateStats($bForceUpdateAll = False)
 		$ResetStats = 0
 	EndIf
 
+	If $iSwitchAccStyle = 2 And $iChkSwitchAcc = 1 Then		; ====SwitchAcc_Demen_Style
+		UpdateStatsForSwitchAcc()
+	EndIf
+
 UpdateStatsSwitchMode($bForceUpdateAll)	; Enable when Function is added.
 
 EndFunc   ;==>UpdateStats
@@ -522,15 +526,15 @@ Func ResetStats()
 	$g_iStatsStartedWith[$CurrentAccount][$eLootElixir] = $iElixirCurrent
 	$g_iStatsStartedWith[$CurrentAccount][$eLootDarkElixir] = $iDarkCurrent
 	$g_iStatsStartedWith[$CurrentAccount][$eLootTrophy] = $iTrophyCurrent
-	
+
 	Dim $g_iStatsTotalGain[9][$eLootCount]
 	Dim $g_iStatsLastAttack[9][$eLootCount]
 	Dim $g_iStatsBonusLast[9][$eLootCount]
 	Dim $g_iSkippedVillageCount[9]
 	Dim $g_iDroppedTrophyCount[9]
-	Dim $g_iSearchCost[9] 
-	Dim $g_iTrainCostElixir[9] 
-	Dim $g_iTrainCostDElixir[9] 
+	Dim $g_iSearchCost[9]
+	Dim $g_iTrainCostElixir[9]
+	Dim $g_iTrainCostDElixir[9]
 	Dim $g_iGoldFromMines[9]
 	Dim $g_iElixirFromCollectors[9]
 	Dim $g_iDElixirFromDrills[9]
@@ -544,7 +548,7 @@ Func ResetStats()
 	Dim $g_iCostGoldBuilding[9]
 	Dim $g_iCostElixirBuilding[9]
 	Dim $g_iCostDElixirHero[9]
-	
+
 	Dim $g_iAttackedVillageCount[9][$g_iModeCount + 3]
 	Dim $g_iTotalGoldGain[9][$g_iModeCount + 3]
 	Dim $g_iTotalElixirGain[9][$g_iModeCount + 3]
@@ -560,7 +564,7 @@ Func ResetStats()
 	Dim $g_iNumEQSpellsUsed[9]
 	$iNbrOfOoS = 0
 
-	
+
 	For $i = 0 To $eTroopCount - 1
 		$g_aiDonateStatsTroops[$i][0] = 0
 	Next
@@ -575,6 +579,10 @@ Func ResetStats()
 	$g_iTotalDonateStatsTroopsXP = 0
 	$g_iTotalDonateStatsSpells = 0
 	$g_iTotalDonateStatsSpellsXP = 0
+
+	If $iSwitchAccStyle = 2 And $iChkSwitchAcc = 1 Then	; SwitchAcc_Demen_Style
+		ResetStatsForSwitchAcc()
+	EndIf
 
 	UpdateStats()
 EndFunc   ;==>ResetStats

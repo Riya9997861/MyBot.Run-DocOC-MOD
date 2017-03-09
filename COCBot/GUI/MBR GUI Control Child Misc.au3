@@ -81,11 +81,15 @@ Func btnAddConfirm()
 		Case Else
 			SetLog("If you are seeing this log message there is something wrong.", $COLOR_ERROR)
 	EndSwitch
+	AddProfileToList()	; SwitchAcc_Demen_Style
 EndFunc   ;==>btnAddConfirm
 
 Func btnDeleteCancel()
 	Switch @GUI_CtrlId
 		Case $g_hBtnDeleteProfile
+			SaveConfig_SwitchAcc()													; SwitchAcc_Demen_Style
+			Local $iDeleteProfile = _GUICtrlCombobox_GetCurSel($g_hCmbProfile)		; SwitchAcc_Demen_Style
+
 			Local $msgboxAnswer = MsgBox($MB_ICONWARNING + $MB_OKCANCEL, GetTranslated(637, 8, "Delete Profile"), GetTranslated(637, 14, "Are you sure you really want to delete the profile?\r\nThis action can not be undone."))
 			If $msgboxAnswer = $IDOK Then
 				; Confirmed profile deletion so delete it.
@@ -100,6 +104,7 @@ Func btnDeleteCancel()
 					; create new default profile
 					createProfile(True)
 				EndIf
+				RemoveProfileFromList($iDeleteProfile)								; SwitchAcc_Demen_Style
 			EndIf
 		Case $g_hBtnCancelProfileChange
 			GUICtrlSetState($g_hTxtVillageName, $GUI_HIDE)

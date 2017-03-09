@@ -28,3 +28,7 @@
 
 ; Smart Upgarde (Roro-Titi) - Added by NguyenAnhHD
 #include "functions\Mod's\SmartUpgrade.au3"
+
+; SwitchAcc_Demen_Style
+#include "functions\Mod's\SwitchAcc.au3"
+#include "functions\Mod's\UpdateProfileStats.au3"
