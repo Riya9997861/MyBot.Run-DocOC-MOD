@@ -31,8 +31,10 @@
 Opt("MustDeclareVars", 1)
 
 Global $g_sBotVersion = "v7.0.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it is also use on Checkversion()
-Global $g_sModversion = "v3.6" ;<== Just Change This to Version Number
-Global $g_sModSupportUrl = "https://mybot.run/forums/index.php?/topic/27601-mybotrun-dococ-v352/&" ;<== Our Website Link Or Link Download
+Global $g_sModversion = "v0.9" ;<== Just Change This to Version Number
+Global $g_sDocOcVersion = "v3.6" ;<== Just Change This to Version Number
+Global $g_sModSupportUrl = "https://mybot.run/forums/index.php?/topic/25631-mods-mybot-v701v653-dococ-aioofficial-mod-v084v15-update-0303/" ;<== Our Website Link Support Or Link Download
+Global $g_sModDownloadUrl = "https://github.com/NguyenAnhHD/MyBot.Run-DocOC-MOD/releases" ;<== Our Website Link Download
 Global $g_sBotTitle = "" ;~ Don't assign any title here, use Func UpdateBotTitle()
 Global $g_hFrmBot = 0 ; The main GUI window
 
@@ -74,7 +76,7 @@ InitializeBot()
 MainLoop()
 
 Func UpdateBotTitle()
-	Local $sTitle = "My Bot " & $g_sBotVersion & "  DocOc " & $g_sModversion & " "
+	Local $sTitle = "My Bot " & $g_sBotVersion & " - DocOC++ " & $g_sModversion & " - (DocOc " & $g_sDocOcVersion & ") "
 	If $g_sBotTitle = "" Then
 		$g_sBotTitle = $sTitle
 		Return
