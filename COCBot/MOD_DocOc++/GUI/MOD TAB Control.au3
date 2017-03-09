@@ -99,6 +99,16 @@ Func AttackNowDB()
 	SetLog("End Dead Base Attack TEST")
 EndFunc   ;==>AttackNowLB
 
+; QuickTrainCombo (Demen) - Added by Demen
+Func chkQuickTrainCombo()
+	If GUICtrlRead($g_ahChkArmy[0]) = $GUI_UNCHECKED And GUICtrlRead($g_ahChkArmy[1]) = $GUI_UNCHECKED And GUICtrlRead($g_ahChkArmy[2]) = $GUI_UNCHECKED Then
+		GUICtrlSetState($g_ahChkArmy[0],$GUI_CHECKED)
+		ToolTip("QuickTrainCombo: " & @CRLF & "At least 1 Army Check is required! Default Army1.")
+		Sleep(2000)
+		ToolTip('')
+	EndIf
+EndFunc	;==> QuickTrainCombo
+
 ; SwitchAcc_Demen_Style
 Func RdoSwitchAcc_Style()
 	If GUICtrlRead($g_hRdoSwitchAcc_DocOc) = $GUI_CHECKED Then
