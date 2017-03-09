@@ -25,3 +25,6 @@
 
 ; Check Collector Outside (McSlither) - Added by NguyenAnhHD
 #include "functions\Mod's\AreCollectorsOutside.au3"
+
+; Smart Upgarde (Roro-Titi) - Added by NguyenAnhHD
+#include "functions\Mod's\SmartUpgrade.au3"
