@@ -15,7 +15,7 @@
 
 Global $lblProfileNo[8], $lblProfileName[8], $cmbAccountNo[8], $cmbProfileType[8]
 Global $chkSwitchAcc = 0, $cmbTotalAccount = 0, $radNormalSwitch = 0, $radSmartSwitch = 0, $chkUseTrainingClose = 0, $radCloseCoC = 0, $radCloseAndroid = 0, $cmbLocateAcc = 0
-Global $g_StartHideSwitchAcc_Demen = 0, $g_EndHideSwitchAcc_Demen = 0
+Global $g_StartHideSwitchAcc_Demen = 0, $g_SecondHideSwitchAcc_Demen, $g_EndHideSwitchAcc_Demen = 0
 
 Func CreateSwitchAcc_Demen()
 	$ProfileList = _GUICtrlComboBox_GetListArray($g_hCmbProfile)
@@ -108,6 +108,7 @@ Func CreateSwitchAcc_Demen()
 		GUICtrlCreateGraphic($x - 10, $y, 205, 1, $SS_GRAYRECT)
 		GUICtrlCreateGraphic($x + 10, $y - 25, 1, 40, $SS_GRAYRECT)
 
+	$g_SecondHideSwitchAcc_Demen = GUICtrlCreateDummy()
 	$y += 10
 		 For $i = 0 To 7
 			$lblProfileNo[$i] = GUICtrlCreateLabel($i + 1 & ".", $x -10, $y + 4 + ($i) * 25, 15, 18, $SS_CENTER)

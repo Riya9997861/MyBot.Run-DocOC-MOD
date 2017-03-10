@@ -129,9 +129,10 @@ Func RdoSwitchAcc_Style()
 		For $i = $g_StartHideSwitchAcc_DocOc To $g_EndHideSwitchAcc_DocOc
 			GUICtrlSetState($i,$GUI_HIDE)
 		Next
-		For $i = $g_StartHideSwitchAcc_Demen To $g_EndHideSwitchAcc_Demen
+		For $i = $g_StartHideSwitchAcc_Demen To $g_SecondHideSwitchAcc_Demen
 			GUICtrlSetState($i,$GUI_SHOW)
 		Next
+		btnUpdateProfile(False)
 		HideShowMultiStat("HIDE")
 	EndIf
 EndFunc
@@ -174,11 +175,13 @@ Func RemoveProfileFromList($iDeleteProfile)
 	btnUpdateProfile()
 EndFunc
 
-Func btnUpdateProfile()
+Func btnUpdateProfile($Config = True)
 
-	SaveConfig_SwitchAcc()
-	ReadConfig_SwitchAcc()
-	ApplyConfig_SwitchAcc("Read")
+	If $Config = True Then
+		SaveConfig_SwitchAcc()
+		ReadConfig_SwitchAcc()
+		ApplyConfig_SwitchAcc("Read")
+	EndIf
 
 	$ProfileList = _GUICtrlComboBox_GetListArray($g_hCmbProfile)
 	$nTotalProfile = _GUICtrlComboBox_GetCount($g_hCmbProfile)
