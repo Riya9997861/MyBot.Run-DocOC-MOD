@@ -175,7 +175,7 @@ Func SaveRegularConfig()
 	; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
 	SaveConfig_MOD()
 	; SwitchAcc_Demen_Style
-	SaveConfig_SwitchAcc(False, True)
+	SaveConfig_SwitchAcc(True)
 
 	If $hFile <> -1 Then FileClose($hFile)
 

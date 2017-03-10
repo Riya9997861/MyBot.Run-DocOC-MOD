@@ -124,7 +124,6 @@ Func CreateSwitchAcc_Demen()
 				$sTxtTip = GetTranslated(109,35, "Define the botting type of this profile")
 				GUICtrlSetData(-1, GetTranslated(109,36, "Active") & "|" & GetTranslated(109,37, "Donate") & "|" & GetTranslated(109,38, "Idle"))
 				GUICtrlSetTip(-1, $sTxtTip)
-			If $i = $nTotalProfile - 1 Then $g_EndHideSwitchAcc_Demen = GUICtrlCreateDummy()
 			If $i > $nTotalProfile - 1 Then
 				For $j = $lblProfileNo[$i] To $cmbProfileType[$i]
 					GUICtrlSetState($j, $GUI_HIDE)
@@ -133,6 +132,7 @@ Func CreateSwitchAcc_Demen()
 		 Next
 		 GUICtrlCreateGroup("", -99, -99, 1, 1)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
+	$g_EndHideSwitchAcc_Demen = GUICtrlCreateDummy()
 
 	For $i = $g_StartHideSwitchAcc_Demen To $g_EndHideSwitchAcc_Demen
 		GUICtrlSetState($i,$GUI_HIDE)

@@ -122,8 +122,10 @@ Func RdoSwitchAcc_Style()
 		For $i = $g_StartHideSwitchAcc_DocOc To $g_EndHideSwitchAcc_DocOc
 			GUICtrlSetState($i,$GUI_SHOW)
 		Next
+		chkSwitchAccount()
 	Else
 		GUICtrlSetState($chkEnableSwitchAccount, $GUI_UNCHECKED)
+		chkSwitchAccount()
 		For $i = $g_StartHideSwitchAcc_DocOc To $g_EndHideSwitchAcc_DocOc
 			GUICtrlSetState($i,$GUI_HIDE)
 		Next
@@ -184,9 +186,11 @@ Func btnUpdateProfile()
 	For $i = 0 To 7
 		If $i <= $nTotalProfile - 1 Then
 			GUICtrlSetData($lblProfileName[$i], $ProfileList[$i+1])
-			For $j = $lblProfileNo[$i] To $cmbProfileType[$i]
-				GUICtrlSetState($j, $GUI_SHOW)
-			Next
+			If GUICtrlRead($g_hRdoSwitchAcc_Demen) = $GUI_CHECKED Then
+				For $j = $lblProfileNo[$i] To $cmbProfileType[$i]
+					GUICtrlSetState($j, $GUI_SHOW)
+				Next
+			EndIf
 		; Update stats GUI
 			For $j = $aStartHide[$i] To $aEndHide[$i]
 			   GUICtrlSetState($j, $GUI_SHOW)
@@ -355,4 +359,3 @@ Func btnClearAccLocation()
 	Setlog(GetTranslated(109,54, "Position of all accounts cleared"))
 	SaveConfig_SwitchAcc()
 EndFunc
-
