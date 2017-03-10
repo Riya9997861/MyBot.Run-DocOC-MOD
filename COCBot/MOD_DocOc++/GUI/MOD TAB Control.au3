@@ -109,6 +109,34 @@ Func chkQuickTrainCombo()
 	EndIf
 EndFunc	;==> QuickTrainCombo
 
+; SimpleTrain (Demen) - Added by Demen
+Func chkSimpleTrain()
+	If GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED Then
+		_GUI_Value_STATE("ENABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_htxtFillArcher & "#" & $g_hchkFillEQ)
+		chkPreciseTroops()
+	Else
+		_GUI_Value_STATE("DISABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_htxtFillArcher & "#" &  $g_hchkFillEQ)
+		_GUI_Value_STATE("UNCHECKED", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_hchkFillEQ)
+	EndIf
+EndFunc   ;==>chkSimpleTrain
+
+Func chkPreciseTroops()
+	If GUICtrlRead($g_hchkPreciseTroops) = $GUI_CHECKED Then
+		_GUI_Value_STATE("DISABLE", $g_hchkFillArcher & "#" & $g_htxtFillArcher & "#" & $g_hchkFillEQ)
+		_GUI_Value_STATE("UNCHECKED", $g_hchkFillArcher & "#" & $g_hchkFillEQ)
+	Else
+		_GUI_Value_STATE("ENABLE", $g_hchkFillArcher & "#" & $g_htxtFillArcher & "#" & $g_hchkFillEQ)
+	EndIf
+EndFunc   ;==>chkSimpleTrain
+
+Func chkFillArcher()
+	If GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED Then
+		_GUI_Value_STATE("ENABLE", $g_htxtFillArcher)
+	Else
+		_GUI_Value_STATE("DISABLE", $g_htxtFillArcher)
+	EndIf
+EndFunc   ;==>chkSimpleTrain
+
 ; SwitchAcc_Demen_Style
 Func RdoSwitchAcc_Style()
 	If GUICtrlRead($g_hRdoSwitchAcc_DocOc) = $GUI_CHECKED Then

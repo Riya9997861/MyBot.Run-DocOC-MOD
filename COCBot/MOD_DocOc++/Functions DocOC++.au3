@@ -32,3 +32,6 @@
 ; SwitchAcc_Demen_Style
 #include "functions\Mod's\SwitchAcc.au3"
 #include "functions\Mod's\UpdateProfileStats.au3"
+
+; SimpleTrain (Demen)
+#include "functions\Mod's\SimpleTrain.au3"

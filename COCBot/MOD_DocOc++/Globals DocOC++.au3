@@ -58,3 +58,6 @@ Global $bReMatchAcc = False
 Global $aTimerStart[8], $aTimerEnd[8]
 Global $aRemainTrainTime[8], $aUpdateRemainTrainTime[8], $nMinRemainTrain
 Global $aLocateAccConfig[8], $aAccPosY[8]
+
+; SimpleTrain (Demen) - Added by Demen
+Global $ichkSimpleTrain,  $ichkPreciseTroops, $ichkFillArcher, $iFillArcher, $ichkFillEQ
