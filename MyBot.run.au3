@@ -31,8 +31,10 @@
 Opt("MustDeclareVars", 1)
 
 Global $g_sBotVersion = "v7.0.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it is also use on Checkversion()
-Global $g_sModversion = "v3.6" ;<== Just Change This to Version Number
-Global $g_sModSupportUrl = "https://mybot.run/forums/index.php?/topic/27601-mybotrun-dococ-v352/&" ;<== Our Website Link Or Link Download
+Global $g_sModversion = "v0.9" ;<== Just Change This to Version Number
+Global $g_sDocOcVersion = "v3.6" ;<== Just Change This to Version Number
+Global $g_sModSupportUrl = "https://mybot.run/forums/index.php?/topic/25631-mods-mybot-v701v653-dococ-aioofficial-mod-v084v15-update-0303/" ;<== Our Website Link Support Or Link Download
+Global $g_sModDownloadUrl = "https://github.com/NguyenAnhHD/MyBot.Run-DocOC-MOD/releases" ;<== Our Website Link Download
 Global $g_sBotTitle = "" ;~ Don't assign any title here, use Func UpdateBotTitle()
 Global $g_hFrmBot = 0 ; The main GUI window
 
@@ -74,7 +76,7 @@ InitializeBot()
 MainLoop()
 
 Func UpdateBotTitle()
-	Local $sTitle = "My Bot " & $g_sBotVersion & "  DocOc " & $g_sModversion & " "
+	Local $sTitle = "My Bot " & $g_sBotVersion & " - DocOC++ " & $g_sModversion & " - (DocOc " & $g_sDocOcVersion & ") "
 	If $g_sBotTitle = "" Then
 		$g_sBotTitle = $sTitle
 		Return
@@ -475,6 +477,7 @@ Func FinalInitialization(Const $hBLT, Const $sAI)
    ;AdlibRegister("PushBulletDeleteOldPushes", $g_iPBDeleteOldPushesInterval)
 
    CheckDisplay() ; verify display size and DPI (Dots Per Inch) setting
+   If $iSwitchAccStyle = 2 Then btnUpdateProfile()	; update profiles & StatsProfile - SwitchAcc_Demen_Style
 
    LoadAmountOfResourcesImages()
 
@@ -531,6 +534,13 @@ EndFunc   ;==>MainLoop
 
 Func runBot() ;Bot that runs everything in order
 
+	If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 And $bReMatchAcc = True Then ; SwitchAcc_DEMEN_Style
+		$nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile) + 1
+		Setlog("Rematching Profile [" & $nCurProfile & "] - " & $ProfileList[$nCurProfile] & " (CoC Acc. " & $aMatchProfileAcc[$nCurProfile - 1] & ")")
+		SwitchCoCAcc()
+		$bReMatchAcc = False
+	EndIf
+
 	If $FirstInit Then SwitchAccount(True)
 	Local $iWaitTime
 	While 1
@@ -581,6 +591,7 @@ Func runBot() ;Bot that runs everything in order
 			If $g_bRestart = True Then ContinueLoop
 			If _Sleep($iDelayRunBot3) Then Return
 			VillageReport()
+			ProfileSwitch()
 			If $OutOfGold = 1 And (Number($iGoldCurrent) >= Number($g_iTxtRestartGold)) Then ; check if enough gold to begin searching again
 				$OutOfGold = 0 ; reset out of gold flag
 				Setlog("Switching back to normal after no gold to search ...", $COLOR_SUCCESS)
@@ -643,6 +654,7 @@ Func runBot() ;Bot that runs everything in order
 					If Unbreakable() = True Then ContinueLoop
 				EndIf
 			EndIf
+			SmartUpgrade()
 			MainSuperXPHandler()
 			Local $aRndFuncList = ['Laboratory', 'UpgradeHeroes', 'UpgradeBuilding']
 			While 1
@@ -666,6 +678,7 @@ Func runBot() ;Bot that runs everything in order
 				UpgradeWall()
 				If _Sleep($iDelayRunBot3) Then Return
 				If $g_bRestart = True Then ContinueLoop
+				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = 2 Then checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc_DEMEN_Style
 				Idle()
 				;$fullArmy1 = $fullArmy
 				If _Sleep($iDelayRunBot3) Then Return
@@ -852,7 +865,11 @@ Func Idle() ;Sequence that runs until Full Army
 		If $iChkSnipeWhileTrain = 1 Then SnipeWhileTrain() ;snipe while train
 
 		If $g_iCommandStop = -1 Then ; Check if closing bot/emulator while training and not in halt mode
-			SmartWait4Train()
+			If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 Then ; SwitchAcc_DEMEN_Style
+				checkSwitchAcc()
+			Else
+				SmartWait4Train()
+			EndIf
 			If $g_bRestart = True Then ExitLoop ; if smart wait activated, exit to runbot in case user adjusted GUI or left emulator/bot in bad state
 		EndIf
 
@@ -902,6 +919,11 @@ Func AttackMain() ;Main control for attack functions
 		Else
 			Setlog("No one of search condition match:", $COLOR_WARNING)
 			Setlog("Waiting on troops, heroes and/or spells according to search settings", $COLOR_WARNING)
+			If $iSwitchAccStyle = 2 And $iSwitchAccStyle = 1 Then ; SwitchAcc_DEMEN_Style
+				checkSwitchAcc()
+			Else
+				SmartWait4Train()
+			EndIf
 			$Is_SearchLimit = False
 			$Is_ClientSyncError = False
 			$g_bQuickAttack = False

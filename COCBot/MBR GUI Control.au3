@@ -52,6 +52,8 @@ Global $g_hFrmBot_WNDPROC_ptr = 0
 
 ; MOD DOC OC
 #include "MOD_DocOc\GUI\MOD TAB Control.au3"
+; DocOC++ Team MOD
+#include "MOD_DocOc++\GUI\MOD TAB Control.au3"
 
 Func InitializeMainGUI()
 	InitializeControlVariables()
@@ -435,6 +437,8 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			btnAttackNowLB()
 		Case $g_hBtnAttackNowTS
 			btnAttackNowTS()
+		Case $g_hModSupportConfig
+			ShellExecute($g_sModSupportUrl)
 			;Case $idMENU_DONATE_SUPPORT
 			;	ShellExecute("https://mybot.run/forums/index.php?/donate/make-donation/")
 		Case $g_hBtnNotifyDeleteMessages
@@ -1364,16 +1368,16 @@ Func tabBot()
 		Case $tabidx = 0 ; Options tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlShow("", "", $g_hCmbGUILanguage)
-		Case $tabidx = 1 ; Debug tab
+		Case $tabidx = 1 ; Android tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
-			;			Case $tabidx = 2 ; Profiles tab
-			;				GUISetState(@SW_HIDE, $g_hGUI_STATS)
-			;				ControlHide("","",$g_hCmbGUILanguage)
-		Case $tabidx = 2 ; Android tab
+		Case $tabidx = 2 ; Debug tab
+			GUISetState(@SW_HIDE, $g_hGUI_STATS)
+			ControlHide("","",$g_hCmbGUILanguage)
+		Case $tabidx = 3 ; MultiStats tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
-		Case $tabidx = 3 ; Stats tab
+		Case $tabidx = 4 ; Stats tab
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
 	EndSelect
@@ -1543,7 +1547,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_UPGRADE_TAB
 			; the icons for upgrade tab
-			Local $aIconIndex[4] = [$eIcnLaboratory, $eIcnHeroes, $eIcnMortar, $eIcnWall]
+			Local $aIconIndex[5] = [$eIcnLaboratory, $eIcnHeroes, $eIcnMortar, $eIcnWall, $eIcnUpgrade]
 
 		Case $g_hGUI_NOTIFY_TAB
 			; the icons for NOTIFY tab
@@ -1575,7 +1579,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_BOT_TAB
 			; the icons for Bot tab
-			Local $aIconIndex[4] = [$eIcnOptions, $eIcnAndroid, $eIcnBug, $eIcnStats]
+			Local $aIconIndex[5] = [$eIcnOptions, $eIcnAndroid, $eIcnBug, $eIcnMultiStat, $eIcnStats]
 			; The Android Robot is a Google Trademark and follows Creative Common Attribution 3.0
 
 		Case $g_hGUI_STRATEGIES_TAB
@@ -1588,7 +1592,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_MOD_TAB
 			; the icons for stats tab
-			Local $aIconIndex[5] = [$eIcnInfo, $eIcnBrain, $eIcnOptions, $eIcnProfile, $eIcnMultiStat]
+			Local $aIconIndex[5] = [$eIcnInfo, $eIcnBrain, $eIcnOptions, $eIcnSwitch, $eIcnProfile2]
 
 		Case Else
 			;do nothing

@@ -218,24 +218,29 @@ Func ReadRegularConfig()
 	; <><><> Attack Plan / Train Army / Options <><><>
 	ReadConfig_641_1()
 
-   ; <><><><> Attack Plan / Strategies <><><><>
-   ; <<< nothing here >>>
+	; <><><><> Attack Plan / Strategies <><><><>
+	; <<< nothing here >>>
 
-   ; <><><><> Bot / Android <><><><>
-   ; <<< nothing here >>>
+	; <><><><> Bot / Android <><><><>
+	; <<< nothing here >>>
 
-   ; <><><><> Bot / Debug <><><><>
-   ; Settings at top of this function for easy access
+	; <><><><> Bot / Debug <><><><>
+	; Settings at top of this function for easy access
 
-   ; <><><><> Bot / Profiles <><><><>
-   ; <<< nothing here >>>
+	; <><><><> Bot / Profiles <><><><>
+	; <<< nothing here >>>
 
-   ; <><><><> Bot / Stats <><><><>
-   ; <<< nothing here >>>
+	; <><><><> Bot / Stats <><><><>
+	; <<< nothing here >>>
 
-   ; <><><> Attack Plan / Train Army / Options <><><>
-   ReadConfig_DocOc()
-   
+	; <><><> Attack Plan / Train Army / Options <><><>
+	ReadConfig_DocOc()
+
+	; <><><> DocOc++ Team MOD (NguyenAnhHD, Demen) <><><>
+	ReadConfig_MOD()
+	; SwitchAcc_Demen_Style
+	ReadConfig_SwitchAcc(True)
+
 EndFunc
 
 Func ReadConfig_Debug()
@@ -1043,20 +1048,9 @@ EndFunc
 Func ReadConfig_600_52_1()
 	; <><><><> Attack Plan / Train Army / Troops/Spells <><><><>
 	$g_bQuickTrainEnable = (IniRead($g_sProfileConfigPath, "other", "ChkUseQTrain", "0") = "1")
-    IniReadS($g_iQuickTrainArmyNum, $g_sProfileConfigPath, "troop", "QuickTrainArmyNum", -1, "int")
-	If $g_iQuickTrainArmyNum = -1 Then ; Convert 6.5.3 style to 6.5.4+ style for this ini key
-	   Local $iQTArmy[3] = [0,0,0]
-	   IniReadS($iQTArmy[0], $g_sProfileConfigPath, "troop", "QuickTrain1", 1, "int")
-	   IniReadS($iQTArmy[1], $g_sProfileConfigPath, "troop", "QuickTrain2", 0, "int")
-	   IniReadS($iQTArmy[2], $g_sProfileConfigPath, "troop", "QuickTrain3", 0, "int")
-	   $g_iQuickTrainArmyNum = 1
-	   For $i = 0 To 2
-		  If $iQTArmy[$i] = 1 Then
-			 $g_iQuickTrainArmyNum = $i+1
-			 ExitLoop
-		  EndIf
-	   Next
-    EndIf
+	$g_bQuickTrainArmy[0] = (IniRead($g_sProfileConfigPath, "troop", "QuickTrainArmy1", "0") = "1")		; QuickTrainCombo (check box) - Demen
+	$g_bQuickTrainArmy[1] = (IniRead($g_sProfileConfigPath, "troop", "QuickTrainArmy2", "0") = "1")		; QuickTrainCombo (check box) - Demen
+	$g_bQuickTrainArmy[2] = (IniRead($g_sProfileConfigPath, "troop", "QuickTrainArmy3", "0") = "1")		; QuickTrainCombo (check box) - Demen
 EndFunc
 
 Func ReadConfig_600_52_2()

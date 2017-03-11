@@ -40,6 +40,7 @@ Global $lblXPatStart = 0 , $lblXPCurrent = 0 , $lblXPSXWon = 0 , $lblXPSXWonHour
 Global $chkExtraPersian = 0
 #include "MOD - Profiles.au3"
 #include "MBR GUI Design Child Stats - Multi.au3"
+#include "..\..\MOD_DocOc++\GUI\MBR GUI Design - Switch Profiles.au3"
 
 Func CreateMODTab()
 
@@ -47,25 +48,27 @@ Func CreateMODTab()
 
 	GUISwitch($g_hGUI_MOD)
 	$g_hGUI_MOD_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
-		$g_hGUI_MOD_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600, 58, "Misc MODs"))
+		$g_hGUI_MOD_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600, 58, "Misc"))
 			OptionsGUI()
 		$g_hGUI_MOD_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600, 59, "Humanization"))
 			HumanizationGUI()
 		$g_hGUI_MOD_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600, 60, "Goblin XP"))
 			GoblinXPGUI()
-		$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 36, "Profiles"))
+		$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem("Switch Account")
 			CreateModProfiles()
-		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("MultiStat's") ; Has to be outside of the Last Control to hide
-			$g_hLastControlToHide = GUICtrlCreateDummy()
-			ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
-			CreateMultiStatsGUI()
+		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("Switch Profile") ; Has to be outside of the Last Control to hide
+			CreateModSwitchProfile()
 	GUICtrlCreateTabItem("")
 
 	GUISwitch($g_hGUI_BOT)
+		$g_hGUI_BOT_TAB_ITEM4 = GUICtrlCreateTabItem("MultiStat's") ; Has to be outside of the Last Control to hide
+			$g_hLastControlToHide = GUICtrlCreateDummy()
+			ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
+			CreateMultiStatsGUI()
 		$g_hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600, 37, "Stats"))
-		; This dummy is used in btnStart and btnStop to disable/enable all labels, text, buttons etc. on all tabs.
-		CreateBotStats()
-		GUICtrlCreateTabItem("")
+			; This dummy is used in btnStart and btnStop to disable/enable all labels, text, buttons etc. on all tabs.
+			CreateBotStats()
+	GUICtrlCreateTabItem("")
 EndFunc   ;==>CreateMODTab
 
 Func OptionsGUI()

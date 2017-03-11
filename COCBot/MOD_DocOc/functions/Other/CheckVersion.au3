@@ -17,27 +17,26 @@ Func CheckVersion()
 	If $ichkVersion = 1 Then
 		CheckVersionHTML()
 		If $g_sLastModversion = "" Then
-			SetLog("WE CANNOT OBTAIN MOD VERSION AT THIS TIME", $COLOR_ORANGE)
+			SetLog("WE CANNOT OBTAIN MOD VERSION AT THIS TIME", $COLOR_ACTION)
 			CheckModVersion()
 		ElseIf VersionNumFromVersionTXT($g_sModversion) < VersionNumFromVersionTXT($g_sLastModversion) Then
-			SetLog("WARNING, YOUR MOD VERSION (" & $g_sModversion & ") IS OUT OF DATE.", $COLOR_RED)
-			SetLog("CHIEF, PLEASE DOWNLOAD THE LATEST (" & $g_sLastModversion & ")", $COLOR_RED)
-			SetLog("FROM https://MyBot.run               ", $COLOR_RED)
+			SetLog("WARNING, YOUR MOD VERSION (" & $g_sModversion & ") IS OUT OF DATE.", $COLOR_ERROR)
+			SetLog("CHIEF, PLEASE DOWNLOAD THE LATEST (" & $g_sLastModversion & ")", $COLOR_ERROR)
+			SetLog("FROM https://MyBot.run               ", $COLOR_ERROR)
 			SetLog(" ")
 			_PrintLogVersion($g_sOldModversmessage)
 			CheckModVersion()
 		ElseIf VersionNumFromVersionTXT($g_sModversion) > VersionNumFromVersionTXT($g_sLastModversion) Then
-			SetLog("YOU ARE USING A FUTURE MOD BY DOC.OC VERSION CHIEF!", $COLOR_GREEN)
-			SetLog("YOUR MOD VERSION: " & $g_sModversion, $COLOR_GREEN)
-			SetLog("OFFICIAL MOD VERSION: " & $g_sLastModversion, $COLOR_GREEN)
+			SetLog("YOU ARE USING A FUTURE AIO MOD BY DOCOC++ VERSION CHIEF!", $COLOR_SUCCESS)
+			SetLog("YOUR MOD VERSION: " & $g_sModversion, $COLOR_SUCCESS)
+			SetLog("OFFICIAL MOD VERSION: " & $g_sLastModversion, $COLOR_SUCCESS)
 			SetLog(" ")
 		Else
-			SetLog("WELCOME CHIEF, YOU HAVE THE LATEST MOD VERSION", $COLOR_GREEN)
+			SetLog("WELCOME CHIEF, YOU HAVE THE LATEST MOD VERSION", $COLOR_SUCCESS)
 			SetLog(" ")
-			SetLog("BY DOC.OC TEAM", $COLOR_BLUE)
+			SetLog("TEAM DOCOC++ MOD: NguyenAnhHD, Demen", $COLOR_SUCCESS)
 			SetLog("CHEEERS..")
-			SetLog(" ")
-			_PrintLogVersion($lastmessage)
+			_PrintLogVersion($g_sLastModmessage)
 		EndIf
 	EndIf
 EndFunc   ;==>CheckVersion
@@ -48,7 +47,7 @@ Func CheckVersionHTML()
 		FileCopy(@ScriptDir & "\TestVersion.txt", $versionfile, 1)
 	Else
 		;download page from site contains last bot version
-		Local $hDownload = InetGet("https://raw.githubusercontent.com/TheRevenor/MyBotRun_DocOC_Server/master/Version/LastVersions.txt", $versionfile, 0, 1)
+		Local $hDownload = InetGet("https://raw.githubusercontent.com/NguyenAnhHD/MyBot.Run-DocOC-AIO-MOD/master/LastVersion.txt", $versionfile, 0, 1)
 
 		; Wait for the download to complete by monitoring when the 2nd index value of InetGetInfo returns True.
 		Local $i = 0
@@ -75,7 +74,7 @@ Func CheckVersionHTML()
 			FileCopy(@ScriptDir & "\TestVersion_" & $sLanguage & ".txt", $versionfilelocalized, 1)
 		Else
 			;download page from site contains last bot version localized messages
-			$hDownload = InetGet("https://raw.githubusercontent.com/TheRevenor/MyBotRun_DocOC_Server/master/Version/LastVersions_" & $sLanguage & ".txt", $versionfilelocalized, 0, 1)
+			$hDownload = InetGet("https://raw.githubusercontent.com/NguyenAnhHD/MyBot.Run-DocOC-AIO-MOD/master/LastVersion_" & $sLanguage & ".txt", $versionfilelocalized, 0, 1)
 
 			; Wait for the download to complete by monitoring when the 2nd index value of InetGetInfo returns True.
 			Local $i = 0
@@ -175,11 +174,11 @@ Func CheckModVersion()
 		PushMsg("Update")
 		If MsgBox(BitOR($MB_ICONWARNING, $MB_YESNO), "BOT Update Detected", "Chief, there is a new version of the bot available (" & $g_sLastModversion & ")" & @CRLF & @CRLF & _
 				"Do you want to download the latest version ?", 30) = $IDYES Then ;30s timeout
-			ShellExecute($g_sModSupportUrl)
+			ShellExecute($g_sModDownloadUrl)
 			Return False
 		EndIf
 	Else
-		MsgBox($MB_ICONINFORMATION, "Notify", "You Are Using The Latest Version Of Mod By DocOc Team" & @CRLF & _
+		MsgBox($MB_ICONINFORMATION, "Notify", "You Are Using The Latest Version Of AIO Mod By DocOc++ Team" & @CRLF & _
 				"Thanks..", 15) ;15s timeout
 	EndIf
 EndFunc   ;==>CheckModVersion

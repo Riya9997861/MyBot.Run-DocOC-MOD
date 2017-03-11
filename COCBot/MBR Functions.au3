@@ -277,6 +277,9 @@
 ; MOD DocOC | Modified Originals Files
 #include "MOD_DocOc\Functions DocOC.au3"
 
+; DocOC++ Team MOD
+#include "MOD_DocOc++\Functions DocOC++.au3"
+
 ; OLD CODE
 
 ;#include "functions\Image Search\checkWall.au3"
