@@ -116,7 +116,7 @@ Func chkSimpleTrain()
 		chkPreciseTroops()
 		chkFillArcher()
 	Else
-		_GUI_Value_STATE("DISABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" &  $g_hchkFillEQ)
+		_GUI_Value_STATE("DISABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_htxtFillArcher & "#" &  $g_hchkFillEQ)
 		_GUI_Value_STATE("UNCHECKED", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_hchkFillEQ)
 	EndIf
 EndFunc   ;==>chkSimpleTrain
