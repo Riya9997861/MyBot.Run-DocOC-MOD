@@ -1368,16 +1368,16 @@ Func tabBot()
 		Case $tabidx = 0 ; Options tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlShow("", "", $g_hCmbGUILanguage)
-		Case $tabidx = 1 ; Debug tab
+		Case $tabidx = 1 ; Android tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
-			;			Case $tabidx = 2 ; Profiles tab
-			;				GUISetState(@SW_HIDE, $g_hGUI_STATS)
-			;				ControlHide("","",$g_hCmbGUILanguage)
-		Case $tabidx = 2 ; Android tab
+		Case $tabidx = 2 ; Debug tab
+			GUISetState(@SW_HIDE, $g_hGUI_STATS)
+			ControlHide("","",$g_hCmbGUILanguage)
+		Case $tabidx = 3 ; MultiStats tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
-		Case $tabidx = 3 ; Stats tab
+		Case $tabidx = 4 ; Stats tab
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
 	EndSelect
@@ -1579,7 +1579,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_BOT_TAB
 			; the icons for Bot tab
-			Local $aIconIndex[4] = [$eIcnOptions, $eIcnAndroid, $eIcnBug, $eIcnStats]
+			Local $aIconIndex[5] = [$eIcnOptions, $eIcnAndroid, $eIcnBug, $eIcnMultiStat, $eIcnStats]
 			; The Android Robot is a Google Trademark and follows Creative Common Attribution 3.0
 
 		Case $g_hGUI_STRATEGIES_TAB
@@ -1592,7 +1592,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_MOD_TAB
 			; the icons for stats tab
-			Local $aIconIndex[5] = [$eIcnInfo, $eIcnBrain, $eIcnOptions, $eIcnProfile, $eIcnMultiStat]
+			Local $aIconIndex[5] = [$eIcnInfo, $eIcnBrain, $eIcnOptions, $eIcnSwitch, $eIcnProfile2]
 
 		Case Else
 			;do nothing

@@ -61,3 +61,10 @@ Global $aLocateAccConfig[8], $aAccPosY[8]
 
 ; SimpleTrain (Demen) - Added by Demen
 Global $ichkSimpleTrain,  $ichkPreciseTroops, $ichkFillArcher, $iFillArcher, $ichkFillEQ
+
+; Switch Profile (IceCube) - Added by NguyenAnhHD
+Global $profileString = ""
+Global $ichkGoldSwitchMax, $itxtMaxGoldAmount, $icmbGoldMaxProfile, $ichkGoldSwitchMin, $itxtMinGoldAmount, $icmbGoldMinProfile
+Global $ichkElixirSwitchMax, $itxtMaxElixirAmount, $icmbElixirMaxProfile, $ichkElixirSwitchMin, $itxtMinElixirAmount, $icmbElixirMinProfile
+Global $ichkDESwitchMax, $itxtMaxDEAmount, $icmbDEMaxProfile, $ichkDESwitchMin, $itxtMinDEAmount, $icmbDEMinProfile
+Global $ichkTrophySwitchMax, $itxtMaxTrophyAmount, $icmbTrophyMaxProfile, $ichkTrophySwitchMin, $itxtMinTrophyAmount, $icmbTrophyMinProfile

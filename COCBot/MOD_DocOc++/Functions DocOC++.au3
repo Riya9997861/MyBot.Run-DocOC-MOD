@@ -35,3 +35,6 @@
 
 ; SimpleTrain (Demen)
 #include "functions\Mod's\SimpleTrain.au3"
+
+; Switch Profile (IceCube) - Added by NguyenAnhHD
+#include "functions\Mod's\ProfileSwitch.au3"

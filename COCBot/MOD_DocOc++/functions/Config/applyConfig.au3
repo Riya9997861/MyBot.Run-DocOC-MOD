@@ -54,6 +54,35 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetState($g_hChkIgnoreDColl, $ichkIgnoreDColl = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSmartUpgrade()
 
+			; Switch Profile (IceCube) - Added by NguyenAnhHD
+			GUICtrlSetState($g_hChkGoldSwitchMax, $ichkGoldSwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($g_hCmbGoldMaxProfile, $icmbGoldMaxProfile)
+			GUICtrlSetData($g_hTxtMaxGoldAmount, $itxtMaxGoldAmount)
+			GUICtrlSetState($g_hChkGoldSwitchMin, $ichkGoldSwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($g_hCmbGoldMinProfile, $icmbGoldMinProfile)
+			GUICtrlSetData($g_hTxtMinGoldAmount, $itxtMinGoldAmount)
+
+			GUICtrlSetState($g_hChkElixirSwitchMax, $ichkElixirSwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($g_hCmbElixirMaxProfile, $icmbElixirMaxProfile)
+			GUICtrlSetData($g_hTxtMaxElixirAmount, $itxtMaxElixirAmount)
+			GUICtrlSetState($g_hChkElixirSwitchMin, $ichkElixirSwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($g_hCmbElixirMinProfile, $icmbElixirMinProfile)
+			GUICtrlSetData($g_hTxtMinElixirAmount, $itxtMinElixirAmount)
+
+			GUICtrlSetState($g_hChkDESwitchMax, $ichkDESwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($g_hCmbDEMaxProfile, $icmbDEMaxProfile)
+			GUICtrlSetData($g_hTxtMaxDEAmount, $itxtMaxDEAmount)
+			GUICtrlSetState($g_hChkDESwitchMin, $ichkDESwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($g_hCmbDEMinProfile, $icmbDEMinProfile)
+			GUICtrlSetData($g_hTxtMinDEAmount, $itxtMinDEAmount)
+
+			GUICtrlSetState($g_hChkTrophySwitchMax, $ichkTrophySwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($g_hCmbTrophyMaxProfile, $icmbTrophyMaxProfile)
+			GUICtrlSetData($g_hTxtMaxTrophyAmount, $itxtMaxTrophyAmount)
+			GUICtrlSetState($g_hChkTrophySwitchMin, $ichkTrophySwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($g_hCmbTrophyMinProfile, $icmbTrophyMinProfile)
+			GUICtrlSetData($g_hTxtMinTrophyAmount, $itxtMinTrophyAmount)
+
 			; SimpleTrain (Demen) - Added by Demen
 			GUICtrlSetState($g_hchkSimpleTrain, $ichkSimpleTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetState($g_hchkPreciseTroops, $ichkPreciseTroops = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -95,6 +124,27 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$ichkIgnoreGColl = GUICtrlRead($g_hChkIgnoreGColl) = $GUI_CHECKED ? 1 : 0
 			$ichkIgnoreEColl = GUICtrlRead($g_hChkIgnoreEColl) = $GUI_CHECKED ? 1 : 0
 			$ichkIgnoreDColl = GUICtrlRead($g_hChkIgnoreDColl) = $GUI_CHECKED ? 1 : 0
+
+			; Switch Profile (IceCube) - Added by NguyenAnhHD
+			$ichkGoldSwitchMax = GUICtrlRead($g_hChkGoldSwitchMax) = $GUI_CHECKED ? 1 : 0
+			$itxtMaxGoldAmount = GUICtrlRead($g_hTxtMaxGoldAmount)
+			$ichkGoldSwitchMin = GUICtrlRead($g_hChkGoldSwitchMin) = $GUI_CHECKED ? 1 : 0
+			$itxtMinGoldAmount = GUICtrlRead($g_hTxtMinGoldAmount)
+
+			$ichkElixirSwitchMax = GUICtrlRead($g_hChkElixirSwitchMax) = $GUI_CHECKED ? 1 : 0
+			$itxtMaxElixirAmount = GUICtrlRead($g_hTxtMaxElixirAmount)
+			$ichkElixirSwitchMin = GUICtrlRead($g_hChkElixirSwitchMin) = $GUI_CHECKED ? 1 : 0
+			$itxtMinElixirAmount = GUICtrlRead($g_hTxtMinElixirAmount)
+
+			$ichkDESwitchMax = GUICtrlRead($g_hChkDESwitchMax) = $GUI_CHECKED ? 1 : 0
+			$itxtMaxDEAmount = GUICtrlRead($g_hTxtMaxDEAmount)
+			$ichkDESwitchMin = GUICtrlRead($g_hChkDESwitchMin) = $GUI_CHECKED ? 1 : 0
+			$itxtMinDEAmount = GUICtrlRead($g_hTxtMinDEAmount)
+
+			$ichkTrophySwitchMax = GUICtrlRead($g_hChkTrophySwitchMax) = $GUI_CHECKED ? 1 : 0
+			$itxtMaxTrophyAmount = GUICtrlRead($g_hTxtMaxTrophyAmount)
+			$ichkTrophySwitchMin = GUICtrlRead($g_hChkTrophySwitchMin) = $GUI_CHECKED ? 1 : 0
+			$itxtMinTrophyAmount = GUICtrlRead($g_hTxtMinTrophyAmount)
 
 			;SimpleTrain (Demen) - Added by Demen
 			$ichkSimpleTrain = GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED ? 1 : 0

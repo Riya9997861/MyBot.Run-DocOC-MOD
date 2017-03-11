@@ -99,6 +99,49 @@ Func AttackNowDB()
 	SetLog("End Dead Base Attack TEST")
 EndFunc   ;==>AttackNowLB
 
+; Switch Profiles (IceCube) - Added by NguyenAnhHD
+Func btnRecycle()
+	FileDelete($g_sProfileConfigPath)
+	saveConfig()
+	SetLog("Profile " & $g_sProfileCurrentName & " was recycled with success", $COLOR_GREEN)
+	SetLog("All unused settings were removed", $COLOR_GREEN)
+EndFunc   ;==>btnRecycle
+
+Func setupProfileComboBoxswitch()
+	; Clear the combo box current data in case profiles were deleted
+	GUICtrlSetData($g_hCmbGoldMaxProfile, "", "")
+	; Set the new data of available profiles
+	GUICtrlSetData($g_hCmbGoldMaxProfile, $profileString, "<No Profiles>")
+	; Clear the combo box current data in case profiles were deleted
+	GUICtrlSetData($g_hCmbGoldMinProfile, "", "")
+	; Set the new data of available profiles
+	GUICtrlSetData($g_hCmbGoldMinProfile, $profileString, "<No Profiles>")
+	; Clear the combo box current data in case profiles were deleted
+	GUICtrlSetData($g_hCmbElixirMaxProfile, "", "")
+	; Set the new data of available profiles
+	GUICtrlSetData($g_hCmbElixirMaxProfile, $profileString, "<No Profiles>")
+	; Clear the combo box current data in case profiles were deleted
+	GUICtrlSetData($g_hCmbElixirMinProfile, "", "")
+	; Set the new data of available profiles
+	GUICtrlSetData($g_hCmbElixirMinProfile, $profileString, "<No Profiles>")
+	; Clear the combo box current data in case profiles were deleted
+	GUICtrlSetData($g_hCmbDEMaxProfile, "", "")
+	; Set the new data of available profiles
+	GUICtrlSetData($g_hCmbDEMaxProfile, $profileString, "<No Profiles>")
+	; Clear the combo box current data in case profiles were deleted
+	GUICtrlSetData($g_hCmbDEMinProfile, "", "")
+	; Set the new data of available profiles
+	GUICtrlSetData($g_hCmbDEMinProfile, $profileString, "<No Profiles>")
+	; Clear the combo box current data in case profiles were deleted
+	GUICtrlSetData($g_hCmbTrophyMaxProfile, "", "")
+	; Set the new data of available profiles
+	GUICtrlSetData($g_hCmbTrophyMaxProfile, $profileString, "<No Profiles>")
+	; Clear the combo box current data in case profiles were deleted
+	GUICtrlSetData($g_hCmbTrophyMinProfile, "", "")
+	; Set the new data of available profiles
+	GUICtrlSetData($g_hCmbTrophyMinProfile, $profileString, "<No Profiles>")
+EndFunc   ;==>setupProfileComboBoxswitch
+
 ; QuickTrainCombo (Demen) - Added by Demen
 Func chkQuickTrainCombo()
 	If GUICtrlRead($g_ahChkArmy[0]) = $GUI_UNCHECKED And GUICtrlRead($g_ahChkArmy[1]) = $GUI_UNCHECKED And GUICtrlRead($g_ahChkArmy[2]) = $GUI_UNCHECKED Then

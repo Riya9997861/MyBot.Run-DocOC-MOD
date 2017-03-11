@@ -15,7 +15,7 @@
 #include-once
 
 Global $g_hCmbProfile = 0, $g_hTxtVillageName = 0, $g_hBtnAddProfile = 0, $g_hBtnConfirmAddProfile = 0, $g_hBtnConfirmRenameProfile = 0, _
-	   $g_hBtnDeleteProfile = 0, $g_hBtnCancelProfileChange = 0, $g_hBtnRenameProfile = 0
+	   $g_hBtnDeleteProfile = 0, $g_hBtnCancelProfileChange = 0, $g_hBtnRenameProfile = 0, $g_hBtnRecycle = 0
 Global $chkEnableSwitchAccount, $lblNB, $cmbAccountsQuantity
 
 Global $chkCanUse[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -32,10 +32,7 @@ Func CreateModProfiles()
 
     Local $x = 25, $y = 45
 	GUICtrlCreateGroup(GetTranslated(637,1, "Switch Profiles"), $x - 20, $y - 20, 440, 360)
-		;$y -= 5
 		$x -= 5
-		;$lblProfile = GUICtrlCreateLabel(GetTranslated(7,27, "Current Profile") & ":", $x, $y, -1, -1)
-		;$y += 15
 		$g_hCmbProfile = GUICtrlCreateCombo("", $x - 3, $y + 1, 130, 18, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			_GUICtrlSetTip(-1, GetTranslated(637,2, "Use this to switch to a different profile")& @CRLF & _
 							   GetTranslated(637,3, "Your profiles can be found in") & ": " & @CRLF & $g_sProfilePath)
@@ -48,7 +45,6 @@ Func CreateModProfiles()
 			GUICtrlSetFont(-1, 9, 400, 1)
 			_GUICtrlSetTip(-1, GetTranslated(637,5, "Your village/profile's name"))
 			GUICtrlSetState(-1, $GUI_HIDE)
-			; GUICtrlSetOnEvent(-1, "txtVillageName") - No longer needed
 
 		Local $bIconAdd = _GUIImageList_Create(24, 24, 4)
 			_GUIImageList_AddBitmap($bIconAdd, @ScriptDir & "\images\Button\iconAdd.bmp")
@@ -81,6 +77,15 @@ Func CreateModProfiles()
 			_GUIImageList_AddBitmap($bIconEdit, @ScriptDir & "\images\Button\iconEdit_4.bmp")
 			_GUIImageList_AddBitmap($bIconEdit, @ScriptDir & "\images\Button\iconEdit.bmp")
 
+		; IceCube (Misc v1.0)
+		Local $bIconRecycle = _GUIImageList_Create(24, 24, 4)
+			_GUIImageList_AddBitmap($bIconRecycle, @ScriptDir & "\images\Button\iconRecycle.bmp")
+			_GUIImageList_AddBitmap($bIconRecycle, @ScriptDir & "\images\Button\iconRecycle_2.bmp")
+			_GUIImageList_AddBitmap($bIconRecycle, @ScriptDir & "\images\Button\iconRecycle_2.bmp")
+			_GUIImageList_AddBitmap($bIconRecycle, @ScriptDir & "\images\Button\iconRecycle_4.bmp")
+			_GUIImageList_AddBitmap($bIconRecycle, @ScriptDir & "\images\Button\iconRecycle.bmp")
+		; IceCube (Misc v1.0)
+
 		$g_hBtnAddProfile = GUICtrlCreateButton("", $x + 135, $y, 24, 24)
 			_GUICtrlButton_SetImageList($g_hBtnAddProfile, $bIconAdd, 4)
 			GUICtrlSetOnEvent(-1, "btnAddConfirm")
@@ -110,6 +115,20 @@ Func CreateModProfiles()
 			_GUICtrlButton_SetImageList($g_hBtnRenameProfile, $bIconEdit, 4)
 			GUICtrlSetOnEvent(-1, "btnRenameConfirm")
 			_GUICtrlSetTip(-1, GetTranslated(637,10, "Rename Profile"))
+
+		; IceCube (Misc v1.0)
+		$g_hBtnRecycle = GUICtrlCreateButton("", $x + 223, $y + 2, 22, 22)
+			_GUICtrlButton_SetImageList($g_hBtnRecycle, $bIconRecycle, 4)
+			GUICtrlSetOnEvent(-1, "btnRecycle")
+			GUICtrlSetState(-1, $GUI_SHOW)
+			_GUICtrlSetTip(-1, GetTranslated(637,50, "Recycle Profile by removing all settings no longer suported that could lead to bad behaviour"))
+			If GUICtrlRead($g_hCmbProfile) = "<No Profiles>" Then
+				GUICtrlSetState(-1, $GUI_DISABLE)
+			Else
+				GUICtrlSetState(-1, $GUI_ENABLE)
+			EndIf
+		; IceCube (Misc v1.0)
+
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 

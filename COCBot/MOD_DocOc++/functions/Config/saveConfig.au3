@@ -47,6 +47,27 @@ Func SaveConfig_MOD()
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", $iSmartMinElixir)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", $iSmartMinDark)
 
+	; Switch Profile (IceCube) - Added by NguyenAnhHD
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxGoldAmount", $itxtMaxGoldAmount)
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMin", $ichkGoldSwitchMin ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinGoldAmount", $itxtMinGoldAmount)
+
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkElixirSwitchMax", $ichkElixirSwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxElixirAmount", $itxtMaxElixirAmount)
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkElixirSwitchMin", $ichkElixirSwitchMin ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinElixirAmount", $itxtMinElixirAmount)
+
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkDESwitchMax", $ichkDESwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxDEAmount", $itxtMaxDEAmount)
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkDESwitchMin", $ichkDESwitchMin ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinDEAmount", $itxtMinDEAmount)
+
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMax", $ichkTrophySwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxTrophyAmount", $itxtMaxTrophyAmount)
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMin", $ichkTrophySwitchMin ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", $itxtMinTrophyAmount)
+
 	; SimpleTrain (Demen) - Added by Demen
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "Enable", $ichkSimpleTrain)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "PreciseTroops", $ichkPreciseTroops)
