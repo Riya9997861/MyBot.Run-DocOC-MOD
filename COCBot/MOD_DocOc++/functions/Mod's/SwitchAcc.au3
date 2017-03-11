@@ -320,6 +320,22 @@ EndFunc; -->CheckSwitchAcc()
 
 Func SwitchCOCAcc()
 
+	If $ichkTrain = 1 Then
+	SetLog("Pre-train Donated Troops in QuickTrain Number 3", $COLOR_ACTION1)
+		If OpenArmyWindow() = False Then Return
+		SetLog(" - Army Window Opened!", $COLOR_ACTION)
+		If _Sleep(2000) Then Return
+		OpenTrainTabNumber($QuickTrainTAB, "CheckCamp()")
+		If _Sleep(1000) Then Return
+
+		Local $Army[3] = [False, False, True]
+		TrainArmyNumber($Army)
+
+		ClickP($aAway, 2, 0, "#0346") ; Click Away
+		If _Sleep(1000) Then Return ; Delay AFTER the click Away Prevents lots of coc restarts
+		SetLog(" - Army Window Closed!", $COLOR_ACTION1)
+	EndIf
+
 	Local $NextAccount, $YCoord, $idx, $idx2, $idx3
 	$NextAccount = $aMatchProfileAcc[$nCurProfile-1]
 
