@@ -622,19 +622,19 @@ Func CreateTroopsSpellsSubTab()
 		$y += 16
 			$g_hchkSimpleTrain = GUICtrlCreateCheckbox(GetTranslated(621, 301, "Enable SimpleTrain"), $x, $y, -1, 15)
 				GUICtrlSetOnEvent(-1, "chkSimpleTrain")
-		$x += 140
-			$g_hchkPreciseTroops = GUICtrlCreateCheckbox(GetTranslated(621, 304, "Precise troops"), $x, $y, 85, 15)
+		$x += 130
+			$g_hchkPreciseTroops = GUICtrlCreateCheckbox(GetTranslated(621, 304, "Precise troops"), $x, $y, -1, 15)
 				GUICtrlSetState(-1, $GUI_HIDE)
 				GUICtrlSetOnEvent(-1, "chkPreciseTroops")
-		$x += 100
-			$g_hchkFillArcher = GUICtrlCreateCheckbox(GetTranslated(621, 302, "Fill archers:"), $x, $y, 70, 15)
+		$x += 103
+			$g_hchkFillArcher = GUICtrlCreateCheckbox(GetTranslated(621, 302, "Fill Arch:"), $x, $y, -1, 15)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetOnEvent(-1, "chkFillArcher")
-			$g_htxtFillArcher = GUICtrlCreateInput("5", $x + 75, $y-1, 20, 16, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$g_htxtFillArcher = GUICtrlCreateInput("5", $x + 70, $y-1, 20, 16, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetLimit(-1, 2)
 		$x += 110
-			$g_hchkFillEQ = GUICtrlCreateCheckbox(GetTranslated(621, 303,"Fill 1 EQ"), $x, $y, -1, 15)
+			$g_hchkFillEQ = GUICtrlCreateCheckbox(GetTranslated(621, 303, "Fill 1 EQ"), $x, $y, -1, 15)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 ;========== Adding GUI for SimpleTrain - Demen ==============
