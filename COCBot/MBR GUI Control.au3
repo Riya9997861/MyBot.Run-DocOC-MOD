@@ -1026,7 +1026,7 @@ Func SetTime($bForceUpdate = False)
 	If $DisplayLoop >= 10 Then ; Conserve Clock Cycles on Updating times
 		$DisplayLoop = 0
 		;Update Multi Stat Page
-		If GUICtrlRead($g_hGUI_MOD_TAB, 1) = $g_hGUI_MOD_TAB_ITEM5 And $CurrentAccount <> 0 Then
+		If GUICtrlRead($g_hGUI_BOT_TAB, 1) = $g_hGUI_BOT_TAB_ITEM4 And $CurrentAccount <> 0 Then	; moved to Bot Tab in NguyenAnh's AIO Mod (edited by Demen)
 			For $i = 1 To 8 ; Update time for all Accounts
 				If $ichkCanUse[$i] = 1 And _
 						$ichkDonateAccount[$i] <> 1 And _
@@ -1056,13 +1056,11 @@ Func SetTime($bForceUpdate = False)
 		EndIf
 		;Update Multi Stat Page _ SwitchAcc_Demen_Style
 		If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 Then
-			If GUICtrlRead($g_hGUI_MOD_TAB, 1) = $g_hGUI_MOD_TAB_ITEM5 Then
+			If GUICtrlRead($g_hGUI_BOT_TAB, 1) = $g_hGUI_BOT_TAB_ITEM4 Then		; moved to Bot Tab in NguyenAnh's AIO Mod (edited by Demen)
 				For $i = 0 To $nTotalProfile ; Update time for all Accounts
 					If $aProfileType[$i] = 1 And _
 							$i <> $nCurProfile - 1 And _
 							$aTimerStart[$i] <> 0 Then
-							;And GUICtrlRead($g_lblTroopsTime[$i-1]) <> "No Data" Or GUICtrlRead($g_lblTroopsTime[$i-1]) <> "Looting") Then ; Only update labels that need a time
-
 						$aTimerEnd[$i] = TimerDiff($aTimerStart[$i])
 						$aUpdateRemainTrainTime[$i] = Round($aRemainTrainTime[$i] * 60 * 1000 - $aTimerEnd[$i], 2)
 						If $aUpdateRemainTrainTime[$i] < 0 Then

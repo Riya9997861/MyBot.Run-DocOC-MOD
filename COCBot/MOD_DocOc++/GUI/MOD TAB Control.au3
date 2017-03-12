@@ -195,6 +195,7 @@ Func RdoSwitchAcc_Style()
 		For $i = $g_StartHideSwitchAcc_DocOc To $g_EndHideSwitchAcc_DocOc
 			GUICtrlSetState($i,$GUI_SHOW)
 		Next
+		GUICtrlSetState($g_icnPopOutSW[0], $GUI_SHOW)
 		chkSwitchAccount()
 	Else
 		GUICtrlSetState($chkEnableSwitchAccount, $GUI_UNCHECKED)
@@ -207,6 +208,7 @@ Func RdoSwitchAcc_Style()
 		Next
 		btnUpdateProfile(False)
 		HideShowMultiStat("HIDE")
+		GUICtrlSetState($g_icnPopOutSW[0], $GUI_HIDE)
 	EndIf
 EndFunc
 
