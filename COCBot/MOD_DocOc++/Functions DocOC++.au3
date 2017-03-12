@@ -38,3 +38,6 @@
 
 ; Switch Profile (IceCube) - Added by NguyenAnhHD
 #include "functions\Mod's\ProfileSwitch.au3"
+
+; CoCStats - Added by NguyenAnhHD
+#include "functions\Mod's\CoCStats.com.au3"

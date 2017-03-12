@@ -38,6 +38,11 @@ Global $lblXPatStart = 0 , $lblXPCurrent = 0 , $lblXPSXWon = 0 , $lblXPSXWonHour
 ; Persian DonateCC
 
 Global $chkExtraPersian = 0
+
+; CoC Stats
+
+Global $g_hChkCoCStats = 0, $g_hTxtAPIKey = 0
+
 #include "MOD - Profiles.au3"
 #include "MBR GUI Design Child Stats - Multi.au3"
 #include "..\..\MOD_DocOc++\GUI\MBR GUI Design - Switch Profiles.au3"
@@ -172,6 +177,25 @@ Func OptionsGUI()
 			   _GUICtrlSetTip(-1, $sTxtTip)
 
 		   GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 145, $y + 4, -1, -1)
+
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+	$x = 25
+	$y = 250
+	Local $Group4 = GUICtrlCreateGroup("", $x - 20, $y, 440, 35)
+
+	   $y += 10
+	   $x += -12
+		   $g_hChkCoCStats = GUICtrlCreateCheckbox("CoCStats Activate", $x, $y, -1, -1)
+		   $sTxtTip = "Activate sending raid results to CoCStats.com"
+		   GUICtrlSetTip(-1, $sTxtTip)
+		   GUICtrlSetOnEvent(-1, "chkCoCStats")
+
+	   $x += 135
+		   GUICtrlCreateLabel("API Key:", $x - 18, $y + 4, -1, 21, $SS_LEFT)
+		   $g_hTxtAPIKey = GUICtrlCreateInput("", $x + 30, $y, 250, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
+		   $sTxtTip = "Join in CoCStats.com and input API Key here"
+		   GUICtrlSetTip(-1, $sTxtTip)
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 

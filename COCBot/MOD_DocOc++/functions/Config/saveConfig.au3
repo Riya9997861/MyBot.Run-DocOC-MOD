@@ -20,6 +20,11 @@ Func SaveConfig_MOD()
 	IniWriteS($g_sProfileConfigPath, "general", "AutoHide", $ichkAutoHide ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "general", "AutoHideDelay", $ichkAutoHideDelay)
 
+
+	; CoC Stats - Added by NguyenAnhHD
+	IniWriteS($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "Stats", "txtAPIKey", $MyApiKey)
+
 	; Check Collector Outside (McSlither) - Added by NguyenAnhHD
 	IniWriteS($g_sProfileConfigPath, "search", "DBMeetCollOutside", $ichkDBMeetCollOutside ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", $iDBMinCollOutsidePercent)

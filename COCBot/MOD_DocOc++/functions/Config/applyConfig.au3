@@ -22,6 +22,11 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetData($g_hTxtAutohideDelay, $ichkAutoHideDelay)
 			chkAutoHide()
 
+			; CoC Stats - Added by NguyenAnhHD
+			GUICtrlSetState($g_hChkCoCStats, $ichkCoCStats = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetData($g_hTxtAPIKey, $MyApiKey)
+			chkCoCStats()
+
 			; Check Collector Outside (McSlither) - Added by NguyenAnhHD
 			GUICtrlSetState($g_hChkDBMeetCollOutside, $ichkDBMeetCollOutside = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetData($g_hTxtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
@@ -98,6 +103,10 @@ Func ApplyConfig_MOD($TypeReadSave)
 			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
 			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
 			$ichkAutoHideDelay = GUICtrlRead($g_hTxtAutohideDelay)
+
+			; CoC Stats - Added by NguyenAnhHD
+			$ichkCoCStats = GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? 1 : 0
+			$MyApiKey = GUICtrlRead($g_hTxtAPIKey)
 
 			; Check Collector Outside (McSlither) - Added by NguyenAnhHD
 			$ichkDBMeetCollOutside = GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED ? 1 : 0

@@ -19,6 +19,11 @@ Func ReadConfig_MOD()
 	IniReadS($ichkAutoHide, $g_sProfileConfigPath, "general", "AutoHide", 0, "int")
 	IniReadS($ichkAutoHideDelay, $g_sProfileConfigPath, "general", "AutoHideDelay", 10, "int")
 
+
+	; CoC Stats - Added by NguyenAnhHD
+	IniReadS($ichkCoCStats, $g_sProfileConfigPath, "Stats", "chkCoCStats", 0, "int")
+	IniReadS($MyApiKey, $g_sProfileConfigPath, "Stats", "txtAPIKey", "")
+
 	; Check Collector Outside (McSlither) - Added by NguyenAnhHD
 	IniReadS($ichkDBMeetCollOutside, $g_sProfileConfigPath, "search", "DBMeetCollOutside", 0, "int")
 	IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", 50, "int")

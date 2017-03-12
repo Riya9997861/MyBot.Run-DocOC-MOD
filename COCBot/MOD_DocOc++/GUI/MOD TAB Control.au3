@@ -19,6 +19,12 @@ Func chkAutoHide()
 	GUICtrlSetState($g_hTxtAutohideDelay, GUICtrlRead($g_hChkAutoHide) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
 EndFunc   ;==>chkAutoHide
 
+; CoC Stats - Added by NguyenAnhHD
+Func chkCoCStats()
+	GUICtrlSetState($g_hTxtAPIKey, GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
+	IniWrite($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats)
+EndFunc   ;==>chkCoCStats
+
 ; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
 Func cmbCSVSpeed()
 
