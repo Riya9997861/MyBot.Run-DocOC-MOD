@@ -196,7 +196,7 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 			Else
 			   GUICtrlSetState($radNormalSwitch, $GUI_CHECKED)
 			EndIf
-			radNormalSwitch()
+			If GUICtrlRead($chkSwitchAcc) = $GUI_CHECKED Then radNormalSwitch()
 			_GUICtrlCombobox_SetCurSel($cmbTotalAccount, $icmbTotalCoCAcc - 1)
 			If $ichkCloseTraining >= 1 Then
 				GUICtrlSetState($chkUseTrainingClose, $GUI_CHECKED)

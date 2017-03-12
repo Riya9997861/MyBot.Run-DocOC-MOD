@@ -257,7 +257,7 @@ Func RemoveProfileFromList($iDeleteProfile)
 EndFunc
 
 Func g_btnUpdateProfile()
-	btnUpdateProfile
+	btnUpdateProfile()
 EndFunc
 
 Func btnUpdateProfile($Config = True)
@@ -328,10 +328,14 @@ Func chkSwitchAcc()
 			For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
 				GUICtrlSetState($i, $GUI_ENABLE)
 			Next
-			chkTrain()
 			radNormalSwitch()
 			btnUpdateProfile(False)
 		EndIf
+;		For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
+;			GUICtrlSetState($i, $GUI_ENABLE)
+;		Next
+;		radNormalSwitch()
+;		btnUpdateProfile(False)
 	Else
 		For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
 			GUICtrlSetState($i, $GUI_DISABLE)
@@ -341,10 +345,6 @@ Func chkSwitchAcc()
 		Next
 	EndIf
 EndFunc   ;==>chkSwitchAcc
-
-Func chkTrain()
-	$ichkTrain = (GUICtrlRead($chkTrain) = $GUI_CHECKED ? 1 : 0)
-EndFunc
 
 Func radNormalSwitch()
 	If GUICtrlRead($radNormalSwitch) = $GUI_CHECKED Then
