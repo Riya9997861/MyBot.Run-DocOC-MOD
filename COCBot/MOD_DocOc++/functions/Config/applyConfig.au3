@@ -127,23 +127,31 @@ Func ApplyConfig_MOD($TypeReadSave)
 
 			; Switch Profile (IceCube) - Added by NguyenAnhHD
 			$ichkGoldSwitchMax = GUICtrlRead($g_hChkGoldSwitchMax) = $GUI_CHECKED ? 1 : 0
+			$icmbGoldMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbGoldMaxProfile)
 			$itxtMaxGoldAmount = GUICtrlRead($g_hTxtMaxGoldAmount)
 			$ichkGoldSwitchMin = GUICtrlRead($g_hChkGoldSwitchMin) = $GUI_CHECKED ? 1 : 0
+			$icmbGoldMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbGoldMinProfile)
 			$itxtMinGoldAmount = GUICtrlRead($g_hTxtMinGoldAmount)
 
 			$ichkElixirSwitchMax = GUICtrlRead($g_hChkElixirSwitchMax) = $GUI_CHECKED ? 1 : 0
+			$icmbElixirMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbElixirMaxProfile)
 			$itxtMaxElixirAmount = GUICtrlRead($g_hTxtMaxElixirAmount)
 			$ichkElixirSwitchMin = GUICtrlRead($g_hChkElixirSwitchMin) = $GUI_CHECKED ? 1 : 0
+			$icmbElixirMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbElixirMinProfile)
 			$itxtMinElixirAmount = GUICtrlRead($g_hTxtMinElixirAmount)
 
 			$ichkDESwitchMax = GUICtrlRead($g_hChkDESwitchMax) = $GUI_CHECKED ? 1 : 0
+			$icmbDEMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbDEMaxProfile)
 			$itxtMaxDEAmount = GUICtrlRead($g_hTxtMaxDEAmount)
 			$ichkDESwitchMin = GUICtrlRead($g_hChkDESwitchMin) = $GUI_CHECKED ? 1 : 0
+			$icmbDEMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbDEMinProfile)
 			$itxtMinDEAmount = GUICtrlRead($g_hTxtMinDEAmount)
 
 			$ichkTrophySwitchMax = GUICtrlRead($g_hChkTrophySwitchMax) = $GUI_CHECKED ? 1 : 0
+			$icmbTrophyMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbTrophyMaxProfile)
 			$itxtMaxTrophyAmount = GUICtrlRead($g_hTxtMaxTrophyAmount)
 			$ichkTrophySwitchMin = GUICtrlRead($g_hChkTrophySwitchMin) = $GUI_CHECKED ? 1 : 0
+			$icmbTrophyMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbTrophyMinProfile)
 			$itxtMinTrophyAmount = GUICtrlRead($g_hTxtMinTrophyAmount)
 
 			;SimpleTrain (Demen) - Added by Demen

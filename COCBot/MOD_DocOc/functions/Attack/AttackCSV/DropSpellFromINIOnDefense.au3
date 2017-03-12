@@ -102,8 +102,10 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 
 		If $delayDropMin <> $delayDropMax Then
 			Local $delayDrop = Random($delayDropMin, $delayDropMax, 1)
+			$delayDrop = Int($delayDrop / $g_hDivider)
 		Else
 			Local $delayDrop = $delayDropMin
+			$delayDrop = Int($delayDrop / $g_hDivider)
 		EndIf
 
 		Local $delayDropLast = 0
@@ -134,8 +136,10 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 		;delay time between 2 drops in same point
 		If $delayPointmin <> $delayPointmax Then
 			Local $delayPoint = Random($delayPointmin, $delayPointmax, 1)
+			$delayPoint = Int($delayPoint / $g_hDivider)
 		Else
 			Local $delayPoint = $delayPointmin
+			$delayPoint = Int($delayPoint / $g_hDivider)
 		EndIf
 
 		Local $plural = 0
@@ -163,8 +167,10 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 		Local $sleepafter = 0
 		If $sleepafterMin <> $sleepAfterMax Then
 			$sleepafter = Random($sleepafterMin, $sleepAfterMax, 1)
+			$sleepafter = Int($sleepafter / $g_hDivider)
 		Else
 			$sleepafter = Int($sleepafterMin)
+			$sleepafter = Int($sleepafter / $g_hDivider)
 		EndIf
 		If $sleepafter > 0 And IsKeepClicksActive() = False Then
 			debugAttackCSV(">> delay after drop all troops: " & $sleepafter)
@@ -394,7 +400,7 @@ Func LocateDefense($Defense, $options)
 			Local $NotdetectedInferno = True
 			Local $Counter = -1
 			For $eachPos In $splitedPositions
-				$splitedEachPos = StringSplit($eachPos, ",", 2)
+				Local $splitedEachPos = StringSplit($eachPos, ",", 2)
 				If IsArray($splitedEachPos) And UBound($splitedEachPos) > 1 Then
 					$Counter += 1
 					If $debugDropSCommand = 1 Then SetLog("$SideCondition = " & $SideCondition, $COLOR_DEBUG) ;Debug
@@ -545,7 +551,7 @@ Func LocateDefense($Defense, $options)
 			Local $NotdetectedADefense = True
 			Local $Counter = -1
 			For $eachPos In $splitedPositions
-				$splitedEachPos = StringSplit($eachPos, ",", 2)
+				Local $splitedEachPos = StringSplit($eachPos, ",", 2)
 				If IsArray($splitedEachPos) And UBound($splitedEachPos) > 1 Then
 					$Counter += 1
 					If $debugDropSCommand = 1 Then SetLog("$SideCondition = " & $SideCondition, $COLOR_DEBUG) ;Debug
