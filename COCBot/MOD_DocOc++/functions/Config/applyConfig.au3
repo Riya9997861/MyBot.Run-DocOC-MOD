@@ -180,6 +180,7 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 				RdoSwitchAcc_Style()
 			EndIf
 			GUICtrlSetState($chkSwitchAcc, $ichkSwitchAcc = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkSwitchAcc()
 			GUICtrlSetState($chkTrain, $ichkTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			If $ichkSmartSwitch = 1 Then
 			   GUICtrlSetState($radSmartSwitch, $GUI_CHECKED)

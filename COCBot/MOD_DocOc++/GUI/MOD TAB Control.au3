@@ -206,7 +206,7 @@ Func RdoSwitchAcc_Style()
 		For $i = $g_StartHideSwitchAcc_Demen To $g_SecondHideSwitchAcc_Demen
 			GUICtrlSetState($i,$GUI_SHOW)
 		Next
-		btnUpdateProfile(False)
+		chkSwitchAcc()
 		HideShowMultiStat("HIDE")
 		GUICtrlSetState($g_icnPopOutSW[0], $GUI_HIDE)
 	EndIf
@@ -251,7 +251,7 @@ Func RemoveProfileFromList($iDeleteProfile)
 EndFunc
 
 Func g_btnUpdateProfile()
-	btnUpdateProfile(True)
+	btnUpdateProfile
 EndFunc
 
 Func btnUpdateProfile($Config = True)
@@ -318,7 +318,21 @@ Func chkSwitchAcc()
 		If _GUICtrlComboBox_GetCount($g_hCmbProfile) <= 1 Then
 			GUICtrlSetState($chkSwitchAcc, $GUI_UNCHECKED)
 			MsgBox($MB_OK, GetTranslated(109,42, "SwitchAcc Mode"), GetTranslated(109,43, "Cannot enable SwitchAcc Mode") & @CRLF & GetTranslated(109,44, "You have only ") & _GUICtrlComboBox_GetCount($g_hCmbProfile) & " Profile", 30, $g_hGUI_BOT)
+		Else
+			For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
+				GUICtrlSetState($i, $GUI_ENABLE)
+			Next
+			chkTrain()
+			radNormalSwitch()
+			btnUpdateProfile(False)
 		EndIf
+	Else
+		For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+		For $j = $aStartHide[0] To $aEndHide[7]
+			GUICtrlSetState($j, $GUI_HIDE)
+		Next
 	EndIf
 EndFunc   ;==>chkSwitchAcc
 
