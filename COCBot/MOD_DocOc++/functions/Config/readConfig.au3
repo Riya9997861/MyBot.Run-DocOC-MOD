@@ -82,6 +82,9 @@ Func ReadConfig_MOD()
 	IniReadS($iFillArcher, $g_sProfileConfigPath, "SimpleTrain", "FillArcher", 5, "int")
 	IniReadS($ichkFillEQ, $g_sProfileConfigPath, "SimpleTrain", "FillEQ", 0, "int")
 
+	; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
+	IniReadS($g_bNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBSleep", False, "Bool")
+
 EndFunc
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)

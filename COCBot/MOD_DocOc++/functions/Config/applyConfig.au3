@@ -91,6 +91,9 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetState($g_hchkFillEQ, $ichkFillEQ = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSimpleTrain()
 
+			; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
+			GUICtrlSetState($g_hChkNotifyBOTSleep, $g_bNotifyAlertBOTSleep ? $GUI_CHECKED : $GUI_UNCHECKED)
+
 		Case "Save"
 			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
 			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
@@ -160,6 +163,10 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$ichkFillArcher = GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED ? 1 : 0
 			$iFillArcher = GUICtrlRead($g_htxtFillArcher)
 			$ichkFillEQ = GUICtrlRead($g_hchkFillEQ) = $GUI_CHECKED ? 1 : 0
+
+			; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
+			$g_bNotifyAlertBOTSleep = (GUICtrlRead($g_hChkNotifyBOTSleep) = $GUI_CHECKED)
+
 	EndSwitch
 EndFunc
 

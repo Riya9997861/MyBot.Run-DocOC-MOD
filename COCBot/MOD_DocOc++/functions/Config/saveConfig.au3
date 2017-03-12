@@ -83,6 +83,9 @@ Func SaveConfig_MOD()
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "FillArcher", $iFillArcher)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "FillEQ", $ichkFillEQ)
 
+	; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
+	IniWriteS($g_sProfileConfigPath, "notify", "AlertPBSleep", $g_bNotifyAlertBOTSleep ? 1 : 0)
+
 EndFunc
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
