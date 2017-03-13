@@ -341,10 +341,6 @@ Func chkSwitchAcc()
 	EndIf
 EndFunc   ;==>chkSwitchAcc
 
-Func chkTrain()
-	$ichkTrain = (GUICtrlRead($chkTrain) = $GUI_CHECKED ? 1 : 0)
-EndFunc
-
 Func radNormalSwitch()
 	If GUICtrlRead($radNormalSwitch) = $GUI_CHECKED Then
 		GUICtrlSetState($chkUseTrainingClose, $GUI_UNCHECKED)
