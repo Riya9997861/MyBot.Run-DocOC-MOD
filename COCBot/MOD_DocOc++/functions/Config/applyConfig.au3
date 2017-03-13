@@ -22,6 +22,11 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetData($g_hTxtAutohideDelay, $ichkAutoHideDelay)
 			chkAutoHide()
 
+			; CoC Stats - Added by NguyenAnhHD
+			GUICtrlSetState($g_hChkCoCStats, $ichkCoCStats = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetData($g_hTxtAPIKey, $MyApiKey)
+			chkCoCStats()
+
 			; Check Collector Outside (McSlither) - Added by NguyenAnhHD
 			GUICtrlSetState($g_hChkDBMeetCollOutside, $ichkDBMeetCollOutside = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetData($g_hTxtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
@@ -91,10 +96,20 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetState($g_hchkFillEQ, $ichkFillEQ = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSimpleTrain()
 
+			; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
+			GUICtrlSetState($g_hChkNotifyBOTSleep, $g_bNotifyAlertBOTSleep ? $GUI_CHECKED : $GUI_UNCHECKED)
+
+			; Upgrade Management (MMHK) - Added by NguyenAnhHD
+			GUICtrlSetState($g_hChkUpdateNewUpgradesOnly, $g_ibUpdateNewUpgradesOnly ? $GUI_CHECKED : $GUI_UNCHECKED)
+
 		Case "Save"
 			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
 			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
 			$ichkAutoHideDelay = GUICtrlRead($g_hTxtAutohideDelay)
+
+			; CoC Stats - Added by NguyenAnhHD
+			$ichkCoCStats = GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? 1 : 0
+			$MyApiKey = GUICtrlRead($g_hTxtAPIKey)
 
 			; Check Collector Outside (McSlither) - Added by NguyenAnhHD
 			$ichkDBMeetCollOutside = GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED ? 1 : 0
@@ -127,23 +142,31 @@ Func ApplyConfig_MOD($TypeReadSave)
 
 			; Switch Profile (IceCube) - Added by NguyenAnhHD
 			$ichkGoldSwitchMax = GUICtrlRead($g_hChkGoldSwitchMax) = $GUI_CHECKED ? 1 : 0
+			$icmbGoldMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbGoldMaxProfile)
 			$itxtMaxGoldAmount = GUICtrlRead($g_hTxtMaxGoldAmount)
 			$ichkGoldSwitchMin = GUICtrlRead($g_hChkGoldSwitchMin) = $GUI_CHECKED ? 1 : 0
+			$icmbGoldMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbGoldMinProfile)
 			$itxtMinGoldAmount = GUICtrlRead($g_hTxtMinGoldAmount)
 
 			$ichkElixirSwitchMax = GUICtrlRead($g_hChkElixirSwitchMax) = $GUI_CHECKED ? 1 : 0
+			$icmbElixirMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbElixirMaxProfile)
 			$itxtMaxElixirAmount = GUICtrlRead($g_hTxtMaxElixirAmount)
 			$ichkElixirSwitchMin = GUICtrlRead($g_hChkElixirSwitchMin) = $GUI_CHECKED ? 1 : 0
+			$icmbElixirMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbElixirMinProfile)
 			$itxtMinElixirAmount = GUICtrlRead($g_hTxtMinElixirAmount)
 
 			$ichkDESwitchMax = GUICtrlRead($g_hChkDESwitchMax) = $GUI_CHECKED ? 1 : 0
+			$icmbDEMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbDEMaxProfile)
 			$itxtMaxDEAmount = GUICtrlRead($g_hTxtMaxDEAmount)
 			$ichkDESwitchMin = GUICtrlRead($g_hChkDESwitchMin) = $GUI_CHECKED ? 1 : 0
+			$icmbDEMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbDEMinProfile)
 			$itxtMinDEAmount = GUICtrlRead($g_hTxtMinDEAmount)
 
 			$ichkTrophySwitchMax = GUICtrlRead($g_hChkTrophySwitchMax) = $GUI_CHECKED ? 1 : 0
+			$icmbTrophyMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbTrophyMaxProfile)
 			$itxtMaxTrophyAmount = GUICtrlRead($g_hTxtMaxTrophyAmount)
 			$ichkTrophySwitchMin = GUICtrlRead($g_hChkTrophySwitchMin) = $GUI_CHECKED ? 1 : 0
+			$icmbTrophyMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbTrophyMinProfile)
 			$itxtMinTrophyAmount = GUICtrlRead($g_hTxtMinTrophyAmount)
 
 			;SimpleTrain (Demen) - Added by Demen
@@ -152,6 +175,13 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$ichkFillArcher = GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED ? 1 : 0
 			$iFillArcher = GUICtrlRead($g_htxtFillArcher)
 			$ichkFillEQ = GUICtrlRead($g_hchkFillEQ) = $GUI_CHECKED ? 1 : 0
+
+			; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
+			$g_bNotifyAlertBOTSleep = (GUICtrlRead($g_hChkNotifyBOTSleep) = $GUI_CHECKED)
+
+			; Upgrade Management (MMHK) - Added by NguyenAnhHD
+			$g_ibUpdateNewUpgradesOnly = (GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED)
+
 	EndSwitch
 EndFunc
 
@@ -165,13 +195,14 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 				RdoSwitchAcc_Style()
 			EndIf
 			GUICtrlSetState($chkSwitchAcc, $ichkSwitchAcc = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkSwitchAcc()
 			GUICtrlSetState($chkTrain, $ichkTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			If $ichkSmartSwitch = 1 Then
 			   GUICtrlSetState($radSmartSwitch, $GUI_CHECKED)
 			Else
 			   GUICtrlSetState($radNormalSwitch, $GUI_CHECKED)
 			EndIf
-			radNormalSwitch()
+			If GUICtrlRead($chkSwitchAcc) = $GUI_CHECKED Then radNormalSwitch()
 			_GUICtrlCombobox_SetCurSel($cmbTotalAccount, $icmbTotalCoCAcc - 1)
 			If $ichkCloseTraining >= 1 Then
 				GUICtrlSetState($chkUseTrainingClose, $GUI_CHECKED)

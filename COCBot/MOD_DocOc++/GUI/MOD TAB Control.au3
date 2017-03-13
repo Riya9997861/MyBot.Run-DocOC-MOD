@@ -19,6 +19,12 @@ Func chkAutoHide()
 	GUICtrlSetState($g_hTxtAutohideDelay, GUICtrlRead($g_hChkAutoHide) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
 EndFunc   ;==>chkAutoHide
 
+; CoC Stats - Added by NguyenAnhHD
+Func chkCoCStats()
+	GUICtrlSetState($g_hTxtAPIKey, GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
+	IniWrite($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats)
+EndFunc   ;==>chkCoCStats
+
 ; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
 Func cmbCSVSpeed()
 
@@ -195,6 +201,7 @@ Func RdoSwitchAcc_Style()
 		For $i = $g_StartHideSwitchAcc_DocOc To $g_EndHideSwitchAcc_DocOc
 			GUICtrlSetState($i,$GUI_SHOW)
 		Next
+		GUICtrlSetState($g_icnPopOutSW[0], $GUI_SHOW)
 		chkSwitchAccount()
 	Else
 		GUICtrlSetState($chkEnableSwitchAccount, $GUI_UNCHECKED)
@@ -205,8 +212,9 @@ Func RdoSwitchAcc_Style()
 		For $i = $g_StartHideSwitchAcc_Demen To $g_SecondHideSwitchAcc_Demen
 			GUICtrlSetState($i,$GUI_SHOW)
 		Next
-		btnUpdateProfile(False)
+		chkSwitchAcc()
 		HideShowMultiStat("HIDE")
+		GUICtrlSetState($g_icnPopOutSW[0], $GUI_HIDE)
 	EndIf
 EndFunc
 
@@ -249,7 +257,7 @@ Func RemoveProfileFromList($iDeleteProfile)
 EndFunc
 
 Func g_btnUpdateProfile()
-	btnUpdateProfile(True)
+	btnUpdateProfile()
 EndFunc
 
 Func btnUpdateProfile($Config = True)
@@ -277,14 +285,14 @@ Func btnUpdateProfile($Config = True)
 			Next
 			Switch $aProfileType[$i]
 				Case 1
-					GUICtrlSetData($grpVillageAcc[$i], "Village: " & $ProfileList[$i+1] & " (Active)")
+					GUICtrlSetData($grpVillageAcc[$i], $ProfileList[$i+1] & " (Active)")
 				Case 2
-					GUICtrlSetData($grpVillageAcc[$i], "Village: " & $ProfileList[$i+1] & " (Donate)")
+					GUICtrlSetData($grpVillageAcc[$i], $ProfileList[$i+1] & " (Donate)")
 					For $j = $aSecondHide[$i] To $aEndHide[$i]
 					  GUICtrlSetState($j, $GUI_HIDE)
 					Next
 				Case Else
-					GUICtrlSetData($grpVillageAcc[$i], "Village: " & $ProfileList[$i+1] & " (Idle)")
+					GUICtrlSetData($grpVillageAcc[$i], $ProfileList[$i+1] & " (Idle)")
 					For $j = $aSecondHide[$i] To $aEndHide[$i]
 						GUICtrlSetState($j, $GUI_HIDE)
 					Next
@@ -316,13 +324,22 @@ Func chkSwitchAcc()
 		If _GUICtrlComboBox_GetCount($g_hCmbProfile) <= 1 Then
 			GUICtrlSetState($chkSwitchAcc, $GUI_UNCHECKED)
 			MsgBox($MB_OK, GetTranslated(109,42, "SwitchAcc Mode"), GetTranslated(109,43, "Cannot enable SwitchAcc Mode") & @CRLF & GetTranslated(109,44, "You have only ") & _GUICtrlComboBox_GetCount($g_hCmbProfile) & " Profile", 30, $g_hGUI_BOT)
+		Else
+			For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
+				GUICtrlSetState($i, $GUI_ENABLE)
+			Next
+			radNormalSwitch()
+			btnUpdateProfile(False)
 		EndIf
+	Else
+		For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+		For $j = $aStartHide[0] To $aEndHide[7]
+			GUICtrlSetState($j, $GUI_HIDE)
+		Next
 	EndIf
 EndFunc   ;==>chkSwitchAcc
-
-Func chkTrain()
-	$ichkTrain = (GUICtrlRead($chkTrain) = $GUI_CHECKED ? 1 : 0)
-EndFunc
 
 Func radNormalSwitch()
 	If GUICtrlRead($radNormalSwitch) = $GUI_CHECKED Then
@@ -338,7 +355,6 @@ Func radNormalSwitch()
 		Next
 	EndIf
 EndFunc   ;==>radNormalSwitch  - Normal Switch is not on the same boat with Sleep Combo
-
 
 Func cmbMatchProfileAcc1()
 	MatchProfileAcc(0)
@@ -443,3 +459,56 @@ Func btnClearAccLocation()
 	Setlog(GetTranslated(109,57, "Position of all accounts cleared"))
 	SaveConfig_SwitchAcc()
 EndFunc
+
+; Upgrade Management (MMHK) - Added by NguyenAnhHD
+Func chkUpgradeAllOrNone()
+	If GUICtrlRead($g_hChkUpgradeAllOrNone) = $GUI_CHECKED And GUICtrlRead($g_hChkUpgrade[0]) = $GUI_CHECKED Then
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgrade[$i], $GUI_UNCHECKED)
+		Next
+	Else
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgrade[$i], $GUI_CHECKED)
+		Next
+	EndIf
+	Sleep(300)
+	GUICtrlSetState($g_hChkUpgradeAllOrNone, $GUI_UNCHECKED)
+EndFunc   ;==>chkUpgradeAllOrNone
+
+Func chkUpgradeRepeatAllOrNone()
+	If GUICtrlRead($g_hChkUpgradeRepeatAllOrNone) = $GUI_CHECKED And GUICtrlRead($g_hChkUpgradeRepeat[0]) = $GUI_CHECKED Then
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgradeRepeat[$i], $GUI_UNCHECKED)
+		Next
+	Else
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgradeRepeat[$i], $GUI_CHECKED)
+		Next
+	EndIf
+	Sleep(300)
+	GUICtrlSetState($g_hChkUpgradeRepeatAllOrNone, $GUI_UNCHECKED)
+EndFunc   ;==>chkUpgradeRepeatAllOrNone
+
+Func chkUpdateNewUpgradesOnly()
+	If GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED Then
+		$g_ibUpdateNewUpgradesOnly = True
+	Else
+		$g_ibUpdateNewUpgradesOnly = False
+	EndIf
+EndFunc   ;==>chkUpdateNewUpgradesOnly
+
+Func btnTop()
+	MoveUpgrades($UP, $TILL_END)
+EndFunc   ;==>btnTop
+
+Func btnUp()
+	MoveUpgrades($UP)
+EndFunc   ;==>btnUp
+
+Func btnDown()
+	MoveUpgrades($DOWN)
+EndFunc   ;==>btnDown
+
+Func btnBottom()
+	MoveUpgrades($DOWN, $TILL_END)
+EndFunc   ;==>btnBottom
