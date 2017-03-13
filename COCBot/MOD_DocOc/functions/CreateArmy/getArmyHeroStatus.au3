@@ -29,6 +29,7 @@ Func ArmyHeroStatus($Hero)
 
 						GUICtrlSetState($g_lblKingStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblKingStatus_Demen[$nCurProfile - 1], $COLOR_YELLOW)
+						GUICtrlSetColor($g_lblKingStatus_Demen[$nCurProfile - 1], $COLOR_BLACK)
 
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblKingStatusPO[$CurrentAccount], $GUI_SHOW)
@@ -80,6 +81,7 @@ Func ArmyHeroStatus($Hero)
 
 						GUICtrlSetState($g_lblQueenStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblQueenStatus_Demen[$nCurProfile - 1], $COLOR_YELLOW)
+						GUICtrlSetColor($g_lblQueenStatus_Demen[$nCurProfile - 1], $COLOR_BLACK)
 
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblQueenStatusPO[$CurrentAccount], $GUI_SHOW)
@@ -131,6 +133,7 @@ Func ArmyHeroStatus($Hero)
 
 						GUICtrlSetState($g_lblWardenStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblWardenStatus_Demen[$nCurProfile - 1], $COLOR_YELLOW)
+						GUICtrlSetBkColor($g_lblWardenStatus_Demen[$nCurProfile - 1], $COLOR_BLACK)
 
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblWardenStatusPO[$CurrentAccount], $GUI_SHOW)
