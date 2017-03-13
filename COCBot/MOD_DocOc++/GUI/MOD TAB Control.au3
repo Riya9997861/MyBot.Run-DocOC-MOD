@@ -331,11 +331,6 @@ Func chkSwitchAcc()
 			radNormalSwitch()
 			btnUpdateProfile(False)
 		EndIf
-;		For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
-;			GUICtrlSetState($i, $GUI_ENABLE)
-;		Next
-;		radNormalSwitch()
-;		btnUpdateProfile(False)
 	Else
 		For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
 			GUICtrlSetState($i, $GUI_DISABLE)
@@ -345,6 +340,10 @@ Func chkSwitchAcc()
 		Next
 	EndIf
 EndFunc   ;==>chkSwitchAcc
+
+Func chkTrain()
+	$ichkTrain = (GUICtrlRead($chkTrain) = $GUI_CHECKED ? 1 : 0)
+EndFunc
 
 Func radNormalSwitch()
 	If GUICtrlRead($radNormalSwitch) = $GUI_CHECKED Then
@@ -360,7 +359,6 @@ Func radNormalSwitch()
 		Next
 	EndIf
 EndFunc   ;==>radNormalSwitch  - Normal Switch is not on the same boat with Sleep Combo
-
 
 Func cmbMatchProfileAcc1()
 	MatchProfileAcc(0)
@@ -465,3 +463,56 @@ Func btnClearAccLocation()
 	Setlog(GetTranslated(109,57, "Position of all accounts cleared"))
 	SaveConfig_SwitchAcc()
 EndFunc
+
+; Upgrade Management (MMHK) - Added by NguyenAnhHD
+Func chkUpgradeAllOrNone()
+	If GUICtrlRead($g_hChkUpgradeAllOrNone) = $GUI_CHECKED And GUICtrlRead($g_hChkUpgrade[0]) = $GUI_CHECKED Then
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgrade[$i], $GUI_UNCHECKED)
+		Next
+	Else
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgrade[$i], $GUI_CHECKED)
+		Next
+	EndIf
+	Sleep(300)
+	GUICtrlSetState($g_hChkUpgradeAllOrNone, $GUI_UNCHECKED)
+EndFunc   ;==>chkUpgradeAllOrNone
+
+Func chkUpgradeRepeatAllOrNone()
+	If GUICtrlRead($g_hChkUpgradeRepeatAllOrNone) = $GUI_CHECKED And GUICtrlRead($g_hChkUpgradeRepeat[0]) = $GUI_CHECKED Then
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgradeRepeat[$i], $GUI_UNCHECKED)
+		Next
+	Else
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgradeRepeat[$i], $GUI_CHECKED)
+		Next
+	EndIf
+	Sleep(300)
+	GUICtrlSetState($g_hChkUpgradeRepeatAllOrNone, $GUI_UNCHECKED)
+EndFunc   ;==>chkUpgradeRepeatAllOrNone
+
+Func chkUpdateNewUpgradesOnly()
+	If GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED Then
+		$g_ibUpdateNewUpgradesOnly = True
+	Else
+		$g_ibUpdateNewUpgradesOnly = False
+	EndIf
+EndFunc   ;==>chkUpdateNewUpgradesOnly
+
+Func btnTop()
+	MoveUpgrades($UP, $TILL_END)
+EndFunc   ;==>btnTop
+
+Func btnUp()
+	MoveUpgrades($UP)
+EndFunc   ;==>btnUp
+
+Func btnDown()
+	MoveUpgrades($DOWN)
+EndFunc   ;==>btnDown
+
+Func btnBottom()
+	MoveUpgrades($DOWN, $TILL_END)
+EndFunc   ;==>btnBottom

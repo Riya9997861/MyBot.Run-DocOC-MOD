@@ -91,6 +91,9 @@ Func SaveConfig_MOD()
 	; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
 	IniWriteS($g_sProfileConfigPath, "notify", "AlertPBSleep", $g_bNotifyAlertBOTSleep ? 1 : 0)
 
+	; Upgrade Management (MMHK) - Added by NguyenAnhHD
+	IniWriteS($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
+
 EndFunc
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

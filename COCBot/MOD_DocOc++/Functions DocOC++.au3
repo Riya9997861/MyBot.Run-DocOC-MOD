@@ -41,3 +41,6 @@
 
 ; CoCStats - Added by NguyenAnhHD
 #include "functions\Mod's\CoCStats.com.au3"
+
+; Upgrade Management (MMHK) - Added by NguyenAnhHD
+#include "functions\Mod's\UpgradesMgmt.au3"

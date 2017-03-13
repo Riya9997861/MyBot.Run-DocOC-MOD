@@ -90,6 +90,9 @@ Func ReadConfig_MOD()
 	; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
 	IniReadS($g_bNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBSleep", False, "Bool")
 
+	; Upgrade Management (MMHK) - Added by NguyenAnhHD
+	$g_ibUpdateNewUpgradesOnly = (IniRead($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", 0) = 1)
+
 EndFunc
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)
