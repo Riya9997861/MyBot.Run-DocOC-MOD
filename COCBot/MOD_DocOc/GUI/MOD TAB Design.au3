@@ -186,15 +186,15 @@ Func OptionsGUI()
 
 	   $y += 10
 	   $x += -12
-		   $g_hChkCoCStats = GUICtrlCreateCheckbox("CoCStats Activate", $x, $y, -1, -1)
-		   $sTxtTip = "Activate sending raid results to CoCStats.com"
+		   $g_hChkCoCStats = GUICtrlCreateCheckbox(GetTranslated(657,1, "CoCStats Activate"), $x, $y, -1, -1)
+		   $sTxtTip = GetTranslated(657,2, "Activate sending raid results to CoCStats.com")
 		   GUICtrlSetTip(-1, $sTxtTip)
 		   GUICtrlSetOnEvent(-1, "chkCoCStats")
 
 	   $x += 135
-		   GUICtrlCreateLabel("API Key:", $x - 18, $y + 4, -1, 21, $SS_LEFT)
+		   GUICtrlCreateLabel(GetTranslated(657,3, "API Key:"), $x - 18, $y + 4, -1, 21, $SS_LEFT)
 		   $g_hTxtAPIKey = GUICtrlCreateInput("", $x + 30, $y, 250, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
-		   $sTxtTip = "Join in CoCStats.com and input API Key here"
+		   $sTxtTip = GetTranslated(657,4, "Join in CoCStats.com and input API Key here")
 		   GUICtrlSetTip(-1, $sTxtTip)
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

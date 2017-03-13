@@ -180,7 +180,7 @@ Func CreateBuildingsSubTab()
 	$y -= 7
 
 ; Upgrade Management (MMHK) - Added by NguyenAnhHD
-		Local $sTxtTip = "This button will clear or set the entire column of checkboxes"
+		Local $sTxtTip = GetTranslated(656,7, "This button will clear or set the entire column of checkboxes")
 		$g_hChkUpgradeAllOrNone = GUICtrlCreateCheckbox("", $x + 4, $y, 13, 13, BitOR($BS_PUSHLIKE, $BS_ICON))
 			GUICtrlSetImage(-1, $g_sLibIconPath, $eIcnGoldStar, 0)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -260,20 +260,20 @@ Func CreateBuildingsSubTab()
 			GUICtrlSetLimit(-1, 6)
 
 ; Upgrade Management (MMHK) - Added by NguyenAnhHD
-		$g_hChkUpdateNewUpgradesOnly = GUICtrlCreateCheckbox("New Only", $x + 141, $y + 15, -1, -1)
-			GUICtrlSetTip(-1, "Update NEW upgrades only for speed")
+		$g_hChkUpdateNewUpgradesOnly = GUICtrlCreateCheckbox(GetTranslated(656,1, "New Only"), $x + 141, $y + 15, -1, -1)
+			GUICtrlSetTip(-1, GetTranslated(656,2, "Update NEW upgrades only for speed"))
 			GUICtrlSetOnEvent(-1, "chkUpdateNewUpgradesOnly")
 		$g_hBtnTop = GUICtrlCreateButton("T", $x + 209, $y + 18, 23, 17, $BS_CENTER)
-			GUICtrlSetTip(-1, "Push button to move upgrade-box-checked buildings to the TOP of the list")
+			GUICtrlSetTip(-1, GetTranslated(656,3, "Push button to move upgrade-box-checked buildings to the TOP of the list"))
 			GUICtrlSetOnEvent(-1, "btnTop")
 		$g_hBtnBottom = GUICtrlCreateButton("B", $x + 233, $y + 18, 23, 17, $BS_CENTER)
-			GUICtrlSetTip(-1, "Push button to move upgrade-box-checked buildings to the BOTTOM of the list")
+			GUICtrlSetTip(-1, GetTranslated(656,4, "Push button to move upgrade-box-checked buildings to the BOTTOM of the list"))
 			GUICtrlSetOnEvent(-1, "btnBottom")
 		$g_hBtnUp = GUICtrlCreateButton("▲", $x + 257, $y + 18, 23, 17, $BS_CENTER)
-			GUICtrlSetTip(-1, "Push button to move UP upgrade-box-checked buildings a row")
+			GUICtrlSetTip(-1, GetTranslated(656,5, "Push button to move UP upgrade-box-checked buildings a row"))
 			GUICtrlSetOnEvent(-1, "btnUp")
 		$g_hBtnDown = GUICtrlCreateButton("▼", $x + 281, $y + 18, 23, 17, $BS_CENTER)
-			GUICtrlSetTip(-1, "Push button to move DOWN upgrade-box-checked buildings a row")
+			GUICtrlSetTip(-1, GetTranslated(656,6, "Push button to move DOWN upgrade-box-checked buildings a row"))
 			GUICtrlSetOnEvent(-1, "btnDown")
 
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
