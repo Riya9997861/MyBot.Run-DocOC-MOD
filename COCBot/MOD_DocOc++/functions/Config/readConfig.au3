@@ -103,6 +103,9 @@ Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)
 	IniReadS($ichkTrain, $profile, "SwitchAcc_Demen_Style", "Pre-train", 0, "int")
 	IniReadS($icmbTotalCoCAcc, $profile, "SwitchAcc_Demen_Style", "Total Coc Account", -1, "int")
 	IniReadS($ichkSmartSwitch, $profile, "SwitchAcc_Demen_Style", "Smart Switch", 0, "int")
+	IniReadS($ichkForceSwitch, $profile, "SwitchAcc_Demen_Style", "Force Switch", 0, "int")
+	IniReadS($iForceSwitch, $profile, "SwitchAcc_Demen_Style", "Force Switch Search", 100, "int")
+	IniReadS($ichkForceStayDonate, $profile, "SwitchAcc_Demen_Style", "Force Stay Donate", 0, "int")
 	IniReads($ichkCloseTraining, $profile, "SwitchAcc_Demen_Style", "Sleep Combo", 0, "int")	; Sleep Combo, 1 = Close CoC, 2 = Close Android, 0 = No sleep
 	For $i = 0 to 7
 		IniReadS($aMatchProfileAcc[$i], $profile, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i+1, "-1")
