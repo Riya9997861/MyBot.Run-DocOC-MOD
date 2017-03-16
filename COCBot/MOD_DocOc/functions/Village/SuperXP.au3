@@ -870,6 +870,8 @@ EndFunc   ;==>GetPositionInSinglePlayer
 Func OpenSinglePlayerPage()
 	If $DebugSX = 1 Then SetLog("SX|OpenSinglePlayerPage", $COLOR_PURPLE)
 
+	IsWaitingForConnection()
+
 	If WaitForMain(True, 50, 300) = False Then
 		If $DebugSX = 1 Then SetLog("SX|MainPage Not Displayed to Open SingleP")
 		Return False
