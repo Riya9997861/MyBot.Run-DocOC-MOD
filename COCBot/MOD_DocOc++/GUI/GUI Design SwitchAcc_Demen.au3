@@ -69,15 +69,20 @@ Func CreateSwitchAcc_Demen()
 
 			$y += 80
 			$g_hChkForceSwitch = GUICtrlCreateCheckbox(GetTranslated(109,42, "Force switch after:"), $x - 5, $y, -1, -1)
+				GUICtrlSetTip(-1, GetTranslated(109,43, "Force the Bot to switch account when searching for too long") & _
+					@CRLF & GetTranslated(109,44, "First switch to all donate accounts") & _
+					@CRLF & GetTranslated(109,45, "Then switch to another active account if its army is ready"))
 				GUICtrlSetOnEvent(-1, "chkForceSwitch")
 			$g_txtForceSwitch = GUICtrlCreateInput("100", $x + 105, $y+1, 27, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetLimit(-1, 3)
-			$g_lblForceSwitch = GUICtrlCreateLabel(GetTranslated(109,43, "searches"), $x + 135, $y+4, -1, -1)
+			$g_lblForceSwitch = GUICtrlCreateLabel(GetTranslated(109,46, "searches"), $x + 135, $y+4, -1, -1)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 
 			$y += 30
-			$g_hChkForceStayDonate= GUICtrlCreateCheckbox(GetTranslated(109,44, "Stay on donation while training"), $x - 5, $y, -1, -1)
+			$g_hChkForceStayDonate= GUICtrlCreateCheckbox(GetTranslated(109,47, "Stay on donation while training"), $x - 5, $y, -1, -1)
+				GUICtrlSetTip(-1, GetTranslated(109,48, "Stay at donate account until an active account is getting troops ready in 1 minute") & _
+					@CRLF & GetTranslated(109,49, "Circulate among the donate accounts if there are more than 1"))
 
 			$y += 30
 			$chkUseTrainingClose = GUICtrlCreateCheckbox(GetTranslated(109,19, "Combo Sleep after Switch Acc."), $x - 5, $y, -1, -1)
