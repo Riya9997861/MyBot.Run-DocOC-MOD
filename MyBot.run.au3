@@ -1,4 +1,8 @@
-﻿; #FUNCTION# ====================================================================================================================
+﻿#RequireAdmin
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#Au3Stripper_Parameters=/rsln /MI=3
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+; #FUNCTION# ====================================================================================================================
 ; Name ..........: MBR Bot
 ; Description ...: This file contains the initialization and main loop sequences f0r the MBR Bot
 ; Author ........:  (2014)
@@ -11,10 +15,6 @@
 ; ===============================================================================================================================
 
 ; AutoIt pragmas
-#RequireAdmin
-#AutoIt3Wrapper_UseX64=7n
-#AutoIt3Wrapper_Run_Au3Stripper=y
-#Au3Stripper_Parameters=/rsln /MI=3
 ;/SV=0
 
 ;#AutoIt3Wrapper_Change2CUI=y
@@ -31,8 +31,8 @@
 Opt("MustDeclareVars", 1)
 
 Global $g_sBotVersion = "v7.0.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it is also use on Checkversion()
-Global $g_sModversion = "v0.9.1" ;<== Just Change This to Version Number
-Global $g_sDocOcVersion = "v3.6" ;<== Just Change This to Version Number
+Global $g_sModversion = "v0.9.2" ;<== Just Change This to Version Number
+Global $g_sDocOcVersion = "v3.6.1" ;<== Just Change This to Version Number
 Global $g_sModSupportUrl = "https://mybot.run/forums/index.php?/topic/29141-mods-mbr-v701-dococ-aio-mod-v09-update-1103/" ;<== Our Website Link Support Or Link Download
 Global $g_sModDownloadUrl = "https://github.com/NguyenAnhHD/MyBot.Run-DocOC-MOD/releases" ;<== Our Website Link Download
 Global $g_sBotTitle = "" ;~ Don't assign any title here, use Func UpdateBotTitle()
