@@ -55,7 +55,7 @@ EndFunc
 Func CreateSwitchAcc_DocOc()
 
     Local $x = 25, $y = 45
-	GUICtrlCreateGroup(GetTranslated(637,1, "Switch Profiles"), $x - 20, $y - 20, 440, 360)
+	GUICtrlCreateGroup(GetTranslated(637,1, "Switch Profiles"), $x - 20, $y - 20, 430, 360)
 		$x -= 5
 		$g_hCmbProfile = GUICtrlCreateCombo("", $x - 3, $y + 1, 130, 18, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			_GUICtrlSetTip(-1, GetTranslated(637,2, "Use this to switch to a different profile")& @CRLF & _
@@ -156,9 +156,9 @@ Func CreateSwitchAcc_DocOc()
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 
-	Local $x = 10, $z = 189, $w = 357, $y = 85
+	Local $x = 8, $z = 189, $w = 357, $y = 85
 	$g_StartHideSwitchAcc_DocOc = GUICtrlCreateDummy()	; Hide DocOc SwitchAcc to make room for SwitchAcc_Demen_Style
-	GUICtrlCreateGroup(GetTranslated(108,1, "Smart Switch Accounts"), $x, $y, 430, 295)
+	GUICtrlCreateGroup(GetTranslated(108,1, "Smart Switch Accounts"), $x, $y, 425, 295)
 		$x += 10
 		$y += 20
 			$chkEnableSwitchAccount = GUICtrlCreateCheckbox(GetTranslated(108,2, "Use Smart Switch Accounts"), $x, $y, 152, 17)
@@ -171,49 +171,49 @@ Func CreateSwitchAcc_DocOc()
 			$chkCanUse[1] = GUICtrlCreateCheckbox(GetTranslated(108,4, "Use Account 1 with Profile :"), $x, $y, 150, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 			$cmbAccount[1] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-			$chkDonateAccount[1] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
+			$chkDonateAccount[1] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 		$y += 30
 			$chkCanUse[2] = GUICtrlCreateCheckbox(GetTranslated(108,6, "Use Account 2 with Profile :"), $x, $y, 150, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 			$cmbAccount[2] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-			$chkDonateAccount[2] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
+			$chkDonateAccount[2] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 		$y += 30
 			$chkCanUse[3] = GUICtrlCreateCheckbox(GetTranslated(108,7, "Use Account 3 with Profile :"), $x, $y, 150, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 			$cmbAccount[3] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-			$chkDonateAccount[3] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
+			$chkDonateAccount[3] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 		$y += 30
 			$chkCanUse[4] = GUICtrlCreateCheckbox(GetTranslated(108,8, "Use Account 4 with Profile :"), $x, $y, 150, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 			$cmbAccount[4] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-			$chkDonateAccount[4] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
+			$chkDonateAccount[4] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 		$y += 30
 			$chkCanUse[5] = GUICtrlCreateCheckbox(GetTranslated(108,9, "Use Account 5 with Profile :"), $x, $y, 150, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 			$cmbAccount[5] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-			$chkDonateAccount[5] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
+			$chkDonateAccount[5] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 		$y += 30
 			$chkCanUse[6] = GUICtrlCreateCheckbox(GetTranslated(108,10, "Use Account 6 with Profile :"), $x, $y, 150, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 			$cmbAccount[6] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-			$chkDonateAccount[6] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
+			$chkDonateAccount[6] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 		$y += 30
 			$chkCanUse[7] = GUICtrlCreateCheckbox(GetTranslated(108,11, "Use Account 7 with Profile :"), $x, $y, 150, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 			$cmbAccount[7] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-			$chkDonateAccount[7] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
+			$chkDonateAccount[7] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 		$y += 30
 			$chkCanUse[8] = GUICtrlCreateCheckbox(GetTranslated(108,12, "Use Account 8 with Profile :"), $x, $y, 150, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 			$cmbAccount[8] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-			$chkDonateAccount[8] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
+			$chkDonateAccount[8] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$g_EndHideSwitchAcc_DocOc = GUICtrlCreateDummy()	; Hide DocOc SwitchAcc to make room for SwitchAcc-Demen-Style
@@ -232,7 +232,7 @@ Func CreateModSwitchProfile()
 	Local $sTxtTip = ""
 	Local $x = 25, $y = 45
 
-	GUICtrlCreateGroup(GetTranslated(655,1, "Gold Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;Gold Switch
+	GUICtrlCreateGroup(GetTranslated(655,1, "Gold Switch Profile Conditions"), $x - 20, $y - 20, 430, 75) ;Gold Switch
 		$g_hChkGoldSwitchMax = GUICtrlCreateCheckbox(GetTranslated(655,2, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$sTxtTip = GetTranslated(655,3, "Enable this to switch profiles when gold is above amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -257,10 +257,10 @@ Func CreateModSwitchProfile()
 			$sTxtTip = GetTranslated(655,6, "Set the amount of Gold to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 7)
-		GUICtrlCreatePic(@ScriptDir & "\Images\GoldStorage.jpg", $x + 350, $y - 40, 60, 60)
+		GUICtrlCreatePic(@ScriptDir & "\Images\GoldStorage.jpg", $x + 340, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
-	GUICtrlCreateGroup(GetTranslated(655,9, "Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Elixir Switch
+	GUICtrlCreateGroup(GetTranslated(655,9, "Elixir Switch Profile Conditions"), $x - 20, $y - 20, 430, 75) ; Elixir Switch
 		$g_hChkElixirSwitchMax = GUICtrlCreateCheckbox(GetTranslated(655,2, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$sTxtTip = GetTranslated(655,10, "Enable this to switch profiles when Elixir is above amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -285,10 +285,10 @@ Func CreateModSwitchProfile()
 			$sTxtTip = GetTranslated(655,12, "Set the amount of Elixir to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 7)
-		GUICtrlCreatePic(@ScriptDir & "\Images\ElixirStorage.jpg", $x + 350, $y - 40, 60, 60)
+		GUICtrlCreatePic(@ScriptDir & "\Images\ElixirStorage.jpg", $x + 340, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
-	GUICtrlCreateGroup(GetTranslated(655,15, "Dark Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;DE Switch
+	GUICtrlCreateGroup(GetTranslated(655,15, "Dark Elixir Switch Profile Conditions"), $x - 20, $y - 20, 430, 75) ;DE Switch
 		$g_hChkDESwitchMax = GUICtrlCreateCheckbox(GetTranslated(655,2, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$sTxtTip = GetTranslated(655,16, "Enable this to switch profiles when Dark Elixir is above amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -312,10 +312,10 @@ Func CreateModSwitchProfile()
 			$sTxtTip = GetTranslated(655,18, "Set the amount of Dark Elixir to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 6)
-		GUICtrlCreatePic(@ScriptDir & "\Images\DEStorage.jpg", $x + 350, $y - 40, 60, 60)
+		GUICtrlCreatePic(@ScriptDir & "\Images\DEStorage.jpg", $x + 340, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
-	GUICtrlCreateGroup(GetTranslated(655,21, "Trophy Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Trophy Switch
+	GUICtrlCreateGroup(GetTranslated(655,21, "Trophy Switch Profile Conditions"), $x - 20, $y - 20, 430, 75) ; Trophy Switch
 		$g_hChkTrophySwitchMax = GUICtrlCreateCheckbox(GetTranslated(655,2, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$sTxtTip = GetTranslated(655,22, "Enable this to switch profiles when Trophies are above amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -339,7 +339,7 @@ Func CreateModSwitchProfile()
 			$sTxtTip = GetTranslated(655,24, "Set the amount of Trophies to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 4)
-		GUICtrlCreatePic(@ScriptDir & "\Images\TrophyLeague.jpg", $x + 350, $y - 40, 60, 60)
+		GUICtrlCreatePic(@ScriptDir & "\Images\TrophyLeague.jpg", $x + 340, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 		setupProfileComboBoxswitch()
 EndFunc
