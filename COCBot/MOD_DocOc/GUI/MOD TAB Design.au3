@@ -45,12 +45,12 @@ Global $g_hChkCoCStats = 0, $g_hTxtAPIKey = 0
 
 #include "MOD - Profiles.au3"
 #include "MBR GUI Design Child Stats - Multi.au3"
-#include "..\..\MOD_DocOc++\GUI\MBR GUI Design - Switch Profiles.au3"
 
 Func CreateMODTab()
 
 	$g_hGUI_MOD = GUICreate("", $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, $_GUI_CHILD_LEFT, $_GUI_CHILD_TOP, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hFrmBotEx)
 
+	CreateModProfiles()
 	GUISwitch($g_hGUI_MOD)
 	$g_hGUI_MOD_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
 		$g_hGUI_MOD_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600, 58, "Misc"))
@@ -59,21 +59,18 @@ Func CreateMODTab()
 			HumanizationGUI()
 		$g_hGUI_MOD_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600, 60, "Goblin XP"))
 			GoblinXPGUI()
-		$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem("Switch Account")
-			CreateModProfiles()
-		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("Switch Profile") ; Has to be outside of the Last Control to hide
-			CreateModSwitchProfile()
-	GUICtrlCreateTabItem("")
-
-	GUISwitch($g_hGUI_BOT)
-		$g_hGUI_BOT_TAB_ITEM4 = GUICtrlCreateTabItem("MultiStat's") ; Has to be outside of the Last Control to hide
+		$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 36, "Profiles"))
+		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600, 61, "MultiStat's")) ; Has to be outside of the Last Control to hide
 			$g_hLastControlToHide = GUICtrlCreateDummy()
 			ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
 			CreateMultiStatsGUI()
-		$g_hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600, 37, "Stats"))
-			; This dummy is used in btnStart and btnStop to disable/enable all labels, text, buttons etc. on all tabs.
-			CreateBotStats()
 	GUICtrlCreateTabItem("")
+
+	GUISwitch($g_hGUI_BOT)
+		$g_hGUI_BOT_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 37, "Stats"))
+		; This dummy is used in btnStart and btnStop to disable/enable all labels, text, buttons etc. on all tabs.
+		CreateBotStats()
+		GUICtrlCreateTabItem("")
 EndFunc   ;==>CreateMODTab
 
 Func OptionsGUI()

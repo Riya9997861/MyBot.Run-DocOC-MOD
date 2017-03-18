@@ -646,6 +646,8 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 			tabTHSnipe()
 		Case $g_hGUI_BOT_TAB
 			tabBot()
+		Case $g_hGUI_MOD_TAB
+			tabMod()
 		Case Else
 			$bCheckEmbeddedShield = False
 	EndSwitch
@@ -1026,7 +1028,7 @@ Func SetTime($bForceUpdate = False)
 	If $DisplayLoop >= 10 Then ; Conserve Clock Cycles on Updating times
 		$DisplayLoop = 0
 		;Update Multi Stat Page
-		If GUICtrlRead($g_hGUI_BOT_TAB, 1) = $g_hGUI_BOT_TAB_ITEM4 And $CurrentAccount <> 0 Then	; moved to Bot Tab in NguyenAnh's AIO Mod (edited by Demen)
+		If GUICtrlRead($g_hGUI_MOD_TAB, 1) = $g_hGUI_MOD_TAB_ITEM5 And $CurrentAccount <> 0 Then	; moved to Bot Tab in NguyenAnh's AIO Mod (edited by Demen)
 			For $i = 1 To 8 ; Update time for all Accounts
 				If $ichkCanUse[$i] = 1 And _
 						$ichkDonateAccount[$i] <> 1 And _
@@ -1056,7 +1058,7 @@ Func SetTime($bForceUpdate = False)
 		EndIf
 		;Update Multi Stat Page _ SwitchAcc_Demen_Style
 		If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 Then
-			If GUICtrlRead($g_hGUI_BOT_TAB, 1) = $g_hGUI_BOT_TAB_ITEM4 Then		; moved to Bot Tab in NguyenAnh's AIO Mod (edited by Demen)
+			If GUICtrlRead($g_hGUI_MOD_TAB, 1) = $g_hGUI_MOD_TAB_ITEM5 Then		; moved to Bot Tab in NguyenAnh's AIO Mod (edited by Demen)
 				For $i = 0 To $nTotalProfile ; Update time for all Accounts
 					If $aProfileType[$i] = 1 And _
 							$i <> $nCurProfile - 1 And _
@@ -1182,6 +1184,7 @@ Func tabMain()
 			GUISetState(@SW_HIDE, $g_hGUI_BOT)
 			GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_MOD)
+			tabMod()
 
 		Case $tabidx = 5 ; About
 			GUISetState(@SW_HIDE, $g_hGUI_LOG)
@@ -1391,20 +1394,30 @@ Func tabBot()
 		Case $tabidx = 0 ; Options tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlShow("", "", $g_hCmbGUILanguage)
-		Case $tabidx = 1 ; Android tab
+		Case $tabidx = 1 ; Debug tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
-		Case $tabidx = 2 ; Debug tab
-			GUISetState(@SW_HIDE, $g_hGUI_STATS)
-			ControlHide("","",$g_hCmbGUILanguage)
-		Case $tabidx = 3 ; MultiStats tab
+			;			Case $tabidx = 2 ; Profiles tab
+			;				GUISetState(@SW_HIDE, $g_hGUI_STATS)
+			;				ControlHide("","",$g_hCmbGUILanguage)
+		Case $tabidx = 2 ; Android tab
 			GUISetState(@SW_HIDE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
-		Case $tabidx = 4 ; Stats tab
+		Case $tabidx = 3 ; Stats tab
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_STATS)
 			ControlHide("", "", $g_hCmbGUILanguage)
 	EndSelect
 EndFunc   ;==>tabBot
+
+Func tabMod()
+	Local $tabidx = GUICtrlRead($g_hGUI_MOD_TAB)
+	Select
+		Case $tabidx = 3 ; Profile tab
+			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_MOD_SWITCH)
+		Case Else
+			GUISetState(@SW_HIDE, $g_hGUI_MOD_SWITCH)
+	EndSelect
+EndFunc   ;==>tabMod
 
 Func tabDeadbase()
 	Local $tabidx = GUICtrlRead($g_hGUI_DEADBASE_TAB)
@@ -1602,7 +1615,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_BOT_TAB
 			; the icons for Bot tab
-			Local $aIconIndex[5] = [$eIcnOptions, $eIcnAndroid, $eIcnBug, $eIcnMultiStat, $eIcnStats]
+			Local $aIconIndex[4] = [$eIcnOptions, $eIcnAndroid, $eIcnBug, $eIcnStats]
 			; The Android Robot is a Google Trademark and follows Creative Common Attribution 3.0
 
 		Case $g_hGUI_STRATEGIES_TAB
@@ -1615,7 +1628,11 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_MOD_TAB
 			; the icons for stats tab
-			Local $aIconIndex[5] = [$eIcnInfo, $eIcnBrain, $eIcnOptions, $eIcnSwitch, $eIcnProfile2]
+			Local $aIconIndex[5] = [$eIcnInfo, $eIcnBrain, $eIcnOptions, $eIcnProfile, $eIcnMultiStat]
+
+		Case $g_hGUI_MOD_SWITCH_TAB
+			; the icons for Profiles tab
+			Local $aIconIndex[2] = [$eIcnSwitch, $eIcnProfile2]
 
 		Case Else
 			;do nothing
