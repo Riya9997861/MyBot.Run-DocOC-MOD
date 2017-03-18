@@ -268,6 +268,8 @@ Func btnUpdateProfile($Config = True)
 		ApplyConfig_SwitchAcc("Read")
 	EndIf
 
+	$aActiveProfile = _ArrayFindAll($aProfileType, $eActive)
+	$aDonateProfile = _ArrayFindAll($aProfileType, $eDonate)
 	$ProfileList = _GUICtrlComboBox_GetListArray($g_hCmbProfile)
 	$nTotalProfile = _GUICtrlComboBox_GetCount($g_hCmbProfile)
 
