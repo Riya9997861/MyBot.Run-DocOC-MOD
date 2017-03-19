@@ -162,6 +162,19 @@ Func InitializeBot()
    ; AutoStart Bot if requested
    AutoStart()
 
+   If GUICtrlRead($GTFOCheck) = $GUI_CHECKED Then
+
+	   _GUICtrlTab_ClickTab($g_hTabMain, 3)
+	   _GUICtrlTab_ClickTab($g_hGUI_BOT_TAB, 4)
+	   _GUICtrlTab_ClickTab($g_hGUI_STATS_TAB, 4)
+
+	   _GUICtrlTab_ClickTab($g_hTabMain, 1)
+	   _GUICtrlTab_ClickTab($g_hGUI_VILLAGE_TAB, 1)
+	   _GUICtrlTab_ClickTab($g_hGUI_DONATE_TAB, 1)
+
+
+   EndIf
+
 EndFunc   ;==>InitializeBot
 
 ; #FUNCTION# ====================================================================================================================
@@ -591,6 +604,7 @@ Func runBot() ;Bot that runs everything in order
 			If $g_bRestart = True Then ContinueLoop
 			If _Sleep($iDelayRunBot3) Then Return
 			VillageReport()
+			RequestCC()
 			ProfileSwitch()
 			If $OutOfGold = 1 And (Number($iGoldCurrent) >= Number($g_iTxtRestartGold)) Then ; check if enough gold to begin searching again
 				$OutOfGold = 0 ; reset out of gold flag
@@ -614,7 +628,7 @@ Func runBot() ;Bot that runs everything in order
 			checkMainScreen(False)
 			If $g_bRestart = True Then ContinueLoop
 
-			Local $aRndFuncList = ['Collect', 'CheckTombs', 'ReArm', 'CleanYard', 'CollectTreasury']
+			Local $aRndFuncList = ['Collect', 'CheckTombs', 'ReArm', 'CleanYard', 'CollectTreasury', 'GTFOKICK']
 			While 1
 				If $g_bRunState = False Then Return
 				If $g_bRestart = True Then ContinueLoop 2 ; must be level 2 due to loop-in-loop
@@ -633,7 +647,7 @@ Func runBot() ;Bot that runs everything in order
 			If $g_bRunState = False Then Return
 			If $g_bRestart = True Then ContinueLoop
 			If IsSearchAttackEnabled() Then ; if attack is disabled skip reporting, requesting, donating, training, and boosting
-				Local $aRndFuncList = ['ReplayShare', 'NotifyReport', 'DonateCC,Train', 'BoostBarracks', 'BoostSpellFactory', 'BoostKing', 'BoostQueen', 'BoostWarden', 'RequestCC']
+				Local $aRndFuncList = ['ReplayShare', 'NotifyReport', 'DonateCC,Train', 'BoostBarracks', 'BoostSpellFactory', 'BoostKing', 'BoostQueen', 'BoostWarden', 'RequestCC', 'GTFOKICK']
 				While 1
 					If $g_bRunState = False Then Return
 					If $g_bRestart = True Then ContinueLoop 2 ; must be level 2 due to loop-in-loop
@@ -656,7 +670,7 @@ Func runBot() ;Bot that runs everything in order
 			EndIf
 			SmartUpgrade()
 			MainSuperXPHandler()
-			Local $aRndFuncList = ['Laboratory', 'UpgradeHeroes', 'UpgradeBuilding']
+			Local $aRndFuncList = ['Laboratory', 'UpgradeHeroes', 'UpgradeBuilding', 'GTFOKICK']
 			While 1
 				If $g_bRunState = False Then Return
 				If $g_bRestart = True Then ContinueLoop 2 ; must be level 2 due to loop-in-loop
@@ -671,11 +685,13 @@ Func runBot() ;Bot that runs everything in order
 				EndIf
 				If checkAndroidReboot() = True Then ContinueLoop 2 ; must be level 2 due to loop-in-loop
 			WEnd
+			RequestCC()
 			If $g_bRunState = False Then Return
 			If $g_bRestart = True Then ContinueLoop
 			If IsSearchAttackEnabled() Then ; If attack scheduled has attack disabled now, stop wall upgrades, and attack.
 				$iNbrOfWallsUpped = 0
 				UpgradeWall()
+				GTFOKICK()
 				If _Sleep($iDelayRunBot3) Then Return
 				If $g_bRestart = True Then ContinueLoop
 				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = $eDonate Then
@@ -747,6 +763,8 @@ Func Idle() ;Sequence that runs until Full Army
 	Local $TimeIdle = 0 ;In Seconds
 	If $g_iDebugSetlog = 1 Then SetLog("Func Idle ", $COLOR_DEBUG)
 
+	RequestCC()
+	GTFOKICK()
 	While $IsFullArmywithHeroesAndSpells = False
 		checkAndroidReboot()
 
@@ -765,8 +783,26 @@ Func Idle() ;Sequence that runs until Full Army
 				$iReHere += 1
 				If $iReHere = 1 And SkipDonateNearFullTroops(True, $aHeroResult) = False And BalanceDonRec(True) Then
 					DonateCC(True)
+					GTFOKICK()
+					If $GtfoMassKickMode Then
+						Local $DonateCount = 0
+						While $DonateCount < 7
+							DonateCC(True)
+							GTFOKICK()
+							$DonateCount += 1
+						WEnd
+					EndIf
 				ElseIf SkipDonateNearFullTroops(False, $aHeroResult) = False And BalanceDonRec(False) Then
 					DonateCC(True)
+					GTFOKICK()
+					If $GtfoMassKickMode Then
+						Local $DonateCount = 0
+						While $DonateCount < 7
+							DonateCC(True)
+							GTFOKICK()
+							$DonateCount += 1
+						WEnd
+					EndIf
 				EndIf
 				If _Sleep($iDelayIdle2) Then ExitLoop
 				If $g_bRestart = True Then ExitLoop
@@ -776,6 +812,7 @@ Func Idle() ;Sequence that runs until Full Army
 		If _Sleep($iDelayIdle1) Then ExitLoop
 		checkObstacles() ; trap common error messages also check for reconnecting animation
 		checkMainScreen(False) ; required here due to many possible exits
+		RequestCC()
 		If ($g_iCommandStop = 3 Or $g_iCommandStop = 0) And $bTrainEnabled = True Then
 			CheckArmyCamp(True, True)
 			If _Sleep($iDelayIdle1) Then Return
@@ -1012,6 +1049,9 @@ EndFunc   ;==>QuickAttack
 Func _RunFunction($action)
 	SetDebugLog("_RunFunction: " & $action & " BEGIN", $COLOR_DEBUG2)
 	Switch $action
+		Case "GTFOKICK"
+			GTFOKICK()
+			_Sleep($iDelayRunBot6)
 		Case "Collect"
 			Collect()
 			_Sleep($iDelayRunBot1)

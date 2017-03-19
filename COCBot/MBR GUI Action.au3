@@ -62,6 +62,7 @@ Func BotStart()
 	GUICtrlSetState($g_hBtnResume, $GUI_HIDE)
 	GUICtrlSetState($g_hBtnSearchMode, $GUI_HIDE)
 	GUICtrlSetState($g_hChkBackgroundMode, $GUI_DISABLE)
+	GUICtrlSetState($g_hBtnGTFOStart, $GUI_DISABLE)
 	EnableControls($g_hFrmBotBottom, Default, $g_aFrmBotBottomCtrlState)
 
 	DisableGuiControls()
@@ -138,6 +139,7 @@ Func BotStop()
 	If $iTownHallLevel > 2 Then GUICtrlSetState($g_hBtnSearchMode, $GUI_ENABLE)
 	GUICtrlSetState($g_hBtnSearchMode, $GUI_SHOW)
 	;GUICtrlSetState($g_hBtnMakeScreenshot, $GUI_ENABLE)
+	GUICtrlSetState($g_hBtnGTFOStart, $GUI_ENABLE)
 
 	; hide attack buttons if show
 	GUICtrlSetState($g_hBtnAttackNowDB, $GUI_HIDE)

@@ -79,3 +79,26 @@ Global $MyApiKey = ""
 ; Upgrade Management (MMHK) - Added by NguyenAnhHD
 Global $g_ibUpdateNewUpgradesOnly = False
 Global Const $UP = True, $DOWN = False, $TILL_END = True
+
+; GTFO
+Global $DonationWindowY, $bDonate
+Global $iTotalDonateCapacity, $iTotalDonateSpellCapacity
+Global $iDonTroopsLimit, $iDonSpellsLimit, $iDonTroopsAv, $iDonSpellsAv
+Global $iDonTroopsQuantityAv, $iDonTroopsQuantity, $iDonSpellsQuantityAv, $iDonSpellsQuantity
+Global $bSkipDonTroops, $bSkipDonSpells
+Global $GTFOCheck, $hGUI_DONATE, $hGUI_GTFOMode, $grpGTFO, $cmbGTFO, $g_hBtnGTFOStart, $g_hBtnGTFOPause, $g_hBtnGTFOStop, $chkMassDonate, $chkClanOpen, $chkWaitForTroops, $chkGTFOStats
+Global $cmbGTFOTroop, $cmbGTFOTroopBoost, $cmbGTFOSpell, $cmbGTFOSpellBoost, $chkGTFOProfileSwitch, $cmbGTFOProfiles, $btnGTFOProfileAdd
+Global $btnGtfoProfileRemove, $SliderGtfoIdleTime, $chkGtfoNote, $txtGtfoNote, $chkGtfoClip, $txtGtfoChat, $btnGtfoSendChat, $lstGtfoChatTemplates
+Global $btnGtfoChatAdd, $btnGtfoChatRemove, $chkGtfoChatAuto, $chkGtfoChatRandom, $lblGtfoTroop, $lblGtfoHelp, $lblGtfoIdle, $lblGtfoSpell
+Global $lblGtfoTroopBoost, $lblGtfoChat, $lblGtfoSpellBoost, $lblKick, $txtGtfoIdleTime, $chkChatStatus
+Global $lblStartXp, $lblCurrentXP,$lblStartXpVal, $lblCurrentXPVal, $lblGtfoDonationCap,$lblGtfoKickCap
+Global Enum $GtfoIdle, $GtfoStart, $GtfoPause , $GtfoResume , $GtfoStop
+Global $GtfoModStatus = $GtfoIdle
+Global $GtfoTroopType, $GtfoSpellType, $GtfoChatCount = 0
+Global $GtfoHours = 0, $GtfoMins = 0, $GtfoSecs = 0, $GtfoTroopTrainCount = 0, $GtfoSpellBrewCount = 0
+Global $GtfoIdleTime = 15, $GtfoReceiveCap = 0, $GtfoDonationCap = 0 , $GtfoTopEnd = -1, $GtfoMassKickMode = False
+Global $aIsGoldBar[4] = [822,22,0xFFF448, 20]
+Global $aIsElixirBar[4] = [822,72,0x761476, 20]
+Global $sLastkickedFile = "lastkicked_0_0_85.png"
+Global $aGtfoCanTrophies[37] = [0,200,400,600,800,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,3000,3100,3200,3300,3400,3500,3600,3700,3800,3900,4000,4100,4200]
+Global $bSetTrophies = False, $aUpdateTrophies = -1, $currClanTrophies = -1

@@ -52,6 +52,8 @@
 #include <GuiListView.au3>
 #include <GUIToolTip.au3>
 #include <Crypt.au3>
+#include <GUIListBox.au3> ; Added for GTFO
+#include <SliderConstants.au3>
 
 Global Const $g_sLogoPath = @ScriptDir & "\Images\Logo.png"
 Global Const $g_sLogoUrlPath = @ScriptDir & "\Images\LogoURL.png"

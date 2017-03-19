@@ -54,6 +54,7 @@ Global $g_hFrmBot_WNDPROC_ptr = 0
 #include "MOD_DocOc\GUI\MOD TAB Control.au3"
 ; DocOC++ Team MOD
 #include "MOD_DocOc++\GUI\MOD TAB Control.au3"
+#include "MOD_DocOc++\GUI\GUI Control GTFO.au3"
 
 Func InitializeMainGUI()
 	InitializeControlVariables()

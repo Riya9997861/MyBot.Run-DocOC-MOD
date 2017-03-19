@@ -12,7 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+#Region
 Func btnDonateTroop()
     For $i = 0 To $eTroopCount-1 + $g_iCustomDonateConfigs
 	   If @GUI_CtrlId = $g_ahBtnDonateTroop[$i] Then
@@ -235,4 +235,4 @@ Func chkskipDonateNearFulLTroopsEnable()
 		GUICtrlSetState($g_hLblSkipDonateNearFullTroopsText1, $GUI_DISABLE)
 	EndIf
 EndFunc
-
+#EndRegion
