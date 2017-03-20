@@ -21,6 +21,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	Local $weakBaseValues
 	Local $logwrited = False
 	$iSkipped = 0
+	$iProfileBeforeForceSwitch = 0;	ForceSwitch when long search - Demen
 
 	If $g_iDebugDeadBaseImage = 1 Or $g_aiSearchEnableDebugDeadBaseImage > 0 Then
 		DirCreate($g_sProfileTempDebugPath & "\SkippedZombies\")
@@ -338,7 +339,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 					If $i >= 5 Then ExitLoop ; if end battle or surrender button are not found in 5*(200)ms + 5*(200)ms or 2 seconds, then give up.
 				WEnd
 				If $i > 5 Or isProblemAffect(True) Then checkMainScreen()
-				ForceSwitchAcc($eForceSwitch)
+				ForceSwitchAcc($eForceSwitch, "SearchLimit")
 			EndIf
 		EndIf
 

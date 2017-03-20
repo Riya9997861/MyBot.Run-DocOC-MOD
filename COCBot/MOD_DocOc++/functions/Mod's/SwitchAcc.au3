@@ -365,13 +365,19 @@ Func ForceSwitchAcc($AccType = $eDonate, $sSource = "")
 			Else
 				runBot()
 			EndIf
-		Else
+			$eForceSwitch = $eDonate
+		ElseIf $sSource = "SeachLimit" Then
 			If MinRemainTrainAcc(False, $iProfileBeforeForceSwitch) > 0 OR UBound($aActiveProfile) = 1 Then
 				$nNextProfile = $iProfileBeforeForceSwitch
 				Setlog("Return to Active Profile: " & $ProfileList[$nNextProfile] & " to continue searching")
 				$g_bRestart = True
 			EndIf
 			$SwitchCase = $eActive
+			$eForceSwitch = $eNull
+			$DonateSwitchCounter = 0
+		Else
+			$SwitchCase = $eActive
+			MinRemainTrainAcc(False, $nCurProfile)
 			$eForceSwitch = $eNull
 			$DonateSwitchCounter = 0
 		EndIf
