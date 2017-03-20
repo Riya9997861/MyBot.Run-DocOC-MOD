@@ -57,6 +57,9 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetState($g_hChkIgnoreGColl, $ichkIgnoreGColl = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetState($g_hChkIgnoreEColl, $ichkIgnoreEColl = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetState($g_hChkIgnoreDColl, $ichkIgnoreDColl = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hChkIgnoreBomb, $ichkIgnoreBomb = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hChkIgnoreAir, $ichkIgnoreAir = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hChkIgnoreTrap, $ichkIgnoreTrap = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSmartUpgrade()
 
 			; Switch Profile (IceCube) - Added by NguyenAnhHD
@@ -139,6 +142,9 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$ichkIgnoreGColl = GUICtrlRead($g_hChkIgnoreGColl) = $GUI_CHECKED ? 1 : 0
 			$ichkIgnoreEColl = GUICtrlRead($g_hChkIgnoreEColl) = $GUI_CHECKED ? 1 : 0
 			$ichkIgnoreDColl = GUICtrlRead($g_hChkIgnoreDColl) = $GUI_CHECKED ? 1 : 0
+			$ichkIgnoreBomb = GUICtrlRead($g_hChkIgnoreBomb) = $GUI_CHECKED ? 1 : 0
+			$ichkIgnoreAir = GUICtrlRead($g_hChkIgnoreAir) = $GUI_CHECKED ? 1 : 0
+			$ichkIgnoreTrap = GUICtrlRead($g_hChkIgnoreTrap) = $GUI_CHECKED ? 1 : 0
 
 			; Switch Profile (IceCube) - Added by NguyenAnhHD
 			$ichkGoldSwitchMax = GUICtrlRead($g_hChkGoldSwitchMax) = $GUI_CHECKED ? 1 : 0

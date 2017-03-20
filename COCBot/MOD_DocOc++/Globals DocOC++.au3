@@ -34,7 +34,7 @@ Global $g_hDivider
 
 ; SmartUpgrade (Roro-Titi) - Added by NguyenAnhHD
 Global $ichkSmartUpgrade
-Global $ichkIgnoreTH, $ichkIgnoreKing, $ichkIgnoreQueen, $ichkIgnoreWarden, $ichkIgnoreCC, $ichkIgnoreLab
+Global $ichkIgnoreTH, $ichkIgnoreKing, $ichkIgnoreQueen, $ichkIgnoreWarden, $ichkIgnoreCC, $ichkIgnoreLab, $ichkIgnoreBomb, $ichkIgnoreTrap, $ichkIgnoreAir
 Global $ichkIgnoreBarrack, $ichkIgnoreDBarrack, $ichkIgnoreFactory, $ichkIgnoreDFactory, $ichkIgnoreGColl, $ichkIgnoreEColl, $ichkIgnoreDColl
 Global $iSmartMinGold, $iSmartMinElixir, $iSmartMinDark
 Global $sBldgText, $sBldgLevel, $aString

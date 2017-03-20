@@ -50,6 +50,9 @@ Func ReadConfig_MOD()
 	IniReadS($iSmartMinGold, $g_sProfileConfigPath, "upgrade", "SmartMinGold", 200000, "int")
 	IniReadS($iSmartMinElixir, $g_sProfileConfigPath, "upgrade", "SmartMinElixir", 200000, "int")
 	IniReadS($iSmartMinDark, $g_sProfileConfigPath, "upgrade", "SmartMinDark", 1500, "int")
+	IniReadS($ichkIgnoreBomb, $g_sProfileConfigPath, "upgrade", "chkIgnoreBomb", 0, "int")
+	IniReadS($ichkIgnoreAir, $g_sProfileConfigPath, "upgrade", "chkIgnoreAir", 0, "int")
+	IniReadS($ichkIgnoreTrap, $g_sProfileConfigPath, "upgrade", "chkIgnoreTrap", 0, "int")
 
 	; Switch Profile (IceCube) - Added by NguyenAnhHD
 	IniReadS($ichkGoldSwitchMax, $g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", 0, "int")

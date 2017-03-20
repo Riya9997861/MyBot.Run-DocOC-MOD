@@ -212,6 +212,15 @@ Func checkCanUpgrade()
 	ElseIf StringInStr($sBldgText, "Warden") And $g_bUpgradeWardenEnable = 1 Then
 		SetLog("Grand Warden upgrade selected, skipping upgrade...", $COLOR_ORANGE)
 		Return False
+	ElseIf StringInStr($sBldgText, "Bomb") And $ichkIgnoreBomb = 1 Then
+		SetLog("We must ignore Bomb...", $COLOR_ORANGE)
+		Return False
+	ElseIf StringInStr($sBldgText, "Air") And $ichkIgnoreAir = 1 Then
+		SetLog("We must ignore Air Bomb...", $COLOR_ORANGE)
+		Return False
+	ElseIf StringInStr($sBldgText, "Trap") And $ichkIgnoreTrap = 1 Then
+		SetLog("We must ignore Trap...", $COLOR_ORANGE)
+		Return False
 	Else
 		SetLog("This upgrade no need to be ignored !", $COLOR_ORANGE)
 		Return True
@@ -344,3 +353,15 @@ EndFunc   ;==>chkIgnoreEColl
 Func chkIgnoreDColl()
 	$ichkIgnoreDColl = (GUICtrlRead($g_hChkIgnoreDColl) = $GUI_CHECKED ? 1 : 0)
 EndFunc   ;==>chkIgnoreDColl
+
+Func chkIgnoreBomb()
+	$ichkIgnoreBomb = (GUICtrlRead($g_hChkIgnoreBomb) = $GUI_CHECKED ? 1 : 0)
+EndFunc   ;==>chkIgnoreBomb
+
+Func chkIgnoreAir()
+	$ichkIgnoreAir = (GUICtrlRead($g_hChkIgnoreAir) = $GUI_CHECKED ? 1 : 0)
+EndFunc   ;==>chkIgnoreAir
+
+Func chkIgnoreTrap()
+	$ichkIgnoreTrap = (GUICtrlRead($g_hChkIgnoreTrap) = $GUI_CHECKED ? 1 : 0)
+EndFunc   ;==>chkIgnoreTrap

@@ -15,9 +15,9 @@
 
 Global $g_hChkSmartUpgrade = 0
 Global $iconIgnoreTH = 0, $iconIgnoreKing = 0, $iconIgnoreQueen = 0, $iconIgnoreWarden = 0, $iconIgnoreCC = 0, $iconIgnoreLab = 0, $iconIgnoreBarrack = 0, $iconIgnoreDBarrack = 0, _
-	   $iconIgnoreFactory = 0, $iconIgnoreDFactory = 0, $iconIgnoreGColl = 0, $iconIgnoreEColl = 0, $iconIgnoreDColl = 0
+	   $iconIgnoreFactory = 0, $iconIgnoreDFactory = 0, $iconIgnoreGColl = 0, $iconIgnoreEColl = 0, $iconIgnoreDColl = 0, $iconIgnoreBomb = 0, $iconIgnoreAir = 0, $iconIgnoreTrap = 0
 Global $g_hChkIgnoreTH = 0, $g_hChkIgnoreKing = 0, $g_hChkIgnoreQueen = 0, $g_hChkIgnoreWarden = 0, $g_hChkIgnoreCC = 0, $g_hChkIgnoreLab = 0, $g_hChkIgnoreBarrack = 0, $g_hChkIgnoreDBarrack = 0, _
-	   $g_hChkIgnoreFactory = 0, $g_hChkIgnoreDFactory = 0, $g_hChkIgnoreGColl = 0, $g_hChkIgnoreEColl = 0, $g_hChkIgnoreDColl = 0
+	   $g_hChkIgnoreFactory = 0, $g_hChkIgnoreDFactory = 0, $g_hChkIgnoreGColl = 0, $g_hChkIgnoreEColl = 0, $g_hChkIgnoreDColl = 0, $g_hChkIgnoreBomb = 0, $g_hChkIgnoreAir = 0, $g_hChkIgnoreTrap = 0
 Global $SmartMinGold = 0, $SmartMinElixir = 0, $SmartMinDark = 0, $SmartUpgradeLog = 0
 
 Func CreateSmartUpgradeGUI()
@@ -38,40 +38,52 @@ Func CreateSmartUpgradeGUI()
 	$g_hChkIgnoreTH = GUICtrlCreateCheckbox("", $x + 20, $y + 90, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreTH")
 
-	$iconIgnoreKing = GUICtrlCreateIcon($g_sLibIconPath, $eIcnKing, $x + 95, $y + 50, 40, 40)
-	$g_hChkIgnoreKing = GUICtrlCreateCheckbox("", $x + 110, $y + 90, 17, 17)
+	$iconIgnoreKing = GUICtrlCreateIcon($g_sLibIconPath, $eIcnKing, $x + 65, $y + 50, 40, 40)
+	$g_hChkIgnoreKing = GUICtrlCreateCheckbox("", $x + 80, $y + 90, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreKing")
 
-	$iconIgnoreQueen = GUICtrlCreateIcon($g_sLibIconPath, $eIcnQueen, $x + 140, $y + 50, 40, 40)
-	$g_hChkIgnoreQueen = GUICtrlCreateCheckbox("", $x + 155, $y + 90, 17, 17)
+	$iconIgnoreQueen = GUICtrlCreateIcon($g_sLibIconPath, $eIcnQueen, $x + 110, $y + 50, 40, 40)
+	$g_hChkIgnoreQueen = GUICtrlCreateCheckbox("", $x + 125, $y + 90, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreQueen")
 
-	$iconIgnoreWarden = GUICtrlCreateIcon($g_sLibIconPath, $eIcnWarden, $x + 185, $y + 50, 40, 40)
-	$g_hChkIgnoreWarden = GUICtrlCreateCheckbox("", $x + 200, $y + 90, 17, 17)
+	$iconIgnoreWarden = GUICtrlCreateIcon($g_sLibIconPath, $eIcnWarden, $x + 155, $y + 50, 40, 40)
+	$g_hChkIgnoreWarden = GUICtrlCreateCheckbox("", $x + 170, $y + 90, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreWarden")
 
-	$iconIgnoreCC = GUICtrlCreateIcon($g_sLibIconPath, $eIcnCC, $x + 275, $y + 50, 40, 40)
-	$g_hChkIgnoreCC = GUICtrlCreateCheckbox("", $x + 290, $y + 90, 17, 17)
+	$iconIgnoreCC = GUICtrlCreateIcon($g_sLibIconPath, $eIcnCC, $x + 215, $y + 50, 40, 40)
+	$g_hChkIgnoreCC = GUICtrlCreateCheckbox("", $x + 230, $y + 90, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreCC")
 
-	$iconIgnoreLab = GUICtrlCreateIcon($g_sLibIconPath, $eIcnLaboratory, $x + 365, $y + 50, 40, 40)
-	$g_hChkIgnoreLab = GUICtrlCreateCheckbox("", $x + 380, $y + 90, 17, 17)
+	$iconIgnoreLab = GUICtrlCreateIcon($g_sLibIconPath, $eIcnLaboratory, $x + 260, $y + 50, 40, 40)
+	$g_hChkIgnoreLab = GUICtrlCreateCheckbox("", $x + 275, $y + 90, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreLab")
 
-	$iconIgnoreBarrack = GUICtrlCreateIcon($g_sLibIconPath, $eIcnBarrack, $x + 5, $y + 120, 40, 40)
-	$g_hChkIgnoreBarrack = GUICtrlCreateCheckbox("", $x + 20, $y + 160, 17, 17)
+	$iconIgnoreBarrack = GUICtrlCreateIcon($g_sLibIconPath, $eIcnBarrack, $x + 320, $y + 50, 40, 40)
+	$g_hChkIgnoreBarrack = GUICtrlCreateCheckbox("", $x + 335, $y + 90, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreBarrack")
 
-	$iconIgnoreDBarrack = GUICtrlCreateIcon($g_sLibIconPath, $eIcnDarkBarrack, $x + 50, $y + 120, 40, 40)
-	$g_hChkIgnoreDBarrack = GUICtrlCreateCheckbox("", $x + 65, $y + 160, 17, 17)
+	$iconIgnoreDBarrack = GUICtrlCreateIcon($g_sLibIconPath, $eIcnDarkBarrack, $x + 365, $y + 50, 40, 40)
+	$g_hChkIgnoreDBarrack = GUICtrlCreateCheckbox("", $x + 380, $y + 90, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreDBarrack")
 
-	$iconIgnoreFactory = GUICtrlCreateIcon($g_sLibIconPath, $eIcnSpellFactory, $x + 140, $y + 120, 40, 40)
-	$g_hChkIgnoreFactory = GUICtrlCreateCheckbox("", $x + 155, $y + 160, 17, 17)
+	$iconIgnoreBomb = GUICtrlCreateIcon($g_sLibIconPath, $eIcnTrap, $x + 5, $y + 120, 40, 40)
+	$g_hChkIgnoreBomb = GUICtrlCreateCheckbox("", $x + 20, $y + 160, 17, 17)
+	GUICtrlSetOnEvent(-1, "chkIgnoreBomb")
+
+	$iconIgnoreAir = GUICtrlCreateIcon($g_sLibIconPath, $eIcnTrap1, $x + 50, $y + 120, 40, 40)
+	$g_hChkIgnoreAir = GUICtrlCreateCheckbox("", $x + 65, $y + 160, 17, 17)
+	GUICtrlSetOnEvent(-1, "chkIgnoreAir")
+
+	$iconIgnoreTrap = GUICtrlCreateIcon($g_sLibIconPath, $eIcnTrap2, $x + 95, $y + 120, 40, 40)
+	$g_hChkIgnoreTrap = GUICtrlCreateCheckbox("", $x + 110, $y + 160, 17, 17)
+	GUICtrlSetOnEvent(-1, "chkIgnoreTrap")
+
+	$iconIgnoreFactory = GUICtrlCreateIcon($g_sLibIconPath, $eIcnSpellFactory, $x + 160, $y + 120, 40, 40)
+	$g_hChkIgnoreFactory = GUICtrlCreateCheckbox("", $x + 175, $y + 160, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreFactory")
 
-	$iconIgnoreDFactory = GUICtrlCreateIcon($g_sLibIconPath, $eIcnDarkSpellFactory, $x + 185, $y + 120, 40, 40)
-	$g_hChkIgnoreDFactory = GUICtrlCreateCheckbox("", $x + 200, $y + 160, 17, 17)
+	$iconIgnoreDFactory = GUICtrlCreateIcon($g_sLibIconPath, $eIcnDarkSpellFactory, $x + 205, $y + 120, 40, 40)
+	$g_hChkIgnoreDFactory = GUICtrlCreateCheckbox("", $x + 220, $y + 160, 17, 17)
 	GUICtrlSetOnEvent(-1, "chkIgnoreDFactory")
 
 	$iconIgnoreGColl = GUICtrlCreateIcon($g_sLibIconPath, $eIcnMine, $x + 275, $y + 120, 40, 40)

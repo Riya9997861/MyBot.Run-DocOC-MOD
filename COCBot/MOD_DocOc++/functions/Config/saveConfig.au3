@@ -51,6 +51,9 @@ Func SaveConfig_MOD()
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinGold", $iSmartMinGold)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", $iSmartMinElixir)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", $iSmartMinDark)
+	IniWriteS($g_sProfileConfigPath, "upgrade", "chkIgnoreBomb", $ichkIgnoreBomb ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "upgrade", "chkIgnoreAir", $ichkIgnoreAir ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "upgrade", "chkIgnoreTrap", $ichkIgnoreTrap ? 1 : 0)
 
 	; Switch Profile (IceCube) - Added by NguyenAnhHD
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)
