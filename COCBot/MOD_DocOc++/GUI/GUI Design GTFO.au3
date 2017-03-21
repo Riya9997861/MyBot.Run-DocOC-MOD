@@ -21,8 +21,7 @@ $GTFOcheck = GUICtrlCreateCheckbox("", $x + 90, 6, 13, 13)
 			GUICtrlSetOnEvent(-1, "GTFOcheck")
 
 	$hGUI_GTFOMode = GUICreate("", $_GUI_MAIN_WIDTH - 30 - 10, $_GUI_MAIN_HEIGHT - 255 - 30 - 30, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_DONATE)
-	Local $ic = __WinAPI_GetBkColor($frmBot)
-	GUISetBkColor($ic, $hGUI_GTFOMode)
+	GUISetBkColor($COLOR_WHITE)
 	GUISwitch($hGUI_GTFOMode)
 
 		$grpGtfo = GUICtrlCreateGroup(" GTFO - Free Man Style && Mass Donation MOD  Ver 3.2 (By Media Hub) ", 0, 0, 430, 375, BitOR($GUI_SS_DEFAULT_GROUP,$BS_CENTER))
