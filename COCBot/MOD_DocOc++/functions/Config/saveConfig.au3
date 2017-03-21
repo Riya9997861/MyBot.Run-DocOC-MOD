@@ -105,6 +105,9 @@ Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
 	IniWriteS($profile, "SwitchAcc_Demen_Style", "Pre-train", $ichkTrain ? 1 : 0)
 	IniWriteS($profile, "SwitchAcc_Demen_Style", "Total Coc Account", $icmbTotalCoCAcc)		; 1 = 1 Acc, 2 = 2 Acc, etc.
 	IniWriteS($profile, "SwitchAcc_Demen_Style", "Smart Switch", $ichkSmartSwitch ? 1 : 0)
+	IniWriteS($profile, "SwitchAcc_Demen_Style", "Force Switch", $ichkForceSwitch ? 1 : 0)
+	IniWriteS($profile, "SwitchAcc_Demen_Style", "Force Switch Search", $iForceSwitch)
+	IniWriteS($profile, "SwitchAcc_Demen_Style", "Force Stay Donate", $ichkForceStayDonate? 1 : 0)
 	IniWriteS($profile, "SwitchAcc_Demen_Style", "Sleep Combo", $ichkCloseTraining)			; 0 = No Sleep, 1 = Close CoC, 2 = Close Android
 	For $i = 1 to 8
 		IniWriteS($profile, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i, _GUICtrlCombobox_GetCurSel($cmbAccountNo[$i-1])+1)		; 1 = Acc 1, 2 = Acc 2, etc.

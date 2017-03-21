@@ -1,4 +1,8 @@
-﻿; #FUNCTION# ====================================================================================================================
+﻿#RequireAdmin
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#Au3Stripper_Parameters=/rsln /MI=3
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+; #FUNCTION# ====================================================================================================================
 ; Name ..........: MBR Bot
 ; Description ...: This file contains the initialization and main loop sequences f0r the MBR Bot
 ; Author ........:  (2014)
@@ -11,10 +15,6 @@
 ; ===============================================================================================================================
 
 ; AutoIt pragmas
-#RequireAdmin
-#AutoIt3Wrapper_UseX64=7n
-#AutoIt3Wrapper_Run_Au3Stripper=y
-#Au3Stripper_Parameters=/rsln /MI=3
 ;/SV=0
 
 ;#AutoIt3Wrapper_Change2CUI=y
@@ -31,8 +31,8 @@
 Opt("MustDeclareVars", 1)
 
 Global $g_sBotVersion = "v7.0.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it is also use on Checkversion()
-Global $g_sModversion = "v0.9.1" ;<== Just Change This to Version Number
-Global $g_sDocOcVersion = "v3.6" ;<== Just Change This to Version Number
+Global $g_sModversion = "v0.9.2" ;<== Just Change This to Version Number
+Global $g_sDocOcVersion = "v3.6.1" ;<== Just Change This to Version Number
 Global $g_sModSupportUrl = "https://mybot.run/forums/index.php?/topic/29141-mods-mbr-v701-dococ-aio-mod-v09-update-1103/" ;<== Our Website Link Support Or Link Download
 Global $g_sModDownloadUrl = "https://github.com/NguyenAnhHD/MyBot.Run-DocOC-MOD/releases" ;<== Our Website Link Download
 Global $g_sBotTitle = "" ;~ Don't assign any title here, use Func UpdateBotTitle()
@@ -533,7 +533,7 @@ Func MainLoop()
 EndFunc   ;==>MainLoop
 
 Func runBot() ;Bot that runs everything in order
-
+	IsWaitingForConnection()
 	If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 And $bReMatchAcc = True Then ; SwitchAcc_DEMEN_Style
 		$nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile) + 1
 		Setlog("Rematching Profile [" & $nCurProfile & "] - " & $ProfileList[$nCurProfile] & " (CoC Acc. " & $aMatchProfileAcc[$nCurProfile - 1] & ")")
@@ -629,6 +629,7 @@ Func runBot() ;Bot that runs everything in order
 				EndIf
 				If $g_bRestart = True Then ContinueLoop 2 ; must be level 2 due to loop-in-loop
 			WEnd
+			IsWaitingForConnection()
 			AddIdleTime()
 			If $g_bRunState = False Then Return
 			If $g_bRestart = True Then ContinueLoop
@@ -654,6 +655,7 @@ Func runBot() ;Bot that runs everything in order
 					If Unbreakable() = True Then ContinueLoop
 				EndIf
 			EndIf
+			IsWaitingForConnection()
 			SmartUpgrade()
 			MainSuperXPHandler()
 			Local $aRndFuncList = ['Laboratory', 'UpgradeHeroes', 'UpgradeBuilding']
@@ -678,7 +680,18 @@ Func runBot() ;Bot that runs everything in order
 				UpgradeWall()
 				If _Sleep($iDelayRunBot3) Then Return
 				If $g_bRestart = True Then ContinueLoop
-				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = 2 Then checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc_DEMEN_Style
+				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = $eDonate Then
+					If $eForceSwitch = $eDonate Then
+						Local $sSource = ""
+						If $iProfileBeforeForceSwitch > 0 Then $sSource = "SearchLimit"
+						ForceSwitchAcc($eForceSwitch, $sSource)
+					ElseIf $ichkForceStayDonate = 1 And MinRemainTrainAcc(False) > 1 Then
+						ForceSwitchAcc($eDonate, "StayDonate")	; stay on donate accounts until troops are ready in 1 minute
+					Else
+						checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc_DEMEN_Style
+					EndIf
+				EndIf
+
 				Idle()
 				;$fullArmy1 = $fullArmy
 				If _Sleep($iDelayRunBot3) Then Return
@@ -866,7 +879,12 @@ Func Idle() ;Sequence that runs until Full Army
 
 		If $g_iCommandStop = -1 Then ; Check if closing bot/emulator while training and not in halt mode
 			If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 Then ; SwitchAcc_DEMEN_Style
-				checkSwitchAcc()
+				If $bWaitForCCTroopSpell Then
+					Setlog("Still waiting for CC troops/ spells, switching to another Account")
+					ForceSwitchAcc($eDonate)
+				Else
+					checkSwitchAcc()
+				EndIf
 			Else
 				SmartWait4Train()
 			EndIf
@@ -886,6 +904,19 @@ Func AttackMain() ;Main control for attack functions
 	getArmyCapacity(True, True)
 	If IsSearchAttackEnabled() Then
 		If (IsSearchModeActive($DB) And checkCollectors(True, False)) Or IsSearchModeActive($LB) Or IsSearchModeActive($TS) Then
+
+			If $iSwitchAccStyle = 2 And $iSwitchAccStyle = 1 And $aAttackedCountSwitch[$nCurProfile-1] <= ($aAttackedCountAcc[$nCurProfile-1] - 2) Then
+				If UBound($aDonateProfile) > 0 Then
+					Setlog("This account has attacked twice in a row, switching to Donate Account")
+					ForceSwitchAcc($eDonate)
+				ElseIf MinRemainTrainAcc(False, $nCurProfile) <= 0 Then
+					Setlog("This account has attacked twice in a row, switching to Active Account")
+					ForceSwitchAcc($eActive)
+				Else
+					Setlog("This account has attacked twice in a row, but no other account is ready")
+				EndIf
+			EndIf ; SwitchAcc_DEMEN_Style
+
 			If $iChkUseCCBalanced = 1 Then ;launch profilereport() only if option balance D/R it's activated
 				ProfileReport()
 				If _Sleep($iDelayAttackMain1) Then Return

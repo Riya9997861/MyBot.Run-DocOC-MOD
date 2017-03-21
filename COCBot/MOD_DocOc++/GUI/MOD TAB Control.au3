@@ -268,6 +268,8 @@ Func btnUpdateProfile($Config = True)
 		ApplyConfig_SwitchAcc("Read")
 	EndIf
 
+	$aActiveProfile = _ArrayFindAll($aProfileType, $eActive)
+	$aDonateProfile = _ArrayFindAll($aProfileType, $eDonate)
 	$ProfileList = _GUICtrlComboBox_GetListArray($g_hCmbProfile)
 	$nTotalProfile = _GUICtrlComboBox_GetCount($g_hCmbProfile)
 
@@ -323,12 +325,13 @@ Func chkSwitchAcc()
 	If GUICtrlRead($chkSwitchAcc) = $GUI_CHECKED Then
 		If _GUICtrlComboBox_GetCount($g_hCmbProfile) <= 1 Then
 			GUICtrlSetState($chkSwitchAcc, $GUI_UNCHECKED)
-			MsgBox($MB_OK, GetTranslated(109,42, "SwitchAcc Mode"), GetTranslated(109,43, "Cannot enable SwitchAcc Mode") & @CRLF & GetTranslated(109,44, "You have only ") & _GUICtrlComboBox_GetCount($g_hCmbProfile) & " Profile", 30, $g_hGUI_BOT)
+			MsgBox($MB_OK, GetTranslated(110,1, "SwitchAcc Mode"), GetTranslated(110,2, "Cannot enable SwitchAcc Mode") & @CRLF & GetTranslated(110,3, "You have only ") & _GUICtrlComboBox_GetCount($g_hCmbProfile) & " Profile", 30, $g_hGUI_BOT)
 		Else
 			For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
 				GUICtrlSetState($i, $GUI_ENABLE)
 			Next
 			radNormalSwitch()
+			chkForceSwitch()
 			btnUpdateProfile(False)
 		EndIf
 	Else
@@ -343,18 +346,20 @@ EndFunc   ;==>chkSwitchAcc
 
 Func radNormalSwitch()
 	If GUICtrlRead($radNormalSwitch) = $GUI_CHECKED Then
-		GUICtrlSetState($chkUseTrainingClose, $GUI_UNCHECKED)
-		GUICtrlSetState($chkUseTrainingClose, $GUI_DISABLE)
-		For $i = $radCloseCoC To $radCloseAndroid
-			GUICtrlSetState($i, $GUI_DISABLE)
-		Next
+		_GUI_Value_STATE("UNCHECKED", $g_hChkForceStayDonate & "#" & $chkUseTrainingClose)
+		_GUI_Value_STATE("DISABLE", $g_hChkForceStayDonate & "#" & $chkUseTrainingClose & "#" & $radCloseCoC & "#" & $radCloseAndroid)
 	Else
-		GUICtrlSetState($chkUseTrainingClose, $GUI_ENABLE)
-		For $i = $radCloseCoC To $radCloseAndroid
-			GUICtrlSetState($i, $GUI_ENABLE)
-		Next
+		_GUI_Value_STATE("ENABLE", $g_hChkForceStayDonate & "#" & $chkUseTrainingClose & "#" & $radCloseCoC & "#" & $radCloseAndroid)
 	EndIf
 EndFunc   ;==>radNormalSwitch  - Normal Switch is not on the same boat with Sleep Combo
+
+Func chkForceSwitch()
+	If GUICtrlRead($g_hChkForceSwitch) = $GUI_CHECKED Then
+		_GUI_Value_STATE("ENABLE", $g_txtForceSwitch & "#" & $g_lblForceSwitch)
+	Else
+		_GUI_Value_STATE("DISABLE", $g_txtForceSwitch & "#" & $g_lblForceSwitch)
+	EndIf
+EndFunc
 
 Func cmbMatchProfileAcc1()
 	MatchProfileAcc(0)
@@ -383,7 +388,7 @@ EndFunc
 
 Func MatchProfileAcc($Num)
     If _GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num]) > _GUICtrlComboBox_GetCurSel($cmbTotalAccount) Then
-	   MsgBox($MB_OK, GetTranslated(109,42, "SwitchAcc Mode"), GetTranslated(109,45, "Account [") & _GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num]) & GetTranslated(109,46, "] exceeds Total Account declared") ,30, $g_hGUI_BOT)
+	   MsgBox($MB_OK, GetTranslated(110,1, "SwitchAcc Mode"), GetTranslated(110,4, "Account [") & _GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num]) & GetTranslated(110,5, "] exceeds Total Account declared") ,30, $g_hGUI_BOT)
 	   _GUICtrlComboBox_SetCurSel($cmbAccountNo[$Num], -1)
 	   _GUICtrlComboBox_SetCurSel($cmbProfileType[$Num], -1)
 	   btnUpdateProfile()
@@ -394,7 +399,7 @@ Func MatchProfileAcc($Num)
 		For $i = 0 to 7
 			If $i = $Num Then ContinueLoop
 			If $AccSelected = _GUICtrlComboBox_GetCurSel($cmbAccountNo[$i]) Then
-				MsgBox($MB_OK, GetTranslated(109,42, "SwitchAcc Mode"), GetTranslated(109,45, "Account [") & $AccSelected+1 & GetTranslated(109,47, "] has been assigned to Profile [") & $i+1 & "]" ,30, $g_hGUI_BOT)
+				MsgBox($MB_OK, GetTranslated(110,1, "SwitchAcc Mode"), GetTranslated(110,4, "Account [") & $AccSelected+1 & GetTranslated(110,6, "] has been assigned to Profile [") & $i+1 & "]" ,30, $g_hGUI_BOT)
 				_GUICtrlComboBox_SetCurSel($cmbAccountNo[$Num], -1)
 				_GUICtrlComboBox_SetCurSel($cmbProfileType[$Num], -1)
 				btnUpdateProfile()
@@ -416,7 +421,7 @@ Func btnLocateAcc()
 	Local $wasRunState = $g_bRunState
 	$g_bRunState = True
 
-	SetLog(GetTranslated(109,48, "Locating Y-Coordinate of CoC Account No. ") & $AccNo & GetTranslated(109,49, ", please wait..."), $COLOR_BLUE)
+	SetLog(GetTranslated(110,7, "Locating Y-Coordinate of CoC Account No. ") & $AccNo & GetTranslated(110,8, ", please wait..."), $COLOR_BLUE)
 	WinGetAndroidHandle()
 
 	Zoomout()
@@ -426,21 +431,21 @@ Func btnLocateAcc()
 
 	While 1
 		_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 600)
-		$stext = GetTranslated(109,50, "Click Connect/Disconnect on emulator to show the accout list") & @CRLF & @CRLF & _
-				 GetTranslated(109,51, "Click OK then click on your Account No. ") & $AccNo & @CRLF & @CRLF & _
-				 GetTranslated(109,52, "Do not move mouse quickly after clicking location") & @CRLF & @CRLF
-		$MsgBox = _ExtMsgBox(0, GetTranslated(109,53, "Ok|Cancel"), GetTranslated(109,54, "Locate CoC Account No. ") & $AccNo, $stext, 60, $g_hFrmBot)
+		$stext = GetTranslated(110,9, "Click Connect/Disconnect on emulator to show the accout list") & @CRLF & @CRLF & _
+				 GetTranslated(110,10, "Click OK then click on your Account No. ") & $AccNo & @CRLF & @CRLF & _
+				 GetTranslated(110,11, "Do not move mouse quickly after clicking location") & @CRLF & @CRLF
+		$MsgBox = _ExtMsgBox(0, GetTranslated(110,12, "Ok|Cancel"), GetTranslated(110,13, "Locate CoC Account No. ") & $AccNo, $stext, 60, $g_hFrmBot)
 		If $MsgBox = 1 Then
 			WinGetAndroidHandle()
 			Local $aPos = FindPos()
 			$aLocateAccConfig[$AccNo-1] = Int($aPos[1])
 			ClickP($aAway, 1, 0, "#0379")
 		Else
-			SetLog(GetTranslated(109,55, "Locate CoC Account Cancelled"), $COLOR_BLUE)
+			SetLog(GetTranslated(110,14, "Locate CoC Account Cancelled"), $COLOR_BLUE)
 			ClickP($aAway, 1, 0, "#0382")
 			Return
 		EndIf
-		SetLog(GetTranslated(109,56, "Locate CoC Account Success: ") & "(383, " & $aLocateAccConfig[$AccNo-1] & ")", $COLOR_GREEN)
+		SetLog(GetTranslated(110,15, "Locate CoC Account Success: ") & "(383, " & $aLocateAccConfig[$AccNo-1] & ")", $COLOR_GREEN)
 
 		ExitLoop
 	WEnd
@@ -456,7 +461,7 @@ Func btnClearAccLocation()
 		$aLocateAccConfig[$i-1] = -1
 		$aAccPosY[$i-1] = -1
 	Next
-	Setlog(GetTranslated(109,57, "Position of all accounts cleared"))
+	Setlog(GetTranslated(110,16, "Position of all accounts cleared"))
 	SaveConfig_SwitchAcc()
 EndFunc
 
