@@ -898,15 +898,15 @@ Func DonateWindow($Open = True)
 		If $g_iDebugSetlog = 1 Then SetLog("Could not find the Donate Button!", $COLOR_DEBUG)
 		Return False
 	EndIf
-	If _Sleep($iDelayDonateWindow1) Then Return
+	If _Sleep($iDelayDonateWindow2) Then Return
 
 	;_CaptureRegion(0, 0, 320 + $g_iMidOffsetY, $DonatePixel[1] + 30 + $YComp)
 	Local $icount = 0
 	While Not (_ColorCheck(_GetPixelColor(331, $DonatePixel[1], True), Hex(0xffffff, 6), 0))
-		If _Sleep($iDelayDonateWindow1) Then Return
+		If _Sleep($iDelayDonateWindow3) Then Return
 		;_CaptureRegion(0, 0, 320 + $g_iMidOffsetY, $DonatePixel[1] + 30 + $YComp)
 		$icount += 1
-		If $icount = 20 Then ExitLoop
+		If $icount = 10 Then ExitLoop ; Changed 20 to 3 to Speed up Donations in GTFO MOD
 	WEnd
 
 	; Determinate the right position of the new Donation Window

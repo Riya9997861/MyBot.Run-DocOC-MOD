@@ -30,7 +30,7 @@ Func getPBTInfo()
 		Setlog("Not on Main page to read PBT information", $COLOR_ERROR)
 		Return
 	EndIf
-
+	ForceCaptureRegion()
 	Select ; Check for Shield type
 		Case _CheckPixel($aNoShield, $g_bCapturePixel)
 			$aPBTReturnResult[0] = "none"

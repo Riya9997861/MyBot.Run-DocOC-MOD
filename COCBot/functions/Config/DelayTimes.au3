@@ -273,6 +273,8 @@ Global Const $iDelayDonateTroopType1 = 250
 
 ;DonateWindow
 Global Const $iDelayDonateWindow1 = 250
+Global Const $iDelayDonateWindow2 = 150
+Global Const $iDelayDonateWindow3 = 100
 
 ;DropTrophy
 Global Const $iDelayDropTrophy1 = 1000

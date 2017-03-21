@@ -135,6 +135,10 @@ Func getCastleDonateCap($x_start, $y_start);  -> Gets clan castle capacity,  -->
 	Return getOcrAndCapture("coc-army", $x_start, $y_start, 30, 14, True)
 EndFunc   ;==>getCastleDonateCap
 
+Func getDonateReceive($x_start, $y_start);  -> Gets clan castle capacity,  --> donatecc.au3
+	Return getOcrAndCapture("coc-donate", $x_start, $y_start, 35, 14, True)
+EndFunc   ;==>getCastleDonateCap
+
 Func getBarracksTroopQuantity($x_start, $y_start);  -> Gets quantity of troops in training --> train.au3
 	Return getOcrAndCapture("coc-train", $x_start, $y_start, 52, 16, True)
 EndFunc   ;==>getBarracksTroopQuantity

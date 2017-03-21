@@ -22,7 +22,11 @@ Func AutoStart()
 		SetLog("Bot Auto Starting in " & $iDelay & " seconds", $COLOR_ERROR)
 		FlushGuiLog($g_hTxtLog, $aTxtLogInitText, True)
 		Sleep($iDelay * 1000)
-		btnStart()
+		If FileExists($sProfilePath & "\" & $sCurrProfile  & "\GTFO.log") Then
+			GTFOStart()
+		Else
+			btnStart()
+		EndIf
 	EndIf
 EndFunc   ;==>AutoStart
 
