@@ -203,13 +203,13 @@ Func SwitchProfile($SwitchCase) 										; Switch profile (1 = Active, 2 = Dona
 	 Else
 		$nNextProfile = 1
 	 EndIf
-	 While $aProfileType[$nNextProfile-1] = $eIdle OR $aProfileType[$nNextProfile-1] = $eNull
+	 While $aProfileType[$nNextProfile-1] = $eIdle Or $aProfileType[$nNextProfile-1] = $eNull
 		If $nNextProfile < $nTotalProfile Then
 		   $nNextProfile += 1
 		Else
 		   $nNextProfile = 1
 		EndIf
-		If $aProfileType[$nNextProfile-1] <> $eIdle AND $aProfileType[$nNextProfile-1] <> $eNull Then ExitLoop
+		If $aProfileType[$nNextProfile-1] <> $eIdle And $aProfileType[$nNextProfile-1] <> $eNull Then ExitLoop
 	  WEnd
      _GUICtrlComboBox_SetCurSel($g_hCmbProfile, $nNextProfile-1)
 	  cmbProfile()

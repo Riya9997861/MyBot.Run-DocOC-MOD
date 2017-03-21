@@ -533,7 +533,7 @@ Func MainLoop()
 EndFunc   ;==>MainLoop
 
 Func runBot() ;Bot that runs everything in order
-
+	IsWaitingForConnection()
 	If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 And $bReMatchAcc = True Then ; SwitchAcc_DEMEN_Style
 		$nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile) + 1
 		Setlog("Rematching Profile [" & $nCurProfile & "] - " & $ProfileList[$nCurProfile] & " (CoC Acc. " & $aMatchProfileAcc[$nCurProfile - 1] & ")")
@@ -629,6 +629,7 @@ Func runBot() ;Bot that runs everything in order
 				EndIf
 				If $g_bRestart = True Then ContinueLoop 2 ; must be level 2 due to loop-in-loop
 			WEnd
+			IsWaitingForConnection()
 			AddIdleTime()
 			If $g_bRunState = False Then Return
 			If $g_bRestart = True Then ContinueLoop
@@ -654,6 +655,7 @@ Func runBot() ;Bot that runs everything in order
 					If Unbreakable() = True Then ContinueLoop
 				EndIf
 			EndIf
+			IsWaitingForConnection()
 			SmartUpgrade()
 			MainSuperXPHandler()
 			Local $aRndFuncList = ['Laboratory', 'UpgradeHeroes', 'UpgradeBuilding']
