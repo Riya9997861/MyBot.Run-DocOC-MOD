@@ -13,31 +13,53 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
+Global $g_hGUI_MOD_SWITCH_STYLE = 0, $g_hGUI_MOD_SWITCH_STYLE_TAB = 0
+Global $g_hRdoSwitchAcc_DocOc = 0, $g_hRdoSwitchAcc_Demen = 0
+
+; SwitchAcc_Demen_Style
 Global $lblProfileNo[8], $lblProfileName[8], $cmbAccountNo[8], $cmbProfileType[8]
 Global $chkSwitchAcc = 0, $chkTrain = 0, $cmbTotalAccount = 0, $radNormalSwitch = 0, $radSmartSwitch = 0, $chkUseTrainingClose = 0, $radCloseCoC = 0, $radCloseAndroid = 0, $cmbLocateAcc = 0
 Global $g_hChkForceSwitch = 0, $g_txtForceSwitch = 0, $g_lblForceSwitch = 0, $g_hChkForceStayDonate = 0
 Global $g_StartHideSwitchAcc_Demen = 0, $g_SecondHideSwitchAcc_Demen, $g_EndHideSwitchAcc_Demen = 0
 
+
+; SwitchAcc_DocOc_Style
+Global $chkEnableSwitchAccount, $lblNB, $cmbAccountsQuantity
+Global $chkCanUse[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $chkDonateAccount[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $cmbAccount[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $g_StartHideSwitchAcc_DocOc = 0, $g_EndHideSwitchAcc_DocOc = 0
+
+
+Func CreateModSwitchAccStyle()
+
+	$g_hGUI_MOD_SWITCH_STYLE = GUICreate("", $_GUI_MAIN_WIDTH - 36, $_GUI_MAIN_HEIGHT - 385, 5, 95, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_MOD_SWITCH)
+	Local $x = 76
+	$g_hRdoSwitchAcc_Demen = GUICtrlCreateRadio("", $x, 5, 13, 13)
+			   GUICtrlSetState(-1,$GUI_CHECKED)
+			   GUICtrlSetOnEvent(-1, "RdoSwitchAcc_Style")
+	$g_hRdoSwitchAcc_DocOc = GUICtrlCreateRadio("", $x + 88, 5, 13, 13)
+			   GUICtrlSetState(-1,$GUI_UNCHECKED)
+			   GUICtrlSetOnEvent(-1, "RdoSwitchAcc_Style")
+
+	GUISwitch($g_hGUI_MOD_SWITCH_STYLE)
+	$g_hGUI_MOD_SWITCH_STYLE_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 36, $_GUI_MAIN_HEIGHT - 385, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
+	GUICtrlCreateTabItem("Demen Style" & "      ")
+		CreateSwitchAcc_Demen()
+	GUICtrlCreateTabItem("DocOc Style" & "      ")
+		CreateSwitchAcc_DocOc()
+EndFunc
+
+
 Func CreateSwitchAcc_Demen()
 	$ProfileList = _GUICtrlComboBox_GetListArray($g_hCmbProfile)
 	$nTotalProfile = _GUICtrlComboBox_GetCount($g_hCmbProfile)
 
-	; Adding option for SwitchAcc_Demen_Style
-	Local $x = 20, $y = 45
-	GUICtrlCreateLabel(GetTranslated(109,1, "Switch Account Style:"), $x + 285, $y, -1, -1)
-	$g_hRdoSwitchAcc_DocOc = GUICtrlCreateRadio("DocOc", $x + 270, $y + 16, -1, -1)
-		_GUICtrlSetTip(-1, GetTranslated(109,2, "Use SwitchAcc moded by DocOc Team"))
-		GUICtrlSetState(-1, $GUI_CHECKED)
-		GUICtrlSetOnEvent(-1, "RdoSwitchAcc_Style")
-	$g_hRdoSwitchAcc_Demen = GUICtrlCreateRadio("Demen", $x + 350, $y + 16, -1, -1)
-		_GUICtrlSetTip(-1, GetTranslated(109,3, "Use SwitchAcc moded by Demen"))
-		GUICtrlSetOnEvent(-1, "RdoSwitchAcc_Style")
-
 	Local $sTxtTip = ""
-	Local $x = 20, $y = 105
+	Local $x = 15, $y = 45
 
 		$g_StartHideSwitchAcc_Demen = GUICtrlCreateDummy()
-		GUICtrlCreateGroup(GetTranslated(109,4, "Switch Account Mode"), $x - 12, $y - 20, 200, 295)
+		GUICtrlCreateGroup(GetTranslated(109,4, "Switch Account Mode"), $x - 12, $y - 20, 200, 275)
 			$chkSwitchAcc = GUICtrlCreateCheckbox(GetTranslated(109,5, "Enable Switch Account"), $x - 5, $y, -1, -1)
 				$sTxtTip = GetTranslated(109,6, "Switch to another account & profile when troop training time is >= 1 minutes") & _
 					@CRLF & GetTranslated(109,7, "This function supports maximum 8 CoC accounts & 8 Bot profiles") & _
@@ -98,25 +120,25 @@ Func CreateSwitchAcc_Demen()
 			$y += 60
 			GUICtrlCreateLabel(GetTranslated(109,31, "Manually locate account coordinates"), $x, $y, -1, -1)
 
-			$cmbLocateAcc = GUICtrlCreateCombo("", $x + 15, $y + 25, 60, 18, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$cmbLocateAcc = GUICtrlCreateCombo("", $x + 15, $y + 21, 60, 18, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 				$sTxtTip = GetTranslated(109,32, "Select CoC Account to manually locate its y-coordinate")
 				GUICtrlSetData(-1, "Acc. 1" & "|" & "Acc. 2" & "|" & "Acc. 3" & "|" & "Acc. 4" & "|" & "Acc. 5" & "|" & "Acc. 6" & "|" & "Acc. 7" & "|" & "Acc. 8", "Acc. 1")
 				GUICtrlSetTip(-1, $sTxtTip)
 
-			GUICtrlCreateButton(GetTranslated(109,33, "Locate"), $x + 80, $y + 24 , 50, 23)
+			GUICtrlCreateButton(GetTranslated(109,33, "Locate"), $x + 80, $y + 20 , 50, 23)
 				GUICtrlSetTip(-1, GetTranslated(109,34, "Starting locate your CoC Account"))
 				GUICtrlSetOnEvent(-1, "btnLocateAcc")
 
-			GUICtrlCreateButton(GetTranslated(109,35, "Clear All"), $x + 135, $y + 24 , 50, 23, $BS_MULTILINE)
+			GUICtrlCreateButton(GetTranslated(109,35, "Clear All"), $x + 135, $y + 20 , 50, 23, $BS_MULTILINE)
 				GUICtrlSetTip(-1, GetTranslated(109,36, "Clear location data of all accounts"))
 				GUICtrlSetOnEvent(-1, "btnClearAccLocation")
 
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	; Profiles & Account matching
-	Local $x = 230, $y = 105
+	Local $x = 225, $y = 45
 
-	GUICtrlCreateGroup(GetTranslated(109,37, "Profiles"), $x - 20, $y - 20, 223, 295)
+	GUICtrlCreateGroup(GetTranslated(109,37, "Profiles"), $x - 20, $y - 20, 223, 275)
 		GUICtrlCreateButton(GetTranslated(109,38, "Update Profiles"), $x + 40, $y - 5 , -1, 25)
 			GUICtrlSetOnEvent(-1, "g_btnUpdateProfile")
 		GUICtrlCreateButton(GetTranslated(109,39, "Clear Profiles"), $x + 130, $y - 5 , -1, 25)
@@ -159,11 +181,74 @@ Func CreateSwitchAcc_Demen()
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$g_EndHideSwitchAcc_Demen = GUICtrlCreateDummy()
 
-	For $i = $g_StartHideSwitchAcc_Demen To $g_EndHideSwitchAcc_Demen
-		GUICtrlSetState($i,$GUI_HIDE)
-	Next
-
 EndFunc
 
 
+Func CreateSwitchAcc_DocOc()
 
+	Local $x = 3, $z = 180, $w = 345, $y = 25
+	$g_StartHideSwitchAcc_DocOc = GUICtrlCreateDummy()	; Hide DocOc SwitchAcc to make room for SwitchAcc_Demen_Style
+	GUICtrlCreateGroup(GetTranslated(108,1, "Smart Switch Accounts"), $x, $y, 425, 275)
+		$x += 10
+		$y += 20
+			$chkEnableSwitchAccount = GUICtrlCreateCheckbox(GetTranslated(108,2, "Use Smart Switch Accounts"), $x, $y, 152, 17)
+				GUICtrlSetOnEvent(-1, "chkSwitchAccount")
+			$lblNB = GUICtrlCreateLabel(GetTranslated(108,3, "Number of accounts on Emulator :"), $x + 195, $y + 2, 165, 17)
+			$cmbAccountsQuantity = GUICtrlCreateCombo("", $x + 365, $y - 2, 45, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+				GUICtrlSetOnEvent(-1, "cmbAccountsQuantity")
+				GUICtrlSetData(-1, "2|3|4|5|6|7|8", "2")
+		$y += 30
+			$chkCanUse[1] = GUICtrlCreateCheckbox(GetTranslated(108,4, "Use Account 1 with Profile :"), $x, $y, 150, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+			$cmbAccount[1] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+			$chkDonateAccount[1] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+		$y += 28
+			$chkCanUse[2] = GUICtrlCreateCheckbox(GetTranslated(108,6, "Use Account 2 with Profile :"), $x, $y, 150, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+			$cmbAccount[2] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+			$chkDonateAccount[2] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+		$y += 28
+			$chkCanUse[3] = GUICtrlCreateCheckbox(GetTranslated(108,7, "Use Account 3 with Profile :"), $x, $y, 150, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+			$cmbAccount[3] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+			$chkDonateAccount[3] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+		$y += 28
+			$chkCanUse[4] = GUICtrlCreateCheckbox(GetTranslated(108,8, "Use Account 4 with Profile :"), $x, $y, 150, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+			$cmbAccount[4] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+			$chkDonateAccount[4] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+		$y += 28
+			$chkCanUse[5] = GUICtrlCreateCheckbox(GetTranslated(108,9, "Use Account 5 with Profile :"), $x, $y, 150, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+			$cmbAccount[5] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+			$chkDonateAccount[5] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+		$y += 28
+			$chkCanUse[6] = GUICtrlCreateCheckbox(GetTranslated(108,10, "Use Account 6 with Profile :"), $x, $y, 150, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+			$cmbAccount[6] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+			$chkDonateAccount[6] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+		$y += 28
+			$chkCanUse[7] = GUICtrlCreateCheckbox(GetTranslated(108,11, "Use Account 7 with Profile :"), $x, $y, 150, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+			$cmbAccount[7] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+			$chkDonateAccount[7] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+		$y += 28
+			$chkCanUse[8] = GUICtrlCreateCheckbox(GetTranslated(108,12, "Use Account 8 with Profile :"), $x, $y, 150, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+			$cmbAccount[8] = GUICtrlCreateCombo("", $z, $y - 2, 145, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+			$chkDonateAccount[8] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 75, 17)
+				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+	$g_EndHideSwitchAcc_DocOc = GUICtrlCreateDummy()	; Hide DocOc SwitchAcc to make room for SwitchAcc-Demen-Style
+
+	setupProfileComboBox()
+	PopulatePresetComboBox()
+
+EndFunc
