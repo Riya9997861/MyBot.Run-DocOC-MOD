@@ -648,10 +648,6 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 			tabBot()
 		Case $g_hGUI_MOD_TAB
 			tabMod()
-		Case $g_hGUI_MOD_SWITCH_TAB	; SwitchAcc_Demen_Style
-			tabProfile()
-		Case $g_hGUI_MOD_SWITCH_STYLE_TAB ; SwitchAcc_Demen_Style
-			tabStyle()
 		Case Else
 			$bCheckEmbeddedShield = False
 	EndSwitch
@@ -1418,37 +1414,10 @@ Func tabMod()
 	Select
 		Case $tabidx = 3 ; Profile tab
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_MOD_SWITCH)
-			tabProfile()
 		Case Else
 			GUISetState(@SW_HIDE, $g_hGUI_MOD_SWITCH)
 	EndSelect
 EndFunc   ;==>tabMod
-
-Func tabProfile()	; SwitchAcc_Demen_Style
-	Local $tabidx = GUICtrlRead($g_hGUI_MOD_SWITCH_TAB)
-	Select
-		Case $tabidx = 0 ; SwitchAcc tab
-			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_MOD_SWITCH_STYLE)
-			tabStyle()
-		Case Else
-			GUISetState(@SW_HIDE, $g_hGUI_MOD_SWITCH_STYLE)
-	EndSelect
-EndFunc   ;==>tabProfile
-
-Func tabStyle()	; SwitchAcc_Demen_Style
-	Local $tabidx = GUICtrlRead($g_hGUI_MOD_SWITCH_STYLE_TAB)
-	Local $tabDemen = _GUICtrlTab_GetItemRect($g_hGUI_MOD_SWITCH_STYLE_TAB, 0) ;get array of deadbase Tabitem rectangle coordinates, index 2,3 will be lower right X,Y coordinates (not needed: 0,1 = top left x,y)
-	Local $tabDocOc = _GUICtrlTab_GetItemRect($g_hGUI_MOD_SWITCH_STYLE_TAB, 1)
-
-	Select
-		Case $tabidx = 0 ; Demen Style tab
-			GUICtrlSetPos($g_hRdoSwitchAcc_Demen, $tabDemen[2] - 17, $tabDemen[3] - 17)
-			GUICtrlSetPos($g_hRdoSwitchAcc_DocOc, $tabDocOc[2] - 17, $tabDocOc[3] - 15)
-		Case Else
-			GUICtrlSetPos($g_hRdoSwitchAcc_Demen, $tabDemen[2] - 17, $tabDemen[3] - 15)
-			GUICtrlSetPos($g_hRdoSwitchAcc_DocOc, $tabDocOc[2] - 17, $tabDocOc[3] - 17)
-	EndSelect
-EndFunc   ;==>tabStyle
 
 Func tabDeadbase()
 	Local $tabidx = GUICtrlRead($g_hGUI_DEADBASE_TAB)

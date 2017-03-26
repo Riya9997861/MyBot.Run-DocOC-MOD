@@ -191,28 +191,26 @@ EndFunc   ;==>chkSimpleTrain
 ; SwitchAcc_Demen_Style
 Func RdoSwitchAcc_Style()
 	If GUICtrlRead($g_hRdoSwitchAcc_DocOc) = $GUI_CHECKED Then
-		If $g_iBotLaunchTime > 0 Then _GUICtrlTab_SetCurFocus($g_hGUI_MOD_SWITCH_STYLE_TAB, 1)
 		GUICtrlSetState($chkSwitchAcc, $GUI_UNCHECKED)
 		For $i = $g_StartHideSwitchAcc_Demen To $g_EndHideSwitchAcc_Demen
-			GUICtrlSetState($i,$GUI_DISABLE)
+			GUICtrlSetState($i,$GUI_HIDE)
 		Next
 		For $i = $aStartHide[0] To $aEndHide[7]
 			GUICtrlSetState($i,$GUI_HIDE)
 		Next
 		For $i = $g_StartHideSwitchAcc_DocOc To $g_EndHideSwitchAcc_DocOc
-			GUICtrlSetState($i,$GUI_ENABLE)
+			GUICtrlSetState($i,$GUI_SHOW)
 		Next
 		GUICtrlSetState($g_icnPopOutSW[0], $GUI_SHOW)
 		chkSwitchAccount()
 	Else
-		If $g_iBotLaunchTime > 0 Then _GUICtrlTab_SetCurFocus($g_hGUI_MOD_SWITCH_STYLE_TAB, 0)
 		GUICtrlSetState($chkEnableSwitchAccount, $GUI_UNCHECKED)
 		chkSwitchAccount()
 		For $i = $g_StartHideSwitchAcc_DocOc To $g_EndHideSwitchAcc_DocOc
-			GUICtrlSetState($i,$GUI_DISABLE)
+			GUICtrlSetState($i,$GUI_HIDE)
 		Next
 		For $i = $g_StartHideSwitchAcc_Demen To $g_SecondHideSwitchAcc_Demen
-			GUICtrlSetState($i,$GUI_ENABLE)
+			GUICtrlSetState($i,$GUI_SHOW)
 		Next
 		chkSwitchAcc()
 		HideShowMultiStat("HIDE")
