@@ -47,6 +47,8 @@ Func WaitForClouds()
 		SetLog("RANDOM: $maxLongSearchCount= " & $maxLongSearchCount & "= " & Round(($maxSearchCount / $iDelayGetResources1) * $maxLongSearchCount, 2) & " min max search time", $COLOR_DEBUG)
 	EndIf
 
+	IsWaitingForConnection()
+
 	ForceCaptureRegion() ; ensure screenshots are not cached
 	Local $hMinuteTimer = TimerInit() ; initialize timer for tracking search time
 

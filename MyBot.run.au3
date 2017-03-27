@@ -1042,12 +1042,14 @@ Func _RunFunction($action)
 			NotifyReport()
 			_Sleep($iDelayRunBot3)
 		Case "DonateCC"
+			IsWaitingForConnection()
 			If $bActiveDonate And $g_bChkDonate Then
 				;If $g_bDonateSkipNearFullEnable = True and $g_bFirstStart = False Then getArmyCapacity(True, True)
 				If SkipDonateNearFullTroops(True) = False And BalanceDonRec(True) Then DonateCC()
 				If _Sleep($iDelayRunBot1) = False Then checkMainScreen(False)
 			EndIF
 		Case "DonateCC,Train"
+			IsWaitingForConnection()
 			If $bActiveDonate And $g_bChkDonate Then
 				If $g_bFirstStart Then
 					getArmyCapacity(True, False)
