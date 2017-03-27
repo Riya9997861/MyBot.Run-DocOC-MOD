@@ -102,6 +102,9 @@ Func ApplyConfig_MOD($TypeReadSave)
 			; Upgrade Management (MMHK) - Added by NguyenAnhHD
 			GUICtrlSetState($g_hChkUpdateNewUpgradesOnly, $g_ibUpdateNewUpgradesOnly ? $GUI_CHECKED : $GUI_UNCHECKED)
 
+			; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+			GUICtrlSetState($g_hChkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+
 		Case "Save"
 			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
 			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
@@ -181,6 +184,9 @@ Func ApplyConfig_MOD($TypeReadSave)
 
 			; Upgrade Management (MMHK) - Added by NguyenAnhHD
 			$g_ibUpdateNewUpgradesOnly = (GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED)
+
+			; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+			$ichkClanHop = GUICtrlRead($g_hChkClanHop) = $GUI_CHECKED ? 1 : 0
 
 	EndSwitch
 EndFunc

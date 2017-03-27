@@ -93,6 +93,9 @@ Func ReadConfig_MOD()
 	; Upgrade Management (MMHK) - Added by NguyenAnhHD
 	$g_ibUpdateNewUpgradesOnly = (IniRead($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", 0) = 1)
 
+	; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+	IniReadS($ichkClanHop, $g_sProfileConfigPath, "Others", "ClanHop", 0, "int")
+
 EndFunc
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)

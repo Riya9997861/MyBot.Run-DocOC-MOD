@@ -94,6 +94,9 @@ Func SaveConfig_MOD()
 	; Upgrade Management (MMHK) - Added by NguyenAnhHD
 	IniWriteS($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
 
+	; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+	IniWriteS($g_sProfileConfigPath, "Others", "ClanHop", $ichkClanHop ? 1 : 0)
+
 EndFunc
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

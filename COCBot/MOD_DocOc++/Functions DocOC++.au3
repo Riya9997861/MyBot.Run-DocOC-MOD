@@ -44,3 +44,6 @@
 
 ; Upgrade Management (MMHK) - Added by NguyenAnhHD
 #include "functions\Mod's\UpgradesMgmt.au3"
+
+; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+#include "functions\Mod's\ClanHop.au3"

@@ -79,3 +79,6 @@ Global $MyApiKey = ""
 ; Upgrade Management (MMHK) - Added by NguyenAnhHD
 Global $g_ibUpdateNewUpgradesOnly = False
 Global Const $UP = True, $DOWN = False, $TILL_END = True
+
+; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+Global $ichkClanHop
