@@ -624,7 +624,6 @@ Func CreateTroopsSpellsSubTab()
 				GUICtrlSetOnEvent(-1, "chkSimpleTrain")
 		$x += 130
 			$g_hchkPreciseTroops = GUICtrlCreateCheckbox(GetTranslated(621, 304, "Precise troops"), $x, $y, -1, 15)
-				GUICtrlSetState(-1, $GUI_HIDE)
 				GUICtrlSetOnEvent(-1, "chkPreciseTroops")
 		$x += 103
 			$g_hchkFillArcher = GUICtrlCreateCheckbox(GetTranslated(621, 302, "Fill Arch:"), $x, $y, -1, 15)

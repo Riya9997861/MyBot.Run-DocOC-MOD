@@ -55,8 +55,12 @@ Func TrainRevamp()
 	If $g_bRunState = False Then Return
 
 	If $ichkSimpleTrain = 1 Then				;	SimpleTrain - Demen
-		If $bDonationEnabled And $g_bChkDonate Then MakingDonatedTroops()
+		If $bDonationEnabled And $g_bChkDonate Then
+			MakingDonatedTroops()
+			OpenTrainTabNumber($ArmyTAB, "TrainRevamp()")
+		EndIf
 		SimpleTrain()
+		ResetVariables("donated")	; fixed making wrong donated spells - Demen
 		EndGainCost("Train")
 		Return
 	EndIf										;	SimpleTrain - Demen
@@ -227,6 +231,7 @@ EndFunc   ;==>TrainRevampOldStyle
 
 Func CheckArmySpellCastel()
 
+	$bWaitForCCTroopSpell = False	; ForceSwitch while waiting for CC - Demen
 	Local $fullcastlespells = False
 	Local $fullcastletroops = False
 
