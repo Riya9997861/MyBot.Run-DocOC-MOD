@@ -622,19 +622,24 @@ Func CreateTroopsSpellsSubTab()
 		$y += 16
 			$g_hchkSimpleTrain = GUICtrlCreateCheckbox(GetTranslated(621, 301, "Enable SimpleTrain"), $x, $y, -1, 15)
 				GUICtrlSetOnEvent(-1, "chkSimpleTrain")
+				_GUICtrlSetTip(-1, "Train 2 sets of army to make full camp & full queue" & @CRLF & "Only delete queued troops or spells if the queue is not full" _
+									& @CRLF & "Not delete training troops of the 1st set, i.e. < full camp capacity")
 		$x += 130
 			$g_hchkPreciseTroops = GUICtrlCreateCheckbox(GetTranslated(621, 304, "Precise troops"), $x, $y, -1, 15)
 				GUICtrlSetOnEvent(-1, "chkPreciseTroops")
+				_GUICtrlSetTip(-1, "Check precision of troops & spells before training." & @CRLF & "Will remove wrong troops or spells if any")
 		$x += 103
 			$g_hchkFillArcher = GUICtrlCreateCheckbox(GetTranslated(621, 302, "Fill Arch:"), $x, $y, -1, 15)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetOnEvent(-1, "chkFillArcher")
+				_GUICtrlSetTip(-1, "Train some archers to top-up the camp or queue if it is nearly full")
 			$g_htxtFillArcher = GUICtrlCreateInput("5", $x + 70, $y-1, 20, 16, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetLimit(-1, 2)
 		$x += 110
 			$g_hchkFillEQ = GUICtrlCreateCheckbox(GetTranslated(621, 303, "Fill 1 EQ"), $x, $y, -1, 15)
 				GUICtrlSetState(-1, $GUI_DISABLE)
+				_GUICtrlSetTip(-1, "Brew 1 EarthQuake Spell to top-up the spell camp or queue")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 ;========== Adding GUI for SimpleTrain - Demen ==============
 
