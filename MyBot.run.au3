@@ -985,6 +985,10 @@ Func QuickAttack()
 	Local $quicklymilking = 0
 	Local $quicklythsnipe = 0
 
+	If $ichkSwitchAcc = 1 Then	; No quick attack after ForceSwitch - SwitchAcc Demen
+		If $aProfileType[$nCurProfile - 1] <> $eActive Or $eForceSwitch <> $eNull Then Return False
+	EndIf
+
 	getArmyCapacity(True, True)
 
 	If ($g_aiAttackAlgorithm[$DB] = 2 And IsSearchModeActive($DB)) Or (IsSearchModeActive($TS)) Then

@@ -1059,7 +1059,7 @@ Func SetTime($bForceUpdate = False)
 		;Update Multi Stat Page _ SwitchAcc_Demen_Style
 		If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 Then
 			If GUICtrlRead($g_hGUI_MOD_TAB, 1) = $g_hGUI_MOD_TAB_ITEM5 Then		; moved to Bot Tab in NguyenAnh's AIO Mod (edited by Demen)
-				For $i = 0 To $nTotalProfile ; Update time for all Accounts
+				For $i = 0 To $nTotalProfile - 1 ; Update time for all Accounts
 					If $aProfileType[$i] = 1 And _
 							$i <> $nCurProfile - 1 And _
 							$aTimerStart[$i] <> 0 Then
